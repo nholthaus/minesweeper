@@ -11,12 +11,17 @@ set(QT_MINIMUM_VERSION 5.9.0)
 
 # .h files
 list(APPEND HEADER_FILES
-
+src/gameboard.h
+src/mainwindow.h
+src/tile.h
 )
 
 # .cpp files
 list(APPEND SOURCE_FILES
+src/gameboard.cpp
 src/main.cpp
+src/mainwindow.cpp
+src/tile.cpp
 )
 
 # on windows, append headers to source so they show up in visual studio
@@ -28,7 +33,7 @@ endif()
 #	PROJECT SETTINGS
 #-------------------------------------------------------------------------------
 
-set(TARGET_NAME cmake-qt-project)
+set(TARGET_NAME minesweeper)
 
 # Use git branch as project name if clones from git
 find_package(Git)
@@ -111,6 +116,7 @@ set(CMAKE_CXX_STANDARD 17)
 if(MSVC)
 	set(GUI_TYPE WIN32)
 	add_compile_options(/MP)
+	add_compile_options(/std:c++17)
 elseif(CMAKE_COMPILER_IS_GNUCXX)
 	add_compile_options(-std=c++17)
 endif(MSVC)
