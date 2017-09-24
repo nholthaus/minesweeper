@@ -3,27 +3,49 @@
 #include <algorithm>
 #include <random>
 
+#include <QGridLayout>
+#include <QSpacerItem>
+#include <QSet>
+
 GameBoard::GameBoard(unsigned int numRows, unsigned int numCols, unsigned int numMines, QWidget* parent /*= nullptr*/)
 	: m_numRows(numRows)
 	, m_numCols(numCols)
-	, QWidget(parent)
+	, m_numMines(numMines)
+	, QFrame(parent)
 {
+	setupLayout();
 	createTiles();
 	addNeighbors();
-	placeMines(numMines, TODO);
+}
+
+void GameBoard::setupLayout()
+{
+	this->setAttribute(Qt::WA_LayoutUsesWidgetRect);
+	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+	auto layout = new QGridLayout;
+
+	layout->setSpacing(0);
+	layout->setMargin(0);
+	layout->setContentsMargins(0, 0, 0, 0);
+	layout->setSizeConstraint(QLayout::SetFixedSize);
+
+	this->setLayout(layout);
 }
 
 void GameBoard::createTiles()
 {
 	for (unsigned int r = 0; r < m_numRows; ++r)
 	{
-		m_tiles += QVector<Tile*>{};
+		m_tiles += QList<Tile*>{};
 		for (unsigned int c = 0; c < m_numCols; ++c)
 		{
 			// add a new tile to the row
 			m_tiles[r] += new Tile({ r, c }, this);
+			static_cast<QGridLayout*>(this->layout())->addWidget(m_tiles[r][c], r, c);
+			connect(m_tiles[r][c], &Tile::firstClick, this, &GameBoard::placeMines);
 		}
 	}
+	m_tiles[0][0]->setDown(true);
 }
 
 void GameBoard::addNeighbors()
@@ -49,17 +71,21 @@ void GameBoard::addNeighbors()
 	}
 }
 
-void GameBoard::placeMines(unsigned int numMines, Tile* firstClicked)
+void GameBoard::placeMines(Tile* firstClicked)
 {
 	// get a flat list of tiles
-	QVector<Tile*> tiles;
+	QList<Tile*> tiles;
+	QSet<Tile*> doneUse;
+	doneUse += firstClicked;
+	doneUse += QSet<Tile*>::fromList(firstClicked->neighbors());
+
 	for (unsigned int r = 0; r < m_numRows; ++r)
 	{
-		m_tiles += QVector<Tile*>{};
+		m_tiles += QList<Tile*>{};
 		for (unsigned int c = 0; c < m_numCols; ++c)
 		{
 			// add a new tile to the row (unless it's the first one clicked)
-			if (auto tile = m_tiles[r][c]; tile != firstClicked)
+			if (auto tile = m_tiles[r][c]; !doneUse.contains(tile))
 				tiles += tile;
 		}
 	}
@@ -70,7 +96,6 @@ void GameBoard::placeMines(unsigned int numMines, Tile* firstClicked)
 
 	std::shuffle(tiles.begin(), tiles.end(), g);
 
-	for (unsigned int i = 0; i < numMines; ++i)
-		tiles[i]->setMine(true);
-
+	for (unsigned int i = 0; i < m_numMines; ++i)
+		tiles[i]->placeMine(true);
 }

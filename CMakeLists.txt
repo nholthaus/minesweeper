@@ -96,12 +96,12 @@ find_package(Threads REQUIRED)
 #	RESOURCES
 #-------------------------------------------------------------------------------
 
-#list(APPEND QT_RESOURCES
-#resources/resources.qrc
-#)
-#
-#qt5_add_resources(RESOURCES ${QT_RESOURCES})
-#
+list(APPEND QT_RESOURCES
+resources/resources.qrc
+)
+
+qt5_add_resources(RESOURCES ${QT_RESOURCES})
+
 #list(APPEND RESOURCES
 #resources/resources.rc
 #)

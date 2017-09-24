@@ -1,10 +1,10 @@
 #pragma once
-#include <QVector>
-#include <QWidget>
+#include <QList>
+#include <QFrame>
 
 #include "tile.h"
 
-class GameBoard : public QWidget
+class GameBoard : public QFrame
 {
 	Q_OBJECT
 
@@ -18,14 +18,18 @@ public:
 private:
 
 	void createTiles();
+
+	void setupLayout();
+
 	void addNeighbors();
-	void placeMines(unsigned int numMines, Tile* firstClicked);
+	void placeMines(Tile* firstClicked);
 
 private:
 
 	unsigned int m_numRows;
 	unsigned int m_numCols;
+	unsigned int m_numMines;
 
-	QVector<QVector<Tile*>> m_tiles;
+	QList<QList<Tile*>> m_tiles;
 
 };
