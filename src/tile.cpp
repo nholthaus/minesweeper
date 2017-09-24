@@ -60,6 +60,12 @@ QIcon Tile::tadaIcon()
 	return icon;
 }
 
+QIcon Tile::wrongIcon()
+{
+	static QIcon icon = QIcon(QPixmap(":/wrong").scaled(QSize(22, 22)));
+	return icon;
+}
+
 Tile::Tile(TileLocation location, QWidget* parent /*= nullptr*/)
 	: m_isMine(false)
 	, m_adjacentMineCount(0)

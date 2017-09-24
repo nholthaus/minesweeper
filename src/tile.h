@@ -44,6 +44,7 @@ public:
 	static QIcon mineIcon();
 	static QIcon explosionIcon();
 	static QIcon tadaIcon();
+	static QIcon wrongIcon();
 
 public slots:
 

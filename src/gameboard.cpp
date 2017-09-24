@@ -148,6 +148,10 @@ void GameBoard::defeatAnimation()
 	});
 	QTimer::singleShot(500, this, [this]()
 	{
+		for (auto wrong : m_incorrectFlags)
+		{
+			wrong->setIcon(wrong->wrongIcon());
+		}
 		for (auto mine : m_mines)
 		{
 			disconnect(mine, &Tile::detonated, this, &GameBoard::defeatAnimation);
