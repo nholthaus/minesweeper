@@ -13,7 +13,7 @@ GameBoard::GameBoard(unsigned int numRows, unsigned int numCols, unsigned int nu
 	, m_numCols(numCols)
 	, m_numMines(numMines)
 	, QFrame(parent)
-	, explosionTimer(new QTimer)
+	, explosionTimer(new QTimer(this))
 {
 	setupLayout();
 	createTiles();
@@ -193,4 +193,6 @@ void GameBoard::placeMines(Tile* firstClicked)
 		tiles[i]->placeMine(true);
 		m_mines.insert(tiles[i]);
 	}
+
+	emit initialized();
 }

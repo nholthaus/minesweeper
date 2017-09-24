@@ -18,6 +18,7 @@ class Tile : public QPushButton
 public:
 
 	Tile(TileLocation location, QWidget* parent = nullptr);
+	virtual ~Tile() override;
 
 	void addNeighbor(Tile* tile);
 	TileLocation location() const;

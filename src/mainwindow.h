@@ -22,6 +22,7 @@ signals:
 	void startGame();
 	void victory();
 	void defeat();
+	void startNewGame();
 
 private:
 
@@ -38,7 +39,6 @@ private:
 	QStateMachine* m_machine;
 	QState* unstartedState;
 	QState* inProgressState;
-	QState* gameOverState;
 	QState* victoryState;
 	QState* defeatState;
 

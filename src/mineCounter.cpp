@@ -1,6 +1,7 @@
 #include "mineCounter.h"
 
-MineCounter::MineCounter()
+MineCounter::MineCounter(QWidget* parent)
+	: QLCDNumber(parent)
 {
 	this->setDigitCount(3);
 	this->display(0);

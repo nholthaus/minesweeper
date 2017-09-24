@@ -72,6 +72,16 @@ Tile::Tile(TileLocation location, QWidget* parent /*= nullptr*/)
 	setCheckable(true);
 }
 
+Tile::~Tile()
+{
+	m_firstClick = false;
+	delete unrevealedState;
+	delete previewState;
+	delete flaggedState;
+	delete revealedState;
+	delete disabledState;
+}
+
 void Tile::addNeighbor(Tile* tile)
 {
 	m_neighbors += tile;
@@ -86,7 +96,6 @@ TileLocation Tile::location() const
 void Tile::placeMine(bool val)
 {
 	m_isMine = val;
-//	QPushButton::setText("X");
 	for (auto neighbor : m_neighbors)
 		neighbor->incrementAdjacentMineCount();
 }

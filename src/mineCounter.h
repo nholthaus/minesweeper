@@ -4,7 +4,7 @@
 class MineCounter : public QLCDNumber
 {
 public:
-	MineCounter();
+	MineCounter(QWidget* parent = nullptr);
 
 	void setNumMines(int numMines);
 	void setFlagCount(unsigned int flagCount);

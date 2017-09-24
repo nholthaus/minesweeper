@@ -23,7 +23,7 @@ public slots:
 
 signals:
 
-	void initialized(Tile*);
+	void initialized();
 	void victory();
 	void defeat();
 	void flagCountChanged(unsigned int flagCount);
