@@ -1,15 +1,19 @@
 #include "mainwindow.h"
 #include "gameboard.h"
 #include "mineCounter.h"
+#include "minetimer.h"
 
 #include <QDebug>
 #include <QVBoxLayout>
 #include <QFrame>
+#include <QTimer>
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 	, mainFrame(nullptr)
 {
+	this->setWindowIcon(QIcon(":/mine"));
+	this->setSizeIncrement(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	setupStateMachine();
 }
 
@@ -22,7 +26,9 @@ void MainWindow::initialize()
 	auto infoLayout = new QHBoxLayout;
 	gameBoard = new GameBoard(16, 30, 99, mainFrame);
 	mineCounter = new MineCounter(mainFrame);
+	mineTimer = new MineTimer(mainFrame);
 	newGame = new QPushButton(mainFrame);
+	gameClock = new QTimer(this);
 
 	mineCounter->setNumMines(99);
 
@@ -31,21 +37,27 @@ void MainWindow::initialize()
 	connect(gameBoard, &GameBoard::victory, this, &MainWindow::victory);
 	connect(gameBoard, &GameBoard::defeat, this, &MainWindow::defeat);
 
-	newGame->setMinimumSize(40, 40);
+	newGame->setMinimumSize(35, 35);
+	newGame->setIconSize(QSize(30, 30));
 	newGame->setIcon(QIcon(":/emoji/smile"));
 	connect(newGame, &QPushButton::clicked, this, &MainWindow::startNewGame);
-	connect(newGame, &QPushButton::clicked, []()
+	connect(this, &MainWindow::defeat, [this]()
 	{
-		qDebug() << "new game clicked";
+		newGame->setIcon(QIcon(":/emoji/injured"));
 	});
-	connect(this, &MainWindow::startNewGame, []()
+	connect(this, &MainWindow::victory, [this]()
 	{
-		qDebug() << "start new game";
+		newGame->setIcon(QIcon(":/emoji/sunglasses"));
 	});
 
-	infoLayout->addWidget(mineCounter);
+	gameClock->setInterval(1000);
+	connect(gameClock, &QTimer::timeout, mineTimer, &MineTimer::incrementTime);
+
+	infoLayout->addWidget(mineCounter);;
 	infoLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding));
 	infoLayout->addWidget(newGame);
+	infoLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding));
+	infoLayout->addWidget(mineTimer);
 
 	mainFrameLayout->addLayout(infoLayout);
 	mainFrameLayout->addWidget(gameBoard);
@@ -82,17 +94,17 @@ void MainWindow::setupStateMachine()
 
 	connect(inProgressState, &QState::entered, [this]()
 	{
-		qDebug() << "started a game";
+		gameClock->start();
 	});
 
 	connect(victoryState, &QState::entered, [this]()
 	{
-		qDebug() << "got victory";
+		gameClock->stop();
 	});
 
 	connect(defeatState, &QState::entered, [this]()
 	{
-		qDebug() << "got defeat";
+		gameClock->stop();
 	});
 
 	m_machine->addState(unstartedState);

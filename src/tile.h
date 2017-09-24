@@ -83,6 +83,7 @@ private:
 	QSignalMapper m_mapper;
 	bool m_bothClicked;
 	static bool m_firstClick;
+	Qt::MouseButtons m_buttons;
 	
 	static const QString unrevealedStyleSheet;
 	static const QString revealedStyleSheet;

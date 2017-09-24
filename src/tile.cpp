@@ -166,20 +166,24 @@ void Tile::mousePressEvent(QMouseEvent* e)
 	m_bothClicked = false;
 
 	if (e->buttons() == (Qt::LeftButton | Qt::RightButton))
-	{	
+	{
 		emit bothClicked();
-		m_bothClicked = true;
+		m_buttons = Qt::LeftButton | Qt::RightButton;
 	}
-	if (e->buttons() == Qt::LeftButton)
-		emit leftClicked();
+	else if (e->buttons() == Qt::LeftButton)
+		m_buttons = Qt::LeftButton;
 	else if (e->buttons() == Qt::RightButton)
-		emit rightClicked();
+		m_buttons = Qt::RightButton;
 }
 
 void Tile::mouseReleaseEvent(QMouseEvent* e)
 {
-	if(m_bothClicked)
+	if (m_buttons == (Qt::LeftButton | Qt::RightButton))
 		emit unClicked();
+	else if (m_buttons == Qt::LeftButton)
+		emit leftClicked();
+	else if (m_buttons == Qt::RightButton)
+		emit rightClicked();
 }
 
 QSize Tile::sizeHint() const
@@ -198,7 +202,6 @@ void Tile::createStateMachine()
 	unrevealedState->addTransition(this, &Tile::leftClicked, revealedState);
 	unrevealedState->addTransition(this, &Tile::reveal, revealedState);
 	unrevealedState->addTransition(this, &Tile::rightClicked, flaggedState);
-	unrevealedState->addTransition(this, &Tile::bothClicked, previewState);
 	unrevealedState->addTransition(this, &Tile::preview, previewState);
 	unrevealedState->addTransition(this, &Tile::disable, disabledState);
 
@@ -215,7 +218,7 @@ void Tile::createStateMachine()
 
 	connect(this, &Tile::unClicked, [this]()
 	{
-		if (m_adjacentFlaggedCount == m_adjacentMineCount)
+		if (m_adjacentFlaggedCount == m_adjacentMineCount && m_adjacentMineCount)
 			revealNeighbors();
 	});
 

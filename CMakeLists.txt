@@ -14,6 +14,7 @@ list(APPEND HEADER_FILES
 src/gameboard.h
 src/mainwindow.h
 src/mineCounter.h
+src/minetimer.h
 src/tile.h
 )
 
@@ -23,6 +24,7 @@ src/gameboard.cpp
 src/main.cpp
 src/mainwindow.cpp
 src/mineCounter.cpp
+src/minetimer.cpp
 src/tile.cpp
 )
 

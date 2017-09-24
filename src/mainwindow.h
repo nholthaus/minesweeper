@@ -3,6 +3,7 @@
 #include "tile.h"
 #include "gameboard.h"
 #include "mineCounter.h"
+#include "minetimer.h"
 
 #include <QFrame>
 #include <QPushButton>
@@ -34,7 +35,10 @@ private:
 	QFrame* mainFrame;
 	GameBoard* gameBoard;
 	MineCounter* mineCounter;
+	MineTimer* mineTimer;
 	QPushButton* newGame;
+
+	QTimer* gameClock;
 
 	QStateMachine* m_machine;
 	QState* unstartedState;
