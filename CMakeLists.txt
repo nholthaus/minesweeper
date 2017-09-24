@@ -13,6 +13,7 @@ set(QT_MINIMUM_VERSION 5.9.0)
 list(APPEND HEADER_FILES
 src/gameboard.h
 src/mainwindow.h
+src/mineCounter.h
 src/tile.h
 )
 
@@ -21,6 +22,7 @@ list(APPEND SOURCE_FILES
 src/gameboard.cpp
 src/main.cpp
 src/mainwindow.cpp
+src/mineCounter.cpp
 src/tile.cpp
 )
 

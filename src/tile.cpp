@@ -3,30 +3,79 @@
 #include <thread>
 #include <chrono>
 
+#include <QDebug>
 #include <QState>
 #include <QFinalState>
 #include <QMouseEvent>
 #include <QSizePolicy>
 
 bool Tile::m_firstClick = false;
+const QString Tile::unrevealedStyleSheet =
+"Tile"
+"{"
+"	border: 1px solid darkgray;"
+"	background: qradialgradient(cx : 0.4, cy : -0.1, fx : 0.4, fy : -0.1, radius : 1.35, stop : 0 #fff, stop: 1 #bbb);"
+"	border - radius: 1px;"
+"}";
+const QString Tile::revealedStyleSheet =
+"Tile"
+"{"
+"	border: 1px solid lightgray;"
+"}";
+const QString Tile::revealedWithNumberStylesheet =
+"Tile"
+"{"
+"	color: %1;"
+"	font-weight: bold;"
+"	border: 1px solid lightgray;"
+"}";
+
+QIcon Tile::blankIcon()
+{
+	static QIcon icon = QIcon();
+	return icon;
+}
+
+QIcon Tile::flagIcon()
+{
+	static QIcon icon = QIcon(QPixmap(":/flag").scaled(QSize(20, 20)));
+	return icon;
+}
+
+QIcon Tile::mineIcon()
+{
+	static QIcon icon = QIcon(QPixmap(":/mine").scaled(QSize(20, 20)));
+	return icon;
+}
+
+QIcon Tile::explosionIcon()
+{
+	static QIcon icon = QIcon(QPixmap(":/explosion").scaled(QSize(20, 20)));
+	return icon;
+}
+
+QIcon Tile::tadaIcon()
+{
+	static QIcon icon = QIcon(QPixmap(":/tada").scaled(QSize(22, 22)));
+	return icon;
+}
 
 Tile::Tile(TileLocation location, QWidget* parent /*= nullptr*/)
 	: m_isMine(false)
 	, m_adjacentMineCount(0)
+	, m_adjacentFlaggedCount(0)
 	, m_location(location)
 	, QPushButton(parent)
 {
 	createStateMachine();
 	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-	QFile tilesheet(":/tilesheet");
-	tilesheet.open(QIODevice::ReadOnly);
-	this->setStyleSheet(tilesheet.readAll());
 	setCheckable(true);
 }
 
 void Tile::addNeighbor(Tile* tile)
 {
 	m_neighbors += tile;
+	connect(this, &Tile::revealNeighbors, tile, &Tile::reveal, Qt::QueuedConnection);
 }
 
 TileLocation Tile::location() const
@@ -37,7 +86,7 @@ TileLocation Tile::location() const
 void Tile::placeMine(bool val)
 {
 	m_isMine = val;
-	QPushButton::setText("X");
+//	QPushButton::setText("X");
 	for (auto neighbor : m_neighbors)
 		neighbor->incrementAdjacentMineCount();
 }
@@ -62,6 +111,36 @@ void Tile::incrementAdjacentMineCount()
 	++m_adjacentMineCount;
 }
 
+bool Tile::isFlagged() const
+{
+	return m_machine.configuration().contains(flaggedState);
+}
+
+bool Tile::isRevealed() const
+{
+	return m_machine.configuration().contains(revealedState);
+}
+
+bool Tile::isUnrevealed() const
+{
+	return m_machine.configuration().contains(unrevealedState);
+}
+
+unsigned int Tile::adjacentFlaggedCount() const
+{
+	return m_adjacentFlaggedCount;
+}
+
+void Tile::incrementAdjacentFlaggedCount()
+{
+	++m_adjacentFlaggedCount;
+}
+
+void Tile::decrementAdjacentFlaggedCount()
+{
+	--m_adjacentFlaggedCount;
+}
+
 QList<Tile*>& Tile::neighbors()
 {
 	return m_neighbors;
@@ -75,14 +154,23 @@ void Tile::mousePressEvent(QMouseEvent* e)
 		emit firstClick(this);
 	}
 
-// 	if (e->buttons() == Qt::LeftButton | Qt::RightButton)
-// 		emit bothClicked();
+	m_bothClicked = false;
+
+	if (e->buttons() == (Qt::LeftButton | Qt::RightButton))
+	{	
+		emit bothClicked();
+		m_bothClicked = true;
+	}
 	if (e->buttons() == Qt::LeftButton)
 		emit leftClicked();
 	else if (e->buttons() == Qt::RightButton)
 		emit rightClicked();
+}
 
-//	QPushButton::mousePressEvent(e);
+void Tile::mouseReleaseEvent(QMouseEvent* e)
+{
+	if(m_bothClicked)
+		emit unClicked();
 }
 
 QSize Tile::sizeHint() const
@@ -92,29 +180,99 @@ QSize Tile::sizeHint() const
 
 void Tile::createStateMachine()
 {
-	QState* unrevealedState = new QState;
-	QState* flaggedState = new QState;
-	QFinalState* revealedState = new QFinalState;
+	unrevealedState = new QState;
+	previewState = new QState;
+	flaggedState = new QState;
+	revealedState = new QFinalState;
+	disabledState = new QFinalState;
 
 	unrevealedState->addTransition(this, &Tile::leftClicked, revealedState);
 	unrevealedState->addTransition(this, &Tile::reveal, revealedState);
 	unrevealedState->addTransition(this, &Tile::rightClicked, flaggedState);
+	unrevealedState->addTransition(this, &Tile::bothClicked, previewState);
+	unrevealedState->addTransition(this, &Tile::preview, previewState);
+	unrevealedState->addTransition(this, &Tile::disable, disabledState);
+
+	previewState->addTransition(this, &Tile::unPreview, unrevealedState);
+	previewState->addTransition(this, &Tile::disable, disabledState);
+
+	flaggedState->addTransition(this, &Tile::rightClicked, unrevealedState);
+
+	connect(this, &Tile::bothClicked, [this]()
+	{
+		for (auto neighbor : m_neighbors)
+			neighbor->preview();
+	});
+
+	connect(this, &Tile::unClicked, [this]()
+	{
+		if (m_adjacentFlaggedCount == m_adjacentMineCount)
+			revealNeighbors();
+	});
+
+	connect(this, &Tile::unClicked, [this]()
+	{
+		for (auto neighbor : m_neighbors)
+			neighbor->unPreview();
+	});
+
+	connect(unrevealedState, &QState::entered, [this]()
+	{
+		this->setIcon(blankIcon());
+		this->setStyleSheet(unrevealedStyleSheet);
+			
+	});
+
+	connect(previewState, &QState::entered, [this]()
+	{
+		this->setStyleSheet(revealedStyleSheet);
+	});	
 
 	connect(revealedState, &QState::entered, [this]()
 	{
+		this->setIcon(blankIcon());
 		this->setChecked(true);
 		if (!isMine())
+		{
 			setText();
-		if (!hasAdjacentMines())
-			for (auto neighbor : m_neighbors)
-			{
-				neighbor->reveal();
-			}
+			if (!hasAdjacentMines())
+				revealNeighbors();
+			emit revealed();
+		}
+		else
+		{
+			emit detonated();
+			this->setStyleSheet(revealedStyleSheet);
+			QPushButton::setText("");
+			setIcon(mineIcon());
+		}
+	});
+
+	connect(flaggedState, &QState::entered, [this]()
+	{
+		this->setIcon(flagIcon());
+		for (auto neighbor : m_neighbors)
+			neighbor->incrementAdjacentFlaggedCount();
+		emit flagged(m_isMine);
+	});
+
+	connect(flaggedState, &QState::exited, [this]()
+	{
+		for (auto neighbor : m_neighbors)
+			neighbor->decrementAdjacentFlaggedCount();
+		emit unFlagged(m_isMine);
+	});
+
+	connect(disabledState, &QState::entered, [this]()
+	{
+
 	});
 
 	m_machine.addState(unrevealedState);
+	m_machine.addState(previewState);
 	m_machine.addState(flaggedState);
 	m_machine.addState(revealedState);
+	m_machine.addState(disabledState);
 
 	m_machine.setInitialState(unrevealedState);
 	m_machine.start();
@@ -122,15 +280,6 @@ void Tile::createStateMachine()
 
 void Tile::setText()
 {
-	static const QString stylesheet = 
-		"Tile:pressed, Tile:checked"
-		"{"
-		"	color: %1;"
-		"	font-weight: bold;"
-		"	/*margin: -1, 0, -1, -1;*/"
-		"	border: 1px solid lightgray;"
-		"}";
-
 	QString color;
 	switch (m_adjacentMineCount)
 	{
@@ -162,7 +311,7 @@ void Tile::setText()
 		break;
 	}
 
-	QPushButton::setStyleSheet(stylesheet.arg(color));
+	QPushButton::setStyleSheet(revealedWithNumberStylesheet.arg(color));
 	if(m_adjacentMineCount)
 		QPushButton::setText(QString::number(m_adjacentMineCount));
 }

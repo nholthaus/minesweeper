@@ -1,5 +1,9 @@
 <!DOCTYPE RCC><RCC version="1.0">
 	<qresource>
 		<file alias="tilesheet">stylesheets/tilesheet.qss</file>
+    <file alias="flag">images/flag.png</file>
+    <file alias="mine">images/mine.png</file>
+    <file alias="explosion">images/explosion.png</file>
+    <file alias="tada">images/tada.png</file>
 	</qresource>
 </RCC>

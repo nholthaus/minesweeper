@@ -1,6 +1,7 @@
 #pragma once
 #include <QList>
 #include <QFrame>
+#include <QSet>
 
 #include "tile.h"
 
@@ -12,17 +13,30 @@ public:
 
 	GameBoard(unsigned int numRows, unsigned int numCols, unsigned int numMines, QWidget* parent = nullptr);
 
-	unsigned int NumCols() const { return m_numCols; }
-	unsigned int NumRows() const { return m_numRows; }
+	unsigned int numCols() const { return m_numCols; }
+	unsigned int numRows() const { return m_numRows; }
+	unsigned int numMines() const { return m_numMines; }
+
+public slots:
+
+	void placeMines(Tile* firstClicked);
+
+signals:
+
+	void initialized(Tile*);
+	void victory();
+	void defeat();
+	void flagCountChanged(unsigned int flagCount);
 
 private:
 
 	void createTiles();
 
-	void setupLayout();
+	void defeatAnimation();
 
+	void setupLayout();
 	void addNeighbors();
-	void placeMines(Tile* firstClicked);
+	void checkVictory();
 
 private:
 
@@ -32,4 +46,13 @@ private:
 
 	QList<QList<Tile*>> m_tiles;
 
+	QSet<Tile*> m_mines;
+	QSet<Tile*> m_correctFlags;
+	QSet<Tile*> m_incorrectFlags;
+	QSet<Tile*> m_revealedTiles;
+
+	QTimer* explosionTimer;
+
+	bool m_defeat = false;
+	bool m_victory = false;
 };
