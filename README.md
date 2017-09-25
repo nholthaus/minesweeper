@@ -2,4 +2,4 @@
 
 A free, old-school implementation of minesweeper. Somewhere between windows 98/vista, with some updated styling.
 
-[screenshot](resources/images/screenshot.png)
+![screenshot](resources/images/screenshot.png)
