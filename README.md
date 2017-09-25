@@ -1,3 +1,5 @@
-# cmake-qt-project
+# minesweeper
 
-This is a blank template for making a Qt project in cmake
+A free, old-school implementation of minesweeper. Somewhere between windows 98/vista, with some updated styling.
+
+[screenshot](resources/images/screenshot.png)
