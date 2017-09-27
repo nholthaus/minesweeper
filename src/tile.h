@@ -37,6 +37,7 @@ public:
 
 	virtual void mousePressEvent(QMouseEvent* e) override;
 	virtual void mouseReleaseEvent(QMouseEvent* e) override;
+	virtual void mouseMoveEvent(QMouseEvent* e) override;
 	virtual QSize sizeHint() const override;
 
 	static QIcon blankIcon();
@@ -65,6 +66,7 @@ signals:
 	void revealNeighbors();
 	void preview();
 	void unPreview();
+	void unPreviewNeighbors();
 	void flagged(bool);
 	void unFlagged(bool);
 	void disable();
@@ -93,7 +95,9 @@ private:
 	QStateMachine m_machine;
 	QState* unrevealedState;
 	QState* previewState;
+	QState* previewNeighborsState;
 	QState* flaggedState;
-	QFinalState* revealedState;
+	QState* revealedState;
+	QState* revealNeighborsState;
 	QFinalState* disabledState;
 };

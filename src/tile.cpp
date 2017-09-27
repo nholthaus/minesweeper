@@ -76,6 +76,7 @@ Tile::Tile(TileLocation location, QWidget* parent /*= nullptr*/)
 	createStateMachine();
 	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	setCheckable(true);
+	setMouseTracking(true);
 }
 
 Tile::~Tile()
@@ -92,6 +93,7 @@ void Tile::addNeighbor(Tile* tile)
 {
 	m_neighbors += tile;
 	connect(this, &Tile::revealNeighbors, tile, &Tile::reveal, Qt::QueuedConnection);
+	connect(this, &Tile::unPreviewNeighbors, tile, &Tile::unPreview, Qt::QueuedConnection);
 }
 
 TileLocation Tile::location() const
@@ -192,6 +194,15 @@ void Tile::mouseReleaseEvent(QMouseEvent* e)
 		emit rightClicked();
 }
 
+void Tile::mouseMoveEvent(QMouseEvent* e)
+{
+	if (e->buttons() == (Qt::LeftButton | Qt::RightButton))
+	{
+		if (!this->rect().contains(this->mapFromGlobal(QCursor::pos())))
+			emit unPreview();
+	}
+}
+
 QSize Tile::sizeHint() const
 {
 	return QSize(20, 20);
@@ -201,38 +212,30 @@ void Tile::createStateMachine()
 {
 	unrevealedState = new QState;
 	previewState = new QState;
+	previewNeighborsState = new QState;
 	flaggedState = new QState;
-	revealedState = new QFinalState;
+	revealedState = new QState;
+	revealNeighborsState = new QState;
 	disabledState = new QFinalState;
 
 	unrevealedState->addTransition(this, &Tile::leftClicked, revealedState);
-	unrevealedState->addTransition(this, &Tile::reveal, revealedState);
 	unrevealedState->addTransition(this, &Tile::rightClicked, flaggedState);
+	unrevealedState->addTransition(this, &Tile::reveal, revealedState);
 	unrevealedState->addTransition(this, &Tile::preview, previewState);
 	unrevealedState->addTransition(this, &Tile::disable, disabledState);
 
+	previewState->addTransition(this, &Tile::reveal, revealedState);
 	previewState->addTransition(this, &Tile::unPreview, unrevealedState);
 	previewState->addTransition(this, &Tile::disable, disabledState);
 
 	flaggedState->addTransition(this, &Tile::rightClicked, unrevealedState);
 
-	connect(this, &Tile::bothClicked, [this]()
-	{
-		for (auto neighbor : m_neighbors)
-			neighbor->preview();
-	});
+	revealedState->addTransition(this, &Tile::bothClicked, previewNeighborsState);
 
-	connect(this, &Tile::unClicked, [this]()
-	{
-		if (m_adjacentFlaggedCount == m_adjacentMineCount && m_adjacentMineCount)
-			revealNeighbors();
-	});
+	previewNeighborsState->addTransition(this, &Tile::unClicked, revealNeighborsState);
+	previewNeighborsState->addTransition(this, &Tile::unPreview, revealedState);
 
-	connect(this, &Tile::unClicked, [this]()
-	{
-		for (auto neighbor : m_neighbors)
-			neighbor->unPreview();
-	});
+	revealNeighborsState->addTransition(this, &Tile::reveal, revealedState);
 
 	connect(unrevealedState, &QState::entered, [this]()
 	{
@@ -246,8 +249,24 @@ void Tile::createStateMachine()
 		this->setStyleSheet(revealedStyleSheet);
 	});	
 
+	connect(previewNeighborsState, &QState::entered, [this]()
+	{
+		for (auto neighbor : m_neighbors)
+			neighbor->preview();
+	});
+
+	connect(revealNeighborsState, &QState::entered, [this]()
+	{
+		if (m_adjacentFlaggedCount == m_adjacentMineCount && m_adjacentMineCount)
+			revealNeighbors();
+		else
+			unPreviewNeighbors();
+		emit reveal();
+	});
+
 	connect(revealedState, &QState::entered, [this]()
 	{
+		unPreviewNeighbors();
 		this->setIcon(blankIcon());
 		this->setChecked(true);
 		if (!isMine())
@@ -288,8 +307,10 @@ void Tile::createStateMachine()
 
 	m_machine.addState(unrevealedState);
 	m_machine.addState(previewState);
+	m_machine.addState(previewNeighborsState);
 	m_machine.addState(flaggedState);
 	m_machine.addState(revealedState);
+	m_machine.addState(revealNeighborsState);
 	m_machine.addState(disabledState);
 
 	m_machine.setInitialState(unrevealedState);
