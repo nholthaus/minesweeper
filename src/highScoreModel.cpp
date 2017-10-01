@@ -22,7 +22,7 @@ Q_INVOKABLE QModelIndex HighScoreModel::index(int row, int column, const QModelI
 	case Column::name:
 		return createIndex(row, column, &m_highScores[row].name());
 	case Column::difficulty:
-		return createIndex(row, column, &m_highScores[row].difficulty());
+		return createIndex(row, column, m_highScores[row].difficulty());
 	case Column::score:
 		return createIndex(row, column, m_highScores[row].score());
 	default:
@@ -60,4 +60,28 @@ Q_INVOKABLE QVariant HighScoreModel::data(const QModelIndex &index, int role /*=
 	default:
 		return QVariant();
 	}
+}
+
+const QVector<HighScore>& HighScoreModel::highScores() const
+{
+	return m_highScores;
+}
+
+void HighScoreModel::setHighScores(QVector<HighScore> scores)
+{
+	m_highScores = scores;
+}
+
+QDataStream& operator<<(QDataStream &out, const HighScoreModel& model)
+{
+	out << model.highScores();
+	return out;
+}
+
+QDataStream& operator>>(QDataStream &in, HighScoreModel& model)
+{
+	QVector<HighScore> scores;
+	in >> scores;
+	model.setHighScores(scores);
+	return in;
 }

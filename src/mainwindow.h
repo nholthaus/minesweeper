@@ -5,6 +5,9 @@
 #include "mineCounter.h"
 #include "minetimer.h"
 
+#include <QAction>
+#include <QActionGroup>
+#include <QMenu>
 #include <QFrame>
 #include <QPushButton>
 #include <QMainWindow>
@@ -18,6 +21,8 @@ public:
 
 	MainWindow(QWidget* parent = nullptr);
 
+	void setupMenus();
+
 signals:
 
 	void startGame();
@@ -29,6 +34,8 @@ private:
 
 	void initialize();
 	void setupStateMachine();
+	void saveSettings();
+	void loadSettings();
 
 private:
 
@@ -37,6 +44,20 @@ private:
 	MineCounter* mineCounter;
 	MineTimer* mineTimer;
 	QPushButton* newGame;
+
+	QMenu* gameMenu;
+	QAction* newGameAction;
+	QMenu* difficultyMenu;
+	QActionGroup* difficultyActionGroup;
+	QAction* beginnerAction;
+	QAction* intermediateAction;
+	QAction* expertAction;
+	QAction* customAction;
+	QAction* highScoreAction;
+	QAction* exitAction;
+
+	QMenu* helpMenu;
+	QAction* aboutAction;
 
 	QTimer* gameClock;
 
@@ -48,4 +69,7 @@ private:
 
 	Tile* firstClicked;
 
+	quint32 numRows;
+	quint32 numCols;
+	quint32 numMines;
 };

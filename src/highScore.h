@@ -40,6 +40,7 @@
 //-------------------------
 
 #include <QString>
+#include <QDataStream>
 
 //-------------------------
 //	FORWARD DECLARATIONS
@@ -48,33 +49,44 @@
 //--------------------------------------------------------------------------------------------------
 //	CLASS HIGHSCORE
 //--------------------------------------------------------------------------------------------------
-class HighScore
+class HighScore : public QObject
 {
+	Q_OBJECT
+
+public:
+
+	enum Difficulty
+	{
+		beginner,
+		intermediate,
+		expert,
+		custom,
+	};
+	Q_ENUM(Difficulty);
+
 public:
 
 	HighScore() = default;
-	HighScore(QString name, QString difficulty, qint32 score);
+	HighScore(QString name, Difficulty difficulty, quint32 score);
+	HighScore(const HighScore& other);
+	HighScore& operator=(const HighScore& other);
 
 	QString name() const;
-	QString difficulty() const;
-	qint32 score() const;
+	Difficulty difficulty() const;
+	quint32 score() const;
+
+	void setName(QString name);
+	void setDifficultty(Difficulty difficulty);
+	void setScore(quint32 score);
 
 	bool operator<(const HighScore& rhs) const;
 	bool operator==(const HighScore& rhs) const;
 
-	friend QDataStream;
-
-protected:
-
-	void setName(QString name);
-	void setDifficultty(QString difficulty);
-	void setScore(int score);
-
 private:
 
 	QString	m_name;
-	QString	m_difficulty;
-	qint32	m_score;
+	Difficulty	m_difficulty;
+	quint32	m_score;
 };
 
 QDataStream &operator<<(QDataStream &out, const HighScore&);

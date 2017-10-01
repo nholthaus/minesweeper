@@ -8,6 +8,7 @@ MineTimer::MineTimer(QWidget* parent /*= nullptr*/)
 	this->display(0);
 	this->setStyleSheet(".QLCDNumber { border: 2px inset gray; background-color: black; color: red; }");
 	this->setSegmentStyle(QLCDNumber::Flat);
+	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 }
 
 void MineTimer::incrementTime()
@@ -17,6 +18,6 @@ void MineTimer::incrementTime()
 
 QSize MineTimer::sizeHint() const
 {
-	return QSize(75, 35);
+	return QSize(65, 35);
 }
 

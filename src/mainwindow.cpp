@@ -4,6 +4,7 @@
 #include "minetimer.h"
 
 #include <QDebug>
+#include <QMenuBar>
 #include <QVBoxLayout>
 #include <QFrame>
 #include <QTimer>
@@ -14,9 +15,9 @@ MainWindow::MainWindow(QWidget* parent)
 	, mainFrame(nullptr)
 {
 	this->setWindowIcon(QIcon(":/mine"));
-	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 	setupStateMachine();
+	setupMenus();
 }
 
 void MainWindow::initialize()
@@ -26,13 +27,13 @@ void MainWindow::initialize()
 	mainFrame = new QFrame(this);
 	auto mainFrameLayout = new QVBoxLayout;
 	auto infoLayout = new QHBoxLayout;
-	gameBoard = new GameBoard(16, 30, 99, mainFrame);
+	gameBoard = new GameBoard(numRows, numCols, numMines, mainFrame);
 	mineCounter = new MineCounter(mainFrame);
 	mineTimer = new MineTimer(mainFrame);
 	newGame = new QPushButton(mainFrame);
 	gameClock = new QTimer(this);
 
-	mineCounter->setNumMines(99);
+	mineCounter->setNumMines(numMines);
 
 	connect(gameBoard, &GameBoard::initialized, this, &MainWindow::startGame);
 	connect(gameBoard, &GameBoard::flagCountChanged, mineCounter, &MineCounter::setFlagCount);
@@ -56,9 +57,9 @@ void MainWindow::initialize()
 	connect(gameClock, &QTimer::timeout, mineTimer, &MineTimer::incrementTime);
 
 	infoLayout->addWidget(mineCounter);;
-	infoLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding));
+	infoLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::MinimumExpanding));
 	infoLayout->addWidget(newGame);
-	infoLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding));
+	infoLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::MinimumExpanding));
 	infoLayout->addWidget(mineTimer);
 
 	mainFrameLayout->addLayout(infoLayout);
@@ -66,7 +67,7 @@ void MainWindow::initialize()
 
 	mainFrame->setLayout(mainFrameLayout);
 
-	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+	this->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 	this->setCentralWidget(mainFrame);
 }
 
@@ -118,3 +119,59 @@ void MainWindow::setupStateMachine()
 	m_machine->start();
 }
 
+void MainWindow::setupMenus()
+{
+	gameMenu = new QMenu("Game");
+
+	newGameAction = new QAction("New Game");
+	newGameAction->setShortcut(QKeySequence(Qt::Key_F2));
+	connect(newGameAction, &QAction::triggered, this, &MainWindow::startNewGame);
+
+	difficultyMenu = new QMenu("Difficulty");
+	difficultyActionGroup = new QActionGroup(difficultyMenu);
+
+	beginnerAction = new QAction("Beginner", difficultyActionGroup);
+	beginnerAction->setCheckable(true);
+	connect(beginnerAction, &QAction::triggered, [this]()
+	{
+		numRows = 9;
+		numCols = 9;
+		numMines = 10;
+		initialize();
+		adjustSize();
+	});
+
+	intermediateAction = new QAction("Intermediate", difficultyActionGroup);
+	intermediateAction->setCheckable(true);
+	connect(intermediateAction, &QAction::triggered, [this]()
+	{
+		numRows = 16;
+		numCols = 16;
+		numMines = 40;
+		initialize();
+		adjustSize();
+	});
+
+	expertAction = new QAction("Expert", difficultyActionGroup);
+	expertAction->setCheckable(true);
+	connect(expertAction, &QAction::triggered, [this]()
+	{
+		numRows = 16;
+		numCols = 30;
+		numMines = 99;
+		initialize();
+		adjustSize();
+	});
+
+	difficultyMenu->addAction(beginnerAction);
+	difficultyMenu->addAction(intermediateAction);
+	difficultyMenu->addAction(expertAction);
+
+	gameMenu->addAction(newGameAction);
+	gameMenu->addSeparator();
+	gameMenu->addMenu(difficultyMenu);
+
+	this->menuBar()->addMenu(gameMenu);
+
+	expertAction->trigger();
+}

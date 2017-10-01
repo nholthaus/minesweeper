@@ -52,7 +52,7 @@ GameBoard::GameBoard(unsigned int numRows, unsigned int numCols, unsigned int nu
 void GameBoard::setupLayout()
 {
 	this->setAttribute(Qt::WA_LayoutUsesWidgetRect);
-	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+	this->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 	auto layout = new QGridLayout;
 
 	layout->setSpacing(0);
