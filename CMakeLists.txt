@@ -12,6 +12,8 @@ set(QT_MINIMUM_VERSION 5.9.0)
 # .h files
 list(APPEND HEADER_FILES
 src/gameboard.h
+src/highScore.h
+src/highScoreModel.h
 src/mainwindow.h
 src/mineCounter.h
 src/minetimer.h
@@ -21,6 +23,8 @@ src/tile.h
 # .cpp files
 list(APPEND SOURCE_FILES
 src/gameboard.cpp
+src/highScore.cpp
+src/highScoreModel.cpp
 src/main.cpp
 src/mainwindow.cpp
 src/mineCounter.cpp

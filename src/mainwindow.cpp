@@ -7,13 +7,15 @@
 #include <QVBoxLayout>
 #include <QFrame>
 #include <QTimer>
+#include <QStatusBar>
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 	, mainFrame(nullptr)
 {
 	this->setWindowIcon(QIcon(":/mine"));
-	this->setSizeIncrement(QSizePolicy::Fixed, QSizePolicy::Fixed);
+	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+	setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 	setupStateMachine();
 }
 
