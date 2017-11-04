@@ -46,6 +46,8 @@
 //	FORWARD DECLARATIONS
 //-------------------------
 
+class HighScoreModel;
+
 //--------------------------------------------------------------------------------------------------
 //	CLASS HIGHSCORE
 //--------------------------------------------------------------------------------------------------
@@ -82,12 +84,16 @@ public:
 	bool operator<(const HighScore& rhs) const;
 	bool operator==(const HighScore& rhs) const;
 
+	friend HighScoreModel;
+
 private:
 
 	QString	m_name;
 	Difficulty	m_difficulty;
 	quint32	m_score;
 };
+
+Q_DECLARE_METATYPE(HighScore);
 
 QDataStream &operator<<(QDataStream &out, const HighScore&);
 QDataStream &operator>>(QDataStream &in, HighScore&);

@@ -16,6 +16,11 @@ void MineTimer::incrementTime()
 	display(++m_seconds);
 }
 
+int MineTimer::time() const
+{
+	return m_seconds;
+}
+
 QSize MineTimer::sizeHint() const
 {
 	return QSize(65, 35);

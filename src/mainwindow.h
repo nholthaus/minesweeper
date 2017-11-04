@@ -4,6 +4,7 @@
 #include "gameboard.h"
 #include "mineCounter.h"
 #include "minetimer.h"
+#include "highScoreModel.h"
 
 #include <QAction>
 #include <QActionGroup>
@@ -30,8 +31,17 @@ signals:
 	void defeat();
 	void startNewGame();
 
+protected slots:
+
+	void onVictory();
+
+protected:
+
+	virtual void closeEvent(QCloseEvent *event) override;
+
 private:
 
+	void setDifficulty(HighScore::Difficulty difficulty);
 	void initialize();
 	void setupStateMachine();
 	void saveSettings();
@@ -72,4 +82,8 @@ private:
 	quint32 numRows;
 	quint32 numCols;
 	quint32 numMines;
+
+	HighScore::Difficulty difficulty;
+
+	QMap<HighScore::Difficulty, HighScoreModel*> m_highScores;
 };

@@ -2,6 +2,8 @@
 #include "gameboard.h"
 #include "mineCounter.h"
 #include "minetimer.h"
+#include "highScoreDialog.h"
+#include "highScoreModel.h"
 
 #include <QDebug>
 #include <QMenuBar>
@@ -9,6 +11,8 @@
 #include <QFrame>
 #include <QTimer>
 #include <QStatusBar>
+#include <QSettings>
+#include <QScopedArrayPointer>
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -18,6 +22,51 @@ MainWindow::MainWindow(QWidget* parent)
 	setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 	setupStateMachine();
 	setupMenus();
+	loadSettings();
+
+	connect(this, &MainWindow::victory, this, &MainWindow::onVictory);
+	connect(this, &MainWindow::defeat, this, [this]()
+	{
+		newGame->setIcon(QIcon(":/emoji/injured"));
+	});
+	connect(this, &MainWindow::victory, this, [this]()
+	{
+		newGame->setIcon(QIcon(":/emoji/sunglasses"));
+	});
+}
+
+void MainWindow::setDifficulty(HighScore::Difficulty difficulty)
+{
+	this->difficulty = difficulty;
+
+	switch (difficulty)
+	{
+	case HighScore::beginner:
+		numRows = 9;
+		numCols = 9;
+		numMines = 10;
+		beginnerAction->setChecked(true);
+		break;
+	case HighScore::intermediate:
+		numRows = 16;
+		numCols = 16;
+		numMines = 40;
+		intermediateAction->setChecked(true);
+		break;
+	case HighScore::expert:
+		numRows = 16;
+		numCols = 30;
+		numMines = 99;
+		expertAction->setChecked(true);
+		break;
+	case HighScore::custom:
+		break;
+	default:
+		break;
+	}
+	
+	initialize();
+	adjustSize();
 }
 
 void MainWindow::initialize()
@@ -35,26 +84,18 @@ void MainWindow::initialize()
 
 	mineCounter->setNumMines(numMines);
 
-	connect(gameBoard, &GameBoard::initialized, this, &MainWindow::startGame);
-	connect(gameBoard, &GameBoard::flagCountChanged, mineCounter, &MineCounter::setFlagCount);
-	connect(gameBoard, &GameBoard::victory, this, &MainWindow::victory);
-	connect(gameBoard, &GameBoard::defeat, this, &MainWindow::defeat);
+	connect(gameBoard, &GameBoard::initialized, this, &MainWindow::startGame, Qt::UniqueConnection);
+	connect(gameBoard, &GameBoard::flagCountChanged, mineCounter, &MineCounter::setFlagCount, Qt::UniqueConnection);
+	connect(gameBoard, &GameBoard::victory, this, &MainWindow::victory, Qt::UniqueConnection);
+	connect(gameBoard, &GameBoard::defeat, this, &MainWindow::defeat, Qt::UniqueConnection);
 
 	newGame->setMinimumSize(35, 35);
 	newGame->setIconSize(QSize(30, 30));
 	newGame->setIcon(QIcon(":/emoji/smile"));
-	connect(newGame, &QPushButton::clicked, this, &MainWindow::startNewGame);
-	connect(this, &MainWindow::defeat, [this]()
-	{
-		newGame->setIcon(QIcon(":/emoji/injured"));
-	});
-	connect(this, &MainWindow::victory, [this]()
-	{
-		newGame->setIcon(QIcon(":/emoji/sunglasses"));
-	});
-
+	connect(newGame, &QPushButton::clicked, this, &MainWindow::startNewGame, Qt::UniqueConnection);
+	
 	gameClock->setInterval(1000);
-	connect(gameClock, &QTimer::timeout, mineTimer, &MineTimer::incrementTime);
+	connect(gameClock, &QTimer::timeout, mineTimer, &MineTimer::incrementTime, Qt::UniqueConnection);
 
 	infoLayout->addWidget(mineCounter);;
 	infoLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::MinimumExpanding));
@@ -119,6 +160,19 @@ void MainWindow::setupStateMachine()
 	m_machine->start();
 }
 
+void MainWindow::onVictory()
+{
+	if (!m_highScores[difficulty])
+		m_highScores[difficulty] = new HighScoreModel(difficulty);
+
+	m_highScores[difficulty]->addHighScore(HighScore("test", difficulty, mineTimer->time()));
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+	saveSettings();
+}
+
 void MainWindow::setupMenus()
 {
 	gameMenu = new QMenu("Game");
@@ -134,44 +188,79 @@ void MainWindow::setupMenus()
 	beginnerAction->setCheckable(true);
 	connect(beginnerAction, &QAction::triggered, [this]()
 	{
-		numRows = 9;
-		numCols = 9;
-		numMines = 10;
-		initialize();
-		adjustSize();
+		setDifficulty(HighScore::beginner);
 	});
 
 	intermediateAction = new QAction("Intermediate", difficultyActionGroup);
 	intermediateAction->setCheckable(true);
 	connect(intermediateAction, &QAction::triggered, [this]()
 	{
-		numRows = 16;
-		numCols = 16;
-		numMines = 40;
-		initialize();
-		adjustSize();
+		setDifficulty(HighScore::intermediate);
 	});
 
 	expertAction = new QAction("Expert", difficultyActionGroup);
 	expertAction->setCheckable(true);
 	connect(expertAction, &QAction::triggered, [this]()
 	{
-		numRows = 16;
-		numCols = 30;
-		numMines = 99;
-		initialize();
-		adjustSize();
+		setDifficulty(HighScore::expert);
 	});
 
 	difficultyMenu->addAction(beginnerAction);
 	difficultyMenu->addAction(intermediateAction);
 	difficultyMenu->addAction(expertAction);
 
+	highScoreAction = new QAction("High Scores...");
+	connect(highScoreAction, &QAction::triggered, this, [this]()
+	{
+		HighScoreDialog* dialog = new HighScoreDialog(m_highScores, this);
+		dialog->exec();
+		dialog->deleteLater();
+	}, Qt::QueuedConnection);
+
+	exitAction = new QAction("Exit");
+	connect(exitAction, &QAction::triggered, this, &QMainWindow::close);
+
 	gameMenu->addAction(newGameAction);
 	gameMenu->addSeparator();
 	gameMenu->addMenu(difficultyMenu);
+	gameMenu->addAction(highScoreAction);
+	gameMenu->addSeparator();
+	gameMenu->addAction(exitAction);
+
+	helpMenu = new QMenu("Help");
+
+	aboutAction = new QAction("About...");
+
+	helpMenu->addAction(aboutAction);
 
 	this->menuBar()->addMenu(gameMenu);
+	this->menuBar()->addMenu(helpMenu);
+}
 
-	expertAction->trigger();
+void MainWindow::saveSettings()
+{
+	QSettings settings;
+	settings.setValue("difficulty", QVariant::fromValue(difficulty).toString());
+	settings.beginWriteArray("High Scores", m_highScores.size());
+	int i = 0;
+	for (auto model : m_highScores)
+	{
+		settings.setArrayIndex(i++);
+		settings.setValue("model", QVariant::fromValue(*model));
+	}
+	settings.endArray();
+}
+
+void MainWindow::loadSettings()
+{
+	QSettings settings;
+	setDifficulty(settings.value("difficulty").value<HighScore::Difficulty>());
+	int size = settings.beginReadArray("High Scores");
+	for (int i = 0; i < size; ++i)
+	{
+		settings.setArrayIndex(i);
+		HighScoreModel* model = new HighScoreModel(settings.value("model").value<HighScoreModel>());
+		m_highScores.insert(model->difficulty(), model);
+	}
+	settings.endArray();
 }

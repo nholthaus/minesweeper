@@ -13,6 +13,7 @@ set(QT_MINIMUM_VERSION 5.9.0)
 list(APPEND HEADER_FILES
 src/gameboard.h
 src/highScore.h
+src/highScoreDialog.h
 src/highScoreModel.h
 src/mainwindow.h
 src/mineCounter.h
@@ -24,6 +25,7 @@ src/tile.h
 list(APPEND SOURCE_FILES
 src/gameboard.cpp
 src/highScore.cpp
+src/highScoreDialog.cpp
 src/highScoreModel.cpp
 src/main.cpp
 src/mainwindow.cpp
@@ -70,6 +72,8 @@ PROJECT(${PROJECT_NAME})
 #	Qt Settings
 #-------------------------------------------------------------------------------
 
+enable_testing(true)
+
 # Required Qt settings
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
@@ -89,6 +93,7 @@ list(APPEND CMAKE_PREFIX_PATH ${QTDIR})
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Test REQUIRED)
 
 # Test for supported Qt version
 find_program(QMAKE_EXECUTABLE NAMES qmake HINTS ${QTDIR} ENV QTDIR PATH_SUFFIXES bin)
@@ -158,6 +163,7 @@ list(APPEND LIBRARIES
 Qt5::Core
 Qt5::Gui
 Qt5::Widgets
+Qt5::Test
 Threads::Threads
 )
 

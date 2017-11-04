@@ -7,6 +7,7 @@ public:
 	MineTimer(QWidget* parent = nullptr);
 
 	void incrementTime();
+	int time() const;
 	virtual QSize sizeHint() const override;
 
 private:

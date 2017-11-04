@@ -28,8 +28,8 @@
 //
 //--------------------------------------------------------------------------------------------------
 //
-/// @file	highScoreModel.h
-/// @brief	Model for minesweeper high scores
+/// @file	highScoreDialog.h
+/// @brief	Dialog for displaying high scores
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -39,58 +39,22 @@
 //	INCLUDES
 //-------------------------
 
-#include <QAbstractItemModel>
-#include <QDataStream>
-#include <QVector>
+#include <QDialog>
+#include <QTabWidget>
 
-#include "highScore.h"
+#include "highScoreModel.h" 
 
 //-------------------------
 //	FORWARD DECLARATIONS
-//-------------------------
+//------------------------- 
 
-class HighScoreModel : public QAbstractItemModel
+class HighScoreDialog : public QDialog
 {
 public:
 
-	enum Column
-	{
-		Rank = 0,
-		Name = 1,
-		Difficulty = 2,
-		Score = 3,
-	};
-	Q_ENUM(Column);
-
-public:
-
-	HighScoreModel() = default;
-	HighScoreModel(HighScore::Difficulty difficulty, QObject* parent = nullptr);
-	HighScoreModel(const HighScoreModel& other);
-	HighScoreModel& operator=(const HighScoreModel& other);
-
-	void addHighScore(HighScore score);
-	HighScore::Difficulty difficulty() const;
-	void setDifficulty(HighScore::Difficulty difficulty);
-
-	virtual QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
-	virtual QModelIndex parent(const QModelIndex &child) const override;
-	virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-	virtual int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-	virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-	virtual Qt::ItemFlags flags(const QModelIndex& index) const override;
-	virtual QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
-
-	const QVector<HighScore>& highScores() const;
-	void setHighScores(QVector<HighScore> scores);
+	HighScoreDialog(QMap<HighScore::Difficulty, HighScoreModel*> models, QWidget* parent = nullptr);
 
 private:
 
-	HighScore::Difficulty m_difficulty;
-	QVector<HighScore> m_highScores;
+	QTabWidget* tabWidget;
 };
-
-Q_DECLARE_METATYPE(HighScoreModel);
-
-QDataStream &operator<<(QDataStream &out, const HighScoreModel&);
-QDataStream &operator>>(QDataStream &in, HighScoreModel&);

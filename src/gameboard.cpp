@@ -128,14 +128,20 @@ void GameBoard::addNeighbors()
 
 void GameBoard::checkVictory()
 {
-	emit flagCountChanged(m_correctFlags.size() + m_incorrectFlags.size());
-	if ((m_revealedTiles.size() == m_numCols * m_numRows - m_numMines) && m_incorrectFlags.isEmpty())
-	{	
-		emit victory();
-		QTimer::singleShot(0, explosionTimer, [this]()
+	// when victory is accomplished, there may be more than 1 tile that are unrevealed, so make sure
+	// to only run this code once
+	if (!m_victory)
+	{
+		emit flagCountChanged(m_correctFlags.size() + m_incorrectFlags.size());
+		if ((m_revealedTiles.size() == m_numCols * m_numRows - m_numMines) && m_incorrectFlags.isEmpty())
 		{
-			explosionTimer->start(25);
-		});
+			emit victory();
+			m_victory = true;
+			QTimer::singleShot(0, explosionTimer, [this]()
+			{
+				explosionTimer->start(25);
+			});
+		}
 	}
 }
 

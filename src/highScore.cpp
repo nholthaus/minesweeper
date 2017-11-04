@@ -91,4 +91,3 @@ bool HighScore::operator==(const HighScore& rhs) const
 	return (m_difficulty == rhs.m_difficulty &&
 			m_score == rhs.m_score);
 }
-
