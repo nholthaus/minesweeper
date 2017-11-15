@@ -9,6 +9,7 @@
 #include <QMenuBar>
 #include <QVBoxLayout>
 #include <QFrame>
+#include <QInputDialog>
 #include <QTimer>
 #include <QStatusBar>
 #include <QSettings>
@@ -24,7 +25,6 @@ MainWindow::MainWindow(QWidget* parent)
 	setupMenus();
 	loadSettings();
 
-	connect(this, &MainWindow::victory, this, &MainWindow::onVictory);
 	connect(this, &MainWindow::defeat, this, [this]()
 	{
 		newGame->setIcon(QIcon(":/emoji/injured"));
@@ -33,6 +33,8 @@ MainWindow::MainWindow(QWidget* parent)
 	{
 		newGame->setIcon(QIcon(":/emoji/sunglasses"));
 	});
+
+	this->layout()->setSizeConstraint(QLayout::SetFixedSize);
 }
 
 void MainWindow::setDifficulty(HighScore::Difficulty difficulty)
@@ -93,11 +95,11 @@ void MainWindow::initialize()
 	newGame->setIconSize(QSize(30, 30));
 	newGame->setIcon(QIcon(":/emoji/smile"));
 	connect(newGame, &QPushButton::clicked, this, &MainWindow::startNewGame, Qt::UniqueConnection);
-	
+
 	gameClock->setInterval(1000);
 	connect(gameClock, &QTimer::timeout, mineTimer, &MineTimer::incrementTime, Qt::UniqueConnection);
 
-	infoLayout->addWidget(mineCounter);;
+	infoLayout->addWidget(mineCounter);
 	infoLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::MinimumExpanding));
 	infoLayout->addWidget(newGame);
 	infoLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::MinimumExpanding));
@@ -144,6 +146,7 @@ void MainWindow::setupStateMachine()
 	connect(victoryState, &QState::entered, [this]()
 	{
 		gameClock->stop();
+		onVictory();
 	});
 
 	connect(defeatState, &QState::entered, [this]()
@@ -165,7 +168,12 @@ void MainWindow::onVictory()
 	if (!m_highScores[difficulty])
 		m_highScores[difficulty] = new HighScoreModel(difficulty);
 
-	m_highScores[difficulty]->addHighScore(HighScore("test", difficulty, mineTimer->time()));
+	if (m_highScores[difficulty]->isHighScore(mineTimer->time()))
+	{
+		auto name = QInputDialog::getText(this, "Congratulations!", "You've earned a high score!<br>Please enter your name:");
+		m_highScores[difficulty]->addHighScore(HighScore(name, difficulty, mineTimer->time(), QDateTime::currentDateTime()));
+		highScoreAction->trigger();
+	}
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
@@ -213,6 +221,7 @@ void MainWindow::setupMenus()
 	connect(highScoreAction, &QAction::triggered, this, [this]()
 	{
 		HighScoreDialog* dialog = new HighScoreDialog(m_highScores, this);
+		dialog->setActiveTab(QVariant::fromValue(difficulty).toString());
 		dialog->exec();
 		dialog->deleteLater();
 	}, Qt::QueuedConnection);

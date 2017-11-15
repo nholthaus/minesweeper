@@ -55,10 +55,9 @@ public:
 
 	enum Column
 	{
-		Rank = 0,
-		Name = 1,
-		Difficulty = 2,
-		Score = 3,
+		Name	= 0,
+		Score	= 1,
+		Date	= 2,
 	};
 	Q_ENUM(Column);
 
@@ -83,6 +82,7 @@ public:
 
 	const QVector<HighScore>& highScores() const;
 	void setHighScores(QVector<HighScore> scores);
+	bool isHighScore(int time) const;
 
 private:
 

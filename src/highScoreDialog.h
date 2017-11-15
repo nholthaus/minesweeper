@@ -54,6 +54,8 @@ public:
 
 	HighScoreDialog(QMap<HighScore::Difficulty, HighScoreModel*> models, QWidget* parent = nullptr);
 
+	void setActiveTab(const QString& difficulty);
+
 private:
 
 	QTabWidget* tabWidget;

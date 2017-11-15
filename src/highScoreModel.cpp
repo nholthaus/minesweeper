@@ -1,6 +1,8 @@
 #include "highScoreModel.h"
 #include <cassert>
 
+constexpr int MAX_HIGH_SCORES = 10;
+
 HighScoreModel::HighScoreModel(HighScore::Difficulty difficulty, QObject* parent)
 	: QAbstractItemModel(parent)
 	, m_difficulty(difficulty)
@@ -38,6 +40,8 @@ void HighScoreModel::addHighScore(HighScore score)
 {
 //	Q_ASSERT(score.difficulty() == difficulty());
 
+	bool scoreInserted = false;
+
 	beginInsertRows(QModelIndex(), rowCount(), rowCount());
 
 	if (m_highScores.isEmpty())
@@ -52,15 +56,17 @@ void HighScoreModel::addHighScore(HighScore score)
 		if (score < *existingScore)
 		{
 			m_highScores.insert(existingScore, score);
+			scoreInserted = true;
 			break;
 		}
 	}
 
 	// otherwise insert at end
-	m_highScores.insert(m_highScores.end(), score);
+	if(!scoreInserted)
+		m_highScores.insert(m_highScores.end(), score);
 
 	// prune to 10 high scores
-	while (m_highScores.size() > 10)
+	while (m_highScores.size() > MAX_HIGH_SCORES)
 		m_highScores.removeLast();
 
 	endInsertRows();
@@ -80,14 +86,12 @@ QModelIndex HighScoreModel::index(int row, int column, const QModelIndex &parent
 {
 	switch (column)
 	{
-	case Column::Rank:
-		return createIndex(row, column, Column::Rank);
 	case Column::Name:
 		return createIndex(row, column, Column::Name);
-	case Column::Difficulty:
-		return createIndex(row, column, Column::Difficulty);
 	case Column::Score:
 		return createIndex(row, column, Column::Score);
+	case Column::Date:
+		return createIndex(row, column, Column::Date);
 	default:
 		return QModelIndex();
 	}
@@ -105,25 +109,37 @@ int HighScoreModel::rowCount(const QModelIndex &parent /*= QModelIndex()*/) cons
 
 int HighScoreModel::columnCount(const QModelIndex &parent /*= QModelIndex()*/) const
 {
-	return 4;
+	return 3;
 }
 
 QVariant HighScoreModel::data(const QModelIndex &index, int role /*= Qt::DisplayRole*/) const
 {
 	if (role == Qt::DisplayRole)
 	{
-	switch (index.column())
+		switch (index.column())
 		{
-		case Column::Rank:
-			return index.row();
 		case Column::Name:
 			return m_highScores[index.row()].name();
-		case Column::Difficulty:
-			return QVariant::fromValue(m_highScores[index.row()].difficulty()).toString();
 		case Column::Score:
 			return m_highScores[index.row()].score();
+		case Column::Date:
+			return m_highScores[index.row()].date();
 		default:
 			return QVariant();
+		}
+	}
+	else if (role == Qt::TextAlignmentRole)
+	{
+		switch (index.column())
+		{
+		case Column::Name:
+			return Qt::AlignLeft | Qt::AlignVCenter;
+		case Column::Score:
+			return Qt::AlignHCenter | Qt::AlignVCenter;
+		case Column::Date:
+			return Qt::AlignHCenter | Qt::AlignVCenter;
+		default:
+			return Qt::AlignHCenter | Qt::AlignVCenter;
 		}
 	}
 
@@ -139,18 +155,24 @@ QVariant HighScoreModel::headerData(int section, Qt::Orientation orientation, in
 {
 	if (role == Qt::DisplayRole)
 	{
-		switch (section)
+		if(orientation == Qt::Horizontal)
 		{
-		case Column::Rank:
-			return "Rank";
-		case Column::Name:
-			return "Name";
-		case Column::Difficulty:
-			return "Difficulty";
-		case Column::Score:
-			return "Score";
-		default:
-			return QVariant();
+
+			switch (section)
+			{
+			case Column::Name:
+				return "Name";
+			case Column::Score:
+				return "Score";
+			case Column::Date:
+				return "Date";
+			default:
+				return QVariant();
+			}
+		}
+		else if (orientation == Qt::Vertical)
+		{
+			return (section + 1);
 		}
 	}
 	return QVariant();
@@ -164,8 +186,14 @@ const QVector<HighScore>& HighScoreModel::highScores() const
 void HighScoreModel::setHighScores(QVector<HighScore> scores)
 {
 	beginInsertRows(QModelIndex(), 0, scores.size() - 1);
-	m_highScores = scores;
+	for (auto score : scores)
+		addHighScore(score);
 	endInsertRows();
+}
+
+bool HighScoreModel::isHighScore(int time) const
+{
+	return (rowCount() < MAX_HIGH_SCORES || time < index(rowCount() - 1, Score).data().toInt());
 }
 
 QDataStream& operator<<(QDataStream &out, const HighScoreModel& model)
