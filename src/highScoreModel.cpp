@@ -161,11 +161,11 @@ QVariant HighScoreModel::headerData(int section, Qt::Orientation orientation, in
 			switch (section)
 			{
 			case Column::Name:
-				return "Name";
+				return tr("Name");
 			case Column::Score:
-				return "Score";
+				return tr("Score");
 			case Column::Date:
-				return "Date";
+				return tr("Date");
 			default:
 				return QVariant();
 			}

@@ -7,7 +7,7 @@
 HighScoreDialog::HighScoreDialog(QMap<HighScore::Difficulty, HighScoreModel*> models, QWidget* parent)
 	: QDialog(parent)
 {
-	this->setWindowTitle("High Scores");
+	this->setWindowTitle(tr("High Scores"));
 	this->setLayout(new QVBoxLayout);
 
 	tabWidget = new QTabWidget(this);

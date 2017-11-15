@@ -171,7 +171,7 @@ void MainWindow::onVictory()
 
 	if (m_highScores[difficulty]->isHighScore(mineTimer->time()))
 	{
-		auto name = QInputDialog::getText(this, "Congratulations!", "You've earned a high score!<br>Please enter your name:");
+		auto name = QInputDialog::getText(this, tr("Congratulations!"), tr("You've earned a high score!<br>Please enter your name:"));
 		m_highScores[difficulty]->addHighScore(HighScore(name, difficulty, mineTimer->time(), QDateTime::currentDateTime()));
 		highScoreAction->trigger();
 	}
@@ -184,30 +184,30 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::setupMenus()
 {
-	gameMenu = new QMenu("Game");
+	gameMenu = new QMenu(tr("Game"));
 
-	newGameAction = new QAction("New Game");
+	newGameAction = new QAction(tr("New Game"));
 	newGameAction->setShortcut(QKeySequence(Qt::Key_F2));
 	connect(newGameAction, &QAction::triggered, this, &MainWindow::startNewGame);
 
-	difficultyMenu = new QMenu("Difficulty");
+	difficultyMenu = new QMenu(tr("Difficulty"));
 	difficultyActionGroup = new QActionGroup(difficultyMenu);
 
-	beginnerAction = new QAction("Beginner", difficultyActionGroup);
+	beginnerAction = new QAction(tr("Beginner"), difficultyActionGroup);
 	beginnerAction->setCheckable(true);
 	connect(beginnerAction, &QAction::triggered, [this]()
 	{
 		setDifficulty(HighScore::beginner);
 	});
 
-	intermediateAction = new QAction("Intermediate", difficultyActionGroup);
+	intermediateAction = new QAction(tr("Intermediate"), difficultyActionGroup);
 	intermediateAction->setCheckable(true);
 	connect(intermediateAction, &QAction::triggered, [this]()
 	{
 		setDifficulty(HighScore::intermediate);
 	});
 
-	expertAction = new QAction("Expert", difficultyActionGroup);
+	expertAction = new QAction(tr("Expert"), difficultyActionGroup);
 	expertAction->setCheckable(true);
 	connect(expertAction, &QAction::triggered, [this]()
 	{
@@ -218,7 +218,7 @@ void MainWindow::setupMenus()
 	difficultyMenu->addAction(intermediateAction);
 	difficultyMenu->addAction(expertAction);
 
-	highScoreAction = new QAction("High Scores...");
+	highScoreAction = new QAction(tr("High Scores..."));
 	connect(highScoreAction, &QAction::triggered, this, [this]()
 	{
 		HighScoreDialog* dialog = new HighScoreDialog(m_highScores, this);
@@ -227,7 +227,7 @@ void MainWindow::setupMenus()
 		dialog->deleteLater();
 	}, Qt::QueuedConnection);
 
-	exitAction = new QAction("Exit");
+	exitAction = new QAction(tr("Exit"));
 	connect(exitAction, &QAction::triggered, this, &QMainWindow::close);
 
 	gameMenu->addAction(newGameAction);
@@ -237,9 +237,9 @@ void MainWindow::setupMenus()
 	gameMenu->addSeparator();
 	gameMenu->addAction(exitAction);
 
-	helpMenu = new QMenu("Help");
+	helpMenu = new QMenu(tr("Help"));
 
-	aboutAction = new QAction("About...");
+	aboutAction = new QAction(tr("About..."));
 
 	helpMenu->addAction(aboutAction);
 

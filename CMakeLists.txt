@@ -195,6 +195,10 @@ set_target_properties(${TARGET_NAME} PROPERTIES INSTALL_RPATH_USE_LINK_PATH TRUE
 INSTALL(TARGETS ${TARGET_NAME} RUNTIME DESTINATION bin)
 INCLUDE(InstallRequiredSystemLibraries)
 
+#-------------------------------------------------------------------------------
+#	DEPLOY QT DLLS
+#-------------------------------------------------------------------------------
+
 # Windows specific build steps
 if(WIN32)
 	# Run winddeployqt if it can be found
