@@ -1,3 +1,4 @@
+#include "appinfo.h"
 #include "mainwindow.h"
 #include "gameboard.h"
 #include "mineCounter.h"

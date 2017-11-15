@@ -55,6 +55,12 @@ if(GIT_FOUND)
 	  OUTPUT_STRIP_TRAILING_WHITESPACE
 	)
 	execute_process(
+	  COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
+	  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+	  OUTPUT_VARIABLE BUILD
+	  OUTPUT_STRIP_TRAILING_WHITESPACE
+	)
+	execute_process(
 	  COMMAND ${GIT_EXECUTABLE} describe --abbrev=0 --tags
 	  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 	  OUTPUT_VARIABLE VERSION
@@ -139,7 +145,7 @@ endif(MSVC)
 #-------------------------------------------------------------------------------
 
 set(APPLICATION_NAME ${TARGET_NAME})
-set(APPLICATION_VERSION ${VERSION})
+set(APPLICATION_VERSION "${VERSION} (${BUILD})")
 set(APPLICATION_ORGANIZATION "Menari Softworks")
 set(APPLICATION_ORGANIZATION_DOMAIN "https://github.com/nholthaus/")
 
