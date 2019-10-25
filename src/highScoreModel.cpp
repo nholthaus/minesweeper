@@ -130,17 +130,20 @@ QVariant HighScoreModel::data(const QModelIndex &index, int role /*= Qt::Display
 	}
 	else if (role == Qt::TextAlignmentRole)
 	{
+		QFlags<Qt::AlignmentFlag> alignment;
 		switch (index.column())
 		{
 		case Column::Name:
-			return Qt::AlignLeft | Qt::AlignVCenter;
+			alignment = Qt::AlignLeft | Qt::AlignVCenter;
 		case Column::Score:
-			return Qt::AlignHCenter | Qt::AlignVCenter;
+			alignment = Qt::AlignHCenter | Qt::AlignVCenter;
 		case Column::Date:
-			return Qt::AlignHCenter | Qt::AlignVCenter;
+			alignment = Qt::AlignHCenter | Qt::AlignVCenter;
 		default:
-			return Qt::AlignHCenter | Qt::AlignVCenter;
+			alignment = Qt::AlignHCenter | Qt::AlignVCenter;
 		}
+
+		return QVariant(alignment);
 	}
 
 	return QVariant();

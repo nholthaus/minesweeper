@@ -83,7 +83,6 @@ private:
 	unsigned int m_adjacentFlaggedCount;
 	TileLocation m_location;
 	QList<Tile*> m_neighbors;
-	QSignalMapper m_mapper;
 	bool m_bothClicked;
 	static bool m_firstClick;
 	Qt::MouseButtons m_buttons;

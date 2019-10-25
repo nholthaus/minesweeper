@@ -88,6 +88,11 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
+# disable warnings on the Qt sources
+add_compile_options("/experimental:external")
+add_compile_options("/external:env:QTDIR")
+add_compile_options("/external:W0")
+
 # Setup the cmake prefix path so Qt can be found. Use the QTDIR variable if defined
 if(NOT DEFINED ENV{QTDIR})
 	MESSAGE(STATUS "QTDIR environment variable not set. Be sure to set the QTDIR
