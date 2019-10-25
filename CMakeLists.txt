@@ -206,3 +206,18 @@ INCLUDE(InstallRequiredSystemLibraries)
 
 include(windeployqt)
 windeployqt(${TARGET_NAME})
+
+#-------------------------------------------------------------------------------
+#	INSTALLER
+#-------------------------------------------------------------------------------
+
+set(CPACK_GENERATOR NSIS)
+set(CPACK_PACKAGE_NAME "Minesweeper")
+set(CPACK_PACKAGE_VENDOR "Menari Softworks")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Free Qt/C++17 Minesweeper")
+set(CPACK_PACKAGE_VERSION "1.0.0")
+set(CPACK_PACKAGE_VERSION_MAJOR "1")
+set(CPACK_PACKAGE_VERSION_MINOR "0")
+set(CPACK_PACKAGE_VERSION_PATCH "0")
+
+INCLUDE(CPack)

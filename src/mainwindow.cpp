@@ -74,15 +74,13 @@ void MainWindow::setDifficulty(HighScore::Difficulty difficulty)
 
 void MainWindow::initialize()
 {
-	delete mainFrame;
-
-	mainFrame = new QFrame(this);
+	QFrame* newMainFrame = new QFrame(this);
 	auto mainFrameLayout = new QVBoxLayout;
 	auto infoLayout = new QHBoxLayout;
-	gameBoard = new GameBoard(numRows, numCols, numMines, mainFrame);
-	mineCounter = new MineCounter(mainFrame);
-	mineTimer = new MineTimer(mainFrame);
-	newGame = new QPushButton(mainFrame);
+	gameBoard = new GameBoard(numRows, numCols, numMines, newMainFrame);
+	mineCounter = new MineCounter(newMainFrame);
+	mineTimer = new MineTimer(newMainFrame);
+	newGame = new QPushButton(newMainFrame);
 	gameClock = new QTimer(this);
 
 	mineCounter->setNumMines(numMines);
@@ -109,10 +107,13 @@ void MainWindow::initialize()
 	mainFrameLayout->addLayout(infoLayout);
 	mainFrameLayout->addWidget(gameBoard);
 
-	mainFrame->setLayout(mainFrameLayout);
+	newMainFrame->setLayout(mainFrameLayout);
 
 	this->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-	this->setCentralWidget(mainFrame);
+	this->setCentralWidget(newMainFrame);
+
+	std::swap(mainFrame, newMainFrame);
+	delete newMainFrame;
 }
 
 void MainWindow::setupStateMachine()
