@@ -45,6 +45,8 @@ endif()
 
 set(TARGET_NAME minesweeper)
 
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+
 # Use git branch as project name if clones from git
 find_package(Git)
 if(GIT_FOUND)
@@ -84,7 +86,7 @@ enable_testing(true)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
-set(QT_USE_QTMAIN TRUE)
+set(CMAKE_AUTORCC ON)
 
 # Setup the cmake prefix path so Qt can be found. Use the QTDIR variable if defined
 if(NOT DEFINED ENV{QTDIR})
@@ -104,7 +106,7 @@ find_package(Qt5Test REQUIRED)
 # Test for supported Qt version
 find_program(QMAKE_EXECUTABLE NAMES qmake HINTS ${QTDIR} ENV QTDIR PATH_SUFFIXES bin)
 execute_process(COMMAND ${QMAKE_EXECUTABLE} -query QT_VERSION OUTPUT_VARIABLE QT_VERSION)
-if(QT_VERSION LESS QT_MINIMUM_VERSION)
+if(QT_VERSION VERSION_LESS QT_MINIMUM_VERSION)
 	MESSAGE(FATAL_ERROR "Minimum supported Qt version: ${QT_MINIMUM_VERSION}. Installed version: ${QT_VERSION}")
 endif()
 
@@ -118,8 +120,6 @@ find_package(Threads REQUIRED)
 list(APPEND QT_RESOURCES
 resources/resources.qrc
 )
-
-qt5_add_resources(RESOURCES ${QT_RESOURCES})
 
 list(APPEND RESOURCES
 resources/resources.rc
@@ -135,7 +135,7 @@ set(CMAKE_CXX_STANDARD 17)
 if(MSVC)
 	set(GUI_TYPE WIN32)
 	add_compile_options(/MP)
-	add_compile_options(/std:c++17)
+	add_compile_options(/std:c++latest)
 elseif(CMAKE_COMPILER_IS_GNUCXX)
 	add_compile_options(-std=c++17)
 endif(MSVC)
@@ -184,7 +184,7 @@ list(REMOVE_DUPLICATES LIBRARIES)
 include_directories(${INCLUDE_DIRS})
 
 # Generate the executable
-add_executable(${TARGET_NAME} ${GUI_TYPE} ${SOURCE_FILES} ${RESOURCES})
+add_executable(${TARGET_NAME} ${GUI_TYPE} ${SOURCE_FILES} ${RESOURCES} ${QT_RESOURCES})
 
 # link libraries
 target_link_libraries(${TARGET_NAME} ${LIBRARIES})
@@ -199,18 +199,5 @@ INCLUDE(InstallRequiredSystemLibraries)
 #	DEPLOY QT DLLS
 #-------------------------------------------------------------------------------
 
-# Windows specific build steps
-if(WIN32)
-	# Run winddeployqt if it can be found
-	find_program(WINDEPLOYQT_EXECUTABLE NAMES windeployqt HINTS ${QTDIR} ENV QTDIR PATH_SUFFIXES bin)
-	add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
-	COMMAND ${WINDEPLOYQT_EXECUTABLE} $<TARGET_FILE:${TARGET_NAME}>)
-	# Gather up all the dependencies in the bin dir
-	# Lack of a trailing slash means install this directory, trailing slash means install everything in this directory.
-	install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Release/
-			RUNTIME DESTINATION bin
-			FILES_MATCHING
-			PATTERN "_CPack*" EXCLUDE
-			PATTERN "*.dll"
-			)
-endif()
+include(windeployqt)
+windeployqt(${TARGET_NAME} "")
