@@ -205,7 +205,7 @@ INCLUDE(InstallRequiredSystemLibraries)
 #-------------------------------------------------------------------------------
 
 include(windeployqt)
-windeployqt(${TARGET_NAME})
+windeployqt(${TARGET_NAME} bin)
 
 #-------------------------------------------------------------------------------
 #	INSTALLER

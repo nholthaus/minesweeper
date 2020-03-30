@@ -36,7 +36,7 @@ endif()
 
 # Add commands that copy the Qt runtime to the target's output directory after
 # build and install the Qt runtime to the specified directory
-function(windeployqt target)
+function(windeployqt target directory)
 
     # Run windeployqt immediately after build
     add_custom_command(TARGET ${target} POST_BUILD
@@ -51,7 +51,7 @@ function(windeployqt target)
 
     # install(CODE ...) doesn't support generator expressions, but
     # file(GENERATE ...) does - store the path in a file
-    file(GENERATE OUTPUT "${CMAKE_BINARY_DIR}/${target}_$<CONFIG>_path"
+    file(GENERATE OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>/${target}_path"
         CONTENT "$<TARGET_FILE:${target}>"
     )
 
@@ -59,6 +59,7 @@ function(windeployqt target)
     # runtime files to the appropriate directory for installation
     install(CODE
         "
+        file(READ \"${CMAKE_CURRENT_BINARY_DIR}/Release/${target}_path\" _file)
         execute_process(
             COMMAND \"${CMAKE_COMMAND}\" -E
                 env PATH=\"${_qt_bin_dir}\" \"${WINDEPLOYQT_EXECUTABLE}\"
@@ -67,7 +68,7 @@ function(windeployqt target)
                     --no-angle
                     --no-opengl-sw
                     --list mapping
-                    \${target}
+                    \${_file} 
             OUTPUT_VARIABLE _output
             OUTPUT_STRIP_TRAILING_WHITESPACE
         )
@@ -77,7 +78,7 @@ function(windeployqt target)
             list(GET _files 1 _dest)
             execute_process(
                 COMMAND \"${CMAKE_COMMAND}\" -E
-                    copy \${_src} \"\${CMAKE_INSTALL_PREFIX}/\${_dest}\"
+                    copy \${_src} \"\${CMAKE_INSTALL_PREFIX}/${directory}/\${_dest}\"
             )
             list(REMOVE_AT _files 0 1)
         endwhile()

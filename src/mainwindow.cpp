@@ -196,7 +196,7 @@ void MainWindow::setupMenus()
 
 	beginnerAction = new QAction(tr("Beginner"), difficultyActionGroup);
 	beginnerAction->setCheckable(true);
-	connect(beginnerAction, &QAction::triggered, [this]()
+	QObject::connect(beginnerAction, &QAction::triggered, [this]()
 	{
 		setDifficulty(HighScore::beginner);
 	});
