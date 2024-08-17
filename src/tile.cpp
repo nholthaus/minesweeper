@@ -21,6 +21,7 @@ const QString Tile::revealedStyleSheet =
 "Tile"
 "{"
 "	border: 1px solid lightgray;"
+"	background: #F3F3F3;"
 "}";
 const QString Tile::revealedWithNumberStylesheet =
 "Tile"
@@ -28,6 +29,7 @@ const QString Tile::revealedWithNumberStylesheet =
 "	color: %1;"
 "	font-weight: bold;"
 "	border: 1px solid lightgray;"
+"	background: #F3F3F3;"
 "}";
 
 QIcon Tile::blankIcon()
@@ -354,4 +356,3 @@ void Tile::setText()
 	if(m_adjacentMineCount)
 		QPushButton::setText(QString::number(m_adjacentMineCount));
 }
-
