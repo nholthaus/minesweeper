@@ -7,11 +7,6 @@
 
 int main(int argc, char* argv[])
 {
-	QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
-	qRegisterMetaTypeStreamOperators<HighScore>("HighScore");
-	qRegisterMetaTypeStreamOperators<HighScoreModel>("HighScoreModel");
-
 	QApplication app(argc, argv);
 
 	QCoreApplication::setOrganizationName("Menari Softworks");

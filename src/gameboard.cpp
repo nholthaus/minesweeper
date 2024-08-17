@@ -56,7 +56,6 @@ void GameBoard::setupLayout()
 	auto layout = new QGridLayout;
 
 	layout->setSpacing(0);
-	layout->setMargin(0);
 	layout->setContentsMargins(0, 0, 0, 0);
 	layout->setSizeConstraint(QLayout::SetFixedSize);
 
@@ -179,7 +178,7 @@ void GameBoard::placeMines(Tile* firstClicked)
 	QList<Tile*> tiles;
 	QSet<Tile*> doneUse;
 	doneUse += firstClicked;
-	doneUse += QSet<Tile*>::fromList(firstClicked->neighbors());
+	doneUse += QSet<Tile*>(firstClicked->neighbors().cbegin(), firstClicked->neighbors().cend());
 
 	for (unsigned int r = 0; r < m_numRows; ++r)
 	{

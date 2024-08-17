@@ -50,10 +50,10 @@
 
 namespace APPINFO
 {
-	const QString name("@APPLICATION_NAME@");
+	const QString name("@APP_NAME@");
 	const QString organization("@APPLICATION_ORGANIZATION@");
 	const QString oranizationDomain("@APPLICATION_ORGANIZATION_DOMAIN@");
-	const QString version("@APPLICATION_VERSION@");
+	const QString version("@APP_VERSION@");
 }
 
 #endif // appinfo_h__
