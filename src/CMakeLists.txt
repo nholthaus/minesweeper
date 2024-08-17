@@ -24,7 +24,7 @@ qt6_add_executable(${PROJECT_NAME}
                tile.h
                ../resources/resources.rc
                ${RESOURCES}
-               ${CMAKE_BINARY_DIR}/appinfo.h
+               ${CMAKE_CURRENT_BINARY_DIR}/appinfo.h
                )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -32,6 +32,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
                       Qt::Gui
                       Qt::Widgets
                       Qt::StateMachine
+                      Qt::Concurrent
                       Threads::Threads
                       )
 

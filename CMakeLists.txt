@@ -30,7 +30,7 @@ if (WIN32)
 	message(STATUS "Qt6 DIR: ${Qt6_DIR}")
 endif (WIN32)
 
-find_package(Qt6 6.2.4 REQUIRED COMPONENTS Core Gui Widgets StateMachine)
+find_package(Qt6 6.2.4 REQUIRED COMPONENTS Core Gui Widgets StateMachine Concurrent)
 if (Qt6Core_VERSION VERSION_GREATER_EQUAL 6.3.0)
 	qt_standard_project_setup()
 else ()

@@ -14,8 +14,8 @@ HighScoreModel::HighScoreModel(const HighScoreModel& other)
 	: m_difficulty(other.m_difficulty)
 	, m_highScores(other.m_highScores)
 {
-	beginInsertRows(QModelIndex(), 0, other.m_highScores.size() - 1);
-	beginInsertColumns(QModelIndex(), 0, columnCount() - 1);
+	beginInsertRows(QModelIndex(), 0, other.m_highScores.size());
+	beginInsertColumns(QModelIndex(), 0, columnCount());
 	m_difficulty = other.m_difficulty;
 	m_highScores = other.m_highScores;
 	endInsertRows();
@@ -27,8 +27,8 @@ HighScoreModel::HighScoreModel(const HighScoreModel& other)
 
 HighScoreModel& HighScoreModel::operator=(const HighScoreModel& other)
 {
-	beginInsertRows(QModelIndex(), 0, other.m_highScores.size() - 1);
-	beginInsertColumns(QModelIndex(), 0, columnCount() - 1);
+	beginInsertRows(QModelIndex(), 0, other.m_highScores.size());
+	beginInsertColumns(QModelIndex(), 0, columnCount());
 	m_difficulty = other.m_difficulty;
 	m_highScores = other.m_highScores;
 	endInsertRows();

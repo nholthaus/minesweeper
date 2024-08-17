@@ -250,11 +250,11 @@ void MainWindow::setupMenus()
 
 void MainWindow::saveSettings()
 {
-	QSettings settings;
+	QSettings settings(APPINFO::organization, APPINFO::name);
 	settings.setValue("difficulty", QVariant::fromValue(difficulty).toString());
-	settings.beginWriteArray("High Scores", m_highScores.size());
+	settings.beginWriteArray("High Scores", static_cast<int>(m_highScores.size()));
 	int i = 0;
-	for (auto model : m_highScores)
+	for (const auto model : m_highScores)
 	{
 		settings.setArrayIndex(i++);
 		settings.setValue("model", QVariant::fromValue(*model));
@@ -264,13 +264,13 @@ void MainWindow::saveSettings()
 
 void MainWindow::loadSettings()
 {
-	QSettings settings;
+	QSettings settings(APPINFO::organization, APPINFO::name);
 	setDifficulty(settings.value("difficulty").value<HighScore::Difficulty>());
-	int size = settings.beginReadArray("High Scores");
+	const int size = settings.beginReadArray("High Scores");
 	for (int i = 0; i < size; ++i)
 	{
 		settings.setArrayIndex(i);
-		HighScoreModel* model = new HighScoreModel(settings.value("model").value<HighScoreModel>());
+		auto* model = new HighScoreModel(settings.value("model").value<HighScoreModel>());
 		m_highScores.insert(model->difficulty(), model);
 	}
 	settings.endArray();
