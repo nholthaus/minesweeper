@@ -1,6 +1,8 @@
-# minesweeper
+# Minesweeper
 
-A free, old-school implementation of minesweeper. Somewhere between windows 98/vista, with some updated styling.
+A free C++/Qt implementation of minesweeper, now with dark mode!
+
+![screenshot_dark](resources/images/screenshot_dark.png)
 
 ![screenshot](resources/images/screenshot.png)
 
