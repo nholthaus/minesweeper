@@ -7,7 +7,9 @@
 #include "highScoreModel.h"
 
 #include <QDebug>
+#include <qfile.h>
 #include <QMenuBar>
+#include <QMessageBox>
 #include <QVBoxLayout>
 #include <QFrame>
 #include <QInputDialog>
@@ -46,19 +48,19 @@ void MainWindow::setDifficulty(HighScore::Difficulty difficulty)
 	{
 	case HighScore::beginner:
 		numRows = 9;
-		numCols = 9;
+		numCols  = 9;
 		numMines = 10;
 		beginnerAction->setChecked(true);
 		break;
 	case HighScore::intermediate:
 		numRows = 16;
-		numCols = 16;
+		numCols  = 16;
 		numMines = 40;
 		intermediateAction->setChecked(true);
 		break;
 	case HighScore::expert:
 		numRows = 16;
-		numCols = 30;
+		numCols  = 30;
 		numMines = 99;
 		expertAction->setChecked(true);
 		break;
@@ -67,21 +69,21 @@ void MainWindow::setDifficulty(HighScore::Difficulty difficulty)
 	default:
 		break;
 	}
-	
+
 	initialize();
 	adjustSize();
 }
 
 void MainWindow::initialize()
 {
-	QFrame* newMainFrame = new QFrame(this);
-	auto mainFrameLayout = new QVBoxLayout;
-	auto infoLayout = new QHBoxLayout;
-	gameBoard = new GameBoard(numRows, numCols, numMines, newMainFrame);
-	mineCounter = new MineCounter(newMainFrame);
-	mineTimer = new MineTimer(newMainFrame);
-	newGame = new QPushButton(newMainFrame);
-	gameClock = new QTimer(this);
+	QFrame* newMainFrame    = new QFrame(this);
+	auto    mainFrameLayout = new QVBoxLayout;
+	auto    infoLayout      = new QHBoxLayout;
+	gameBoard               = new GameBoard(numRows, numCols, numMines, newMainFrame);
+	mineCounter             = new MineCounter(newMainFrame);
+	mineTimer               = new MineTimer(newMainFrame);
+	newGame                 = new QPushButton(newMainFrame);
+	gameClock               = new QTimer(this);
 
 	mineCounter->setNumMines(numMines);
 
@@ -120,10 +122,10 @@ void MainWindow::setupStateMachine()
 {
 	m_machine = new QStateMachine;
 
-	unstartedState = new QState;
+	unstartedState  = new QState;
 	inProgressState = new QState;
-	victoryState = new QState;
-	defeatState = new QState;
+	victoryState    = new QState;
+	defeatState     = new QState;
 
 	unstartedState->addTransition(this, &MainWindow::startGame, inProgressState);
 
@@ -178,7 +180,7 @@ void MainWindow::onVictory()
 	}
 }
 
-void MainWindow::closeEvent(QCloseEvent *event)
+void MainWindow::closeEvent(QCloseEvent* event)
 {
 	saveSettings();
 }
@@ -191,7 +193,7 @@ void MainWindow::setupMenus()
 	newGameAction->setShortcut(QKeySequence(Qt::Key_F2));
 	connect(newGameAction, &QAction::triggered, this, &MainWindow::startNewGame);
 
-	difficultyMenu = new QMenu(tr("Difficulty"));
+	difficultyMenu        = new QMenu(tr("Difficulty"));
 	difficultyActionGroup = new QActionGroup(difficultyMenu);
 
 	beginnerAction = new QAction(tr("Beginner"), difficultyActionGroup);
@@ -243,6 +245,17 @@ void MainWindow::setupMenus()
 	aboutAction = new QAction(tr("About..."));
 
 	helpMenu->addAction(aboutAction);
+	connect(aboutAction, &QAction::triggered, this, [this]
+	{
+		QFile licenseFile(":/LICENSE");
+		QString licenseText;
+		if (licenseFile.open(QIODevice::ReadOnly | QIODevice::Text))
+		{
+			licenseText = licenseFile.readAll();
+			licenseFile.close();
+		}
+		QMessageBox::about(this, "About Minesweeper", licenseText);
+	});
 
 	this->menuBar()->addMenu(gameMenu);
 	this->menuBar()->addMenu(helpMenu);
