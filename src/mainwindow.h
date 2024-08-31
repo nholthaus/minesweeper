@@ -68,6 +68,7 @@ private:
 
 	QMenu* helpMenu;
 	QAction* aboutAction;
+	QAction* aboutQtAction;
 
 	QTimer* gameClock;
 

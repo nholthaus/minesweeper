@@ -17,6 +17,7 @@
 #include <QStatusBar>
 #include <QSettings>
 #include <QScopedArrayPointer>
+#include <qstyle.h>
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -243,8 +244,14 @@ void MainWindow::setupMenus()
 	helpMenu = new QMenu(tr("Help"));
 
 	aboutAction = new QAction(tr("About..."));
+	aboutQtAction = new QAction(tr("About Qt..."));
 
 	helpMenu->addAction(aboutAction);
+	helpMenu->addAction(aboutQtAction);
+
+	aboutAction->setIcon(QIcon(":/mine"));
+	aboutQtAction->setIcon(this->style()->standardIcon(QStyle::SP_TitleBarMenuButton));
+
 	connect(aboutAction, &QAction::triggered, this, [this]
 	{
 		QFile licenseFile(":/LICENSE");
@@ -255,6 +262,11 @@ void MainWindow::setupMenus()
 			licenseFile.close();
 		}
 		QMessageBox::about(this, "About Minesweeper", licenseText);
+	});
+
+	connect(aboutQtAction, &QAction::triggered, this, [this]
+	{
+		QMessageBox::aboutQt(this);
 	});
 
 	this->menuBar()->addMenu(gameMenu);
