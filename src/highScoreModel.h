@@ -67,7 +67,9 @@ public:
 	HighScoreModel() = default;
 	explicit HighScoreModel(HighScore::Difficulty difficulty, QObject* parent = nullptr);
 	HighScoreModel(const HighScoreModel& other);
+	HighScoreModel(HighScoreModel&& other) noexcept;
 	HighScoreModel& operator=(const HighScoreModel& other);
+	HighScoreModel& operator=(HighScoreModel&& other) noexcept;
 
 	void addHighScore(const HighScore& score);
 	void setDifficulty(HighScore::Difficulty difficulty);

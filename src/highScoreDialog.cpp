@@ -4,7 +4,7 @@
 #include <QTableView>
 #include <QHeaderView>
 
-HighScoreDialog::HighScoreDialog(QMap<HighScore::Difficulty, HighScoreModel*> models, QWidget* parent)
+HighScoreDialog::HighScoreDialog(const QMap<HighScore::Difficulty, HighScoreModel>& models, QWidget* parent)
 	: QDialog(parent)
 {
 	this->setWindowTitle(tr("High Scores"));
@@ -19,13 +19,13 @@ HighScoreDialog::HighScoreDialog(QMap<HighScore::Difficulty, HighScoreModel*> mo
 
 	QList<QTableView*> views;
 
-	for (HighScoreModel* model : models.values())
+	for (const auto& model : models)
 	{
 		auto page = new QWidget;
-		tabWidget->addTab(page, QVariant::fromValue(model->difficulty()).toString());
+		tabWidget->addTab(page, QVariant::fromValue(model.difficulty()).toString());
 		page->setLayout(new QVBoxLayout);
-		auto view = new QTableView(this);
-		view->setModel(model);
+		const auto view = new QTableView(this);
+		view->setModel(const_cast<HighScoreModel*>(&model));
 		page->layout()->addWidget(view);
 		view->resizeColumnsToContents();
 		view->resizeRowsToContents();
@@ -39,13 +39,13 @@ HighScoreDialog::HighScoreDialog(QMap<HighScore::Difficulty, HighScoreModel*> mo
 		views.append(view);
 	}
 
-	for (auto view : views)
+	for (const auto view : views)
 	{
 		modelWidth = qMax(modelWidth, view->horizontalHeader()->length() + view->verticalHeader()->width() + scrollBarWidth);
 		modelHeight = qMax(modelHeight, view->verticalHeader()->length() + view->horizontalHeader()->height() + 2);
 	}
 
-	for (auto view : views)
+	for (const auto view : views)
 		view->setFixedSize(modelWidth, modelHeight);
 
 	this->layout()->setSizeConstraint(QLayout::SetFixedSize);
@@ -62,4 +62,3 @@ void HighScoreDialog::setActiveTab(const QString& difficulty)
 		}
 	}
 }
-

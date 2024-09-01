@@ -170,13 +170,13 @@ void MainWindow::setupStateMachine()
 
 void MainWindow::onVictory()
 {
-	if (!m_highScores[difficulty])
-		m_highScores[difficulty] = new HighScoreModel(difficulty);
+	if (!m_highScores.contains(difficulty))
+		m_highScores.insert(difficulty, HighScoreModel(difficulty));
 
-	if (m_highScores[difficulty]->isHighScore(mineTimer->time()))
+	if (m_highScores[difficulty].isHighScore(mineTimer->time()))
 	{
 		auto name = QInputDialog::getText(this, tr("Congratulations!"), tr("You've earned a high score!<br>Please enter your name:"));
-		m_highScores[difficulty]->addHighScore(HighScore(name, difficulty, mineTimer->time(), QDateTime::currentDateTime()));
+		m_highScores[difficulty].addHighScore(HighScore(name, difficulty, mineTimer->time(), QDateTime::currentDateTime()));
 		highScoreAction->trigger();
 	}
 }
@@ -225,7 +225,7 @@ void MainWindow::setupMenus()
 	highScoreAction = new QAction(tr("High Scores..."));
 	connect(highScoreAction, &QAction::triggered, this, [this]()
 	{
-		HighScoreDialog* dialog = new HighScoreDialog(m_highScores, this);
+		auto* dialog = new HighScoreDialog(m_highScores, this);
 		dialog->setActiveTab(QVariant::fromValue(difficulty).toString());
 		dialog->exec();
 		dialog->deleteLater();
@@ -279,10 +279,15 @@ void MainWindow::saveSettings()
 	settings.setValue("difficulty", QVariant::fromValue(difficulty).toString());
 	settings.beginWriteArray("High Scores", static_cast<int>(m_highScores.size()));
 	int i = 0;
-	for (const auto model : m_highScores)
+	for (const auto& model : m_highScores)
 	{
+		QByteArray data;
+		QDataStream stream(&data, QIODevice::WriteOnly);
+		stream << model;
+
 		settings.setArrayIndex(i++);
-		settings.setValue("model", QVariant::fromValue(*model));
+		settings.setValue("difficulty", model.difficulty());
+		settings.setValue("model", data);
 	}
 	settings.endArray();
 }
@@ -291,12 +296,23 @@ void MainWindow::loadSettings()
 {
 	QSettings settings(APPINFO::organization, APPINFO::name);
 	setDifficulty(settings.value("difficulty").value<HighScore::Difficulty>());
+
+	m_highScores.insert(HighScore::beginner, HighScoreModel{HighScore::beginner});
+	m_highScores.insert(HighScore::intermediate, HighScoreModel{HighScore::intermediate});
+	m_highScores.insert(HighScore::expert, HighScoreModel{HighScore::expert});
+
 	const int size = settings.beginReadArray("High Scores");
 	for (int i = 0; i < size; ++i)
 	{
 		settings.setArrayIndex(i);
-		auto* model = new HighScoreModel(settings.value("model").value<HighScoreModel>());
-		m_highScores.insert(model->difficulty(), model);
+
+		HighScoreModel model;
+		QByteArray data = settings.value("model").toByteArray();
+		QDataStream stream(&data, QIODevice::ReadOnly);
+		stream >> model;
+
+		m_highScores[model.difficulty()] = std::move(model);
 	}
+
 	settings.endArray();
 }

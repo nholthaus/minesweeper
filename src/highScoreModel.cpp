@@ -24,6 +24,27 @@ HighScoreModel::HighScoreModel(const HighScoreModel& other)
 	assert(HighScoreModel::columnCount() == other.columnCount());
 }
 
+HighScoreModel::HighScoreModel(HighScoreModel&& other) noexcept
+{
+	beginInsertRows(QModelIndex(), 0, static_cast<int>(other.m_highScores.size()));
+	beginInsertColumns(QModelIndex(), 0, HighScoreModel::columnCount());
+	m_difficulty = other.m_difficulty;
+	m_highScores = std::move(other.m_highScores);
+	endInsertRows();
+	endInsertColumns();
+}
+
+HighScoreModel& HighScoreModel::operator=(HighScoreModel&& other) noexcept
+{
+	beginInsertRows(QModelIndex(), 0, static_cast<int>(other.m_highScores.size()));
+	beginInsertColumns(QModelIndex(), 0, columnCount());
+	m_difficulty = other.m_difficulty;
+	m_highScores = std::move(other.m_highScores);
+	endInsertRows();
+	endInsertColumns();
+	return *this;
+}
+
 HighScoreModel& HighScoreModel::operator=(const HighScoreModel& other)
 {
 	beginInsertRows(QModelIndex(), 0, static_cast<int>(other.m_highScores.size()));
@@ -116,11 +137,11 @@ QVariant HighScoreModel::data(const QModelIndex& index, int role /*= Qt::Display
 	{
 		switch (index.column())
 		{
-		case Column::Name:
+		case Name:
 			return m_highScores[index.row()].name();
-		case Column::Score:
+		case Score:
 			return m_highScores[index.row()].score();
-		case Column::Date:
+		case Date:
 			return m_highScores[index.row()].date();
 		default:
 			return {};
@@ -131,11 +152,11 @@ QVariant HighScoreModel::data(const QModelIndex& index, int role /*= Qt::Display
 		QFlags<Qt::AlignmentFlag> alignment;
 		switch (index.column())
 		{
-		case Column::Name:
+		case Name:
 			alignment = Qt::AlignLeft | Qt::AlignVCenter;
 			break;
-		case Column::Score: [[fallthrough]];
-		case Column::Date: [[fallthrough]];
+		case Score: [[fallthrough]];
+		case Date: [[fallthrough]];
 		default:
 			alignment = Qt::AlignHCenter | Qt::AlignVCenter;
 			break;
@@ -185,6 +206,9 @@ const QVector<HighScore>& HighScoreModel::highScores() const
 
 void HighScoreModel::setHighScores(const QVector<HighScore>& scores)
 {
+	if(scores.empty())
+		return;
+
 	beginInsertRows(QModelIndex(), 0, static_cast<int>(scores.size()) - 1);
 	for (const auto& score : scores)
 		addHighScore(score);

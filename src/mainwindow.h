@@ -86,5 +86,5 @@ private:
 
 	HighScore::Difficulty difficulty;
 
-	QMap<HighScore::Difficulty, HighScoreModel*> m_highScores;
+	QMap<HighScore::Difficulty, HighScoreModel> m_highScores;
 };
