@@ -8,27 +8,58 @@
 #include <QFinalState>
 #include <QMouseEvent>
 #include <QSizePolicy>
+#include <QGuiApplication>
+#include <QStyleHints>
 
 bool Tile::m_firstClick = false;
-const QString Tile::unrevealedStyleSheet =
-"Tile"
-"{"
-"	border: 1px solid darkgray;"
-"	background: qradialgradient(cx : 0.4, cy : -0.1, fx : 0.4, fy : -0.1, radius : 1.35, stop : 0 #fff, stop: 1 #bbb);"
-"	border - radius: 1px;"
-"}";
-const QString Tile::revealedStyleSheet =
-"Tile"
-"{"
-"	border: 1px solid lightgray;"
-"}";
-const QString Tile::revealedWithNumberStylesheet =
-"Tile"
-"{"
-"	color: %1;"
-"	font-weight: bold;"
-"	border: 1px solid lightgray;"
-"}";
+
+const QString Tile::unrevealedStyleSheetLight =
+	"Tile"
+	"{"
+	"	border: 1px solid darkgray;"
+	"	background: qradialgradient(cx : 0.4, cy : -0.1, fx : 0.4, fy : -0.1, radius : 1.35, stop : 0 #fff, stop: 1 #bbb);"
+	"	border - radius: 1px;"
+	"}";
+
+const QString Tile::revealedStyleSheetLight =
+	"Tile"
+	"{"
+	"	border: 1px solid lightgray;"
+	"	background: whitesmoke;"
+	"}";
+
+const QString Tile::revealedWithNumberStylesheetLight =
+	"Tile"
+	"{"
+	"	color: %1;"
+	"	font-weight: bold;"
+	"	border: 1px solid lightgray;"
+	"	background: whitesmoke;"
+	"}";
+
+const QString Tile::unrevealedStyleSheetDark =
+	"Tile"
+	"{"
+	"	border: 1px solid #1b1d20;"
+	"	background: qradialgradient(cx : 0.4, cy : -0.1, fx : 0.4, fy : -0.1, radius : 1.35, stop : 0 #4b4c4f, stop: 1 #1e1e1e);"
+	"	border - radius: 1px;"
+	"}";
+
+const QString Tile::revealedStyleSheetDark =
+	"Tile"
+	"{"
+	"	border: 1px solid #1b1d20;"
+	"	background: #2b2c2f;"
+	"}";
+
+const QString Tile::revealedWithNumberStylesheetDark =
+	"Tile"
+	"{"
+	"	color: %1;"
+	"	font-weight: bold;"
+	"	border: 1px solid #1b1d10;"
+	"	background: #2b2c2f;"
+	"}";
 
 QIcon Tile::blankIcon()
 {
@@ -77,6 +108,19 @@ Tile::Tile(TileLocation location, QWidget* parent /*= nullptr*/)
 	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	setCheckable(true);
 	setMouseTracking(true);
+
+	if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
+	{
+		unrevealedStyleSheet         = unrevealedStyleSheetDark;
+		revealedStyleSheet           = revealedStyleSheetDark;
+		revealedWithNumberStylesheet = revealedWithNumberStylesheetDark;
+	}
+	else
+	{
+		unrevealedStyleSheet         = unrevealedStyleSheetLight;
+		revealedStyleSheet           = revealedStyleSheetLight;
+		revealedWithNumberStylesheet = revealedWithNumberStylesheetLight;
+	}
 }
 
 Tile::~Tile()
@@ -210,13 +254,13 @@ QSize Tile::sizeHint() const
 
 void Tile::createStateMachine()
 {
-	unrevealedState = new QState;
-	previewState = new QState;
+	unrevealedState       = new QState;
+	previewState          = new QState;
 	previewNeighborsState = new QState;
-	flaggedState = new QState;
-	revealedState = new QState;
-	revealNeighborsState = new QState;
-	disabledState = new QFinalState;
+	flaggedState          = new QState;
+	revealedState         = new QState;
+	revealNeighborsState  = new QState;
+	disabledState         = new QFinalState;
 
 	unrevealedState->addTransition(this, &Tile::leftClicked, revealedState);
 	unrevealedState->addTransition(this, &Tile::rightClicked, flaggedState);
@@ -240,14 +284,14 @@ void Tile::createStateMachine()
 	connect(unrevealedState, &QState::entered, [this]()
 	{
 		this->setIcon(blankIcon());
-		this->setStyleSheet(unrevealedStyleSheet);
-			
+		if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
+			this->setStyleSheet(unrevealedStyleSheet);
 	});
 
 	connect(previewState, &QState::entered, [this]()
 	{
 		this->setStyleSheet(revealedStyleSheet);
-	});	
+	});
 
 	connect(previewNeighborsState, &QState::entered, [this]()
 	{
@@ -302,7 +346,6 @@ void Tile::createStateMachine()
 
 	connect(disabledState, &QState::entered, [this]()
 	{
-
 	});
 
 	m_machine.addState(unrevealedState);
@@ -320,38 +363,72 @@ void Tile::createStateMachine()
 void Tile::setText()
 {
 	QString color;
-	switch (m_adjacentMineCount)
+	if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
 	{
-	case 1:
-		color = "blue";
-		break;
-	case 2:
-		color = "green";
-		break;
-	case 3:
-		color = "red";
-		break;
-	case 4:
-		color = "midnightblue";
-		break;
-	case 5:
-		color = "maroon";
-		break;
-	case 6:
-		color = "darkcyan";
-		break;
-	case 7:
-		color = "black";
-		break;
-	case 8:
-		color = "grey";
-		break;
-	default:
-		break;
+		switch (m_adjacentMineCount)
+		{
+		case 1:
+			color = "#3399FF";
+			break;
+		case 2:
+			color = "#00CC00";
+			break;
+		case 3:
+			color = "#FF3333";
+			break;
+		case 4:
+			color = "#4444FF";
+			break;
+		case 5:
+			color = "#CC6600";
+			break;
+		case 6:
+			color = "darkcyan";
+			break;
+		case 7:
+			color = "white";
+			break;
+		case 8:
+			color = "#808080";
+			break;
+		default:
+			break;
+		}
+	}
+	else
+	{
+		switch (m_adjacentMineCount)
+		{
+		case 1:
+			color = "blue";
+			break;
+		case 2:
+			color = "green";
+			break;
+		case 3:
+			color = "red";
+			break;
+		case 4:
+			color = "midnightblue";
+			break;
+		case 5:
+			color = "maroon";
+			break;
+		case 6:
+			color = "darkcyan";
+			break;
+		case 7:
+			color = "black";
+			break;
+		case 8:
+			color = "grey";
+			break;
+		default:
+			break;
+		}
 	}
 
 	QPushButton::setStyleSheet(revealedWithNumberStylesheet.arg(color));
-	if(m_adjacentMineCount)
+	if (m_adjacentMineCount)
 		QPushButton::setText(QString::number(m_adjacentMineCount));
 }
-

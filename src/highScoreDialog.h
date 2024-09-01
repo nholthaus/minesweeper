@@ -52,7 +52,7 @@ class HighScoreDialog : public QDialog
 {
 public:
 
-	HighScoreDialog(QMap<HighScore::Difficulty, HighScoreModel*> models, QWidget* parent = nullptr);
+	explicit HighScoreDialog(const QMap<HighScore::Difficulty, HighScoreModel>& models, QWidget* parent = nullptr);
 
 	void setActiveTab(const QString& difficulty);
 

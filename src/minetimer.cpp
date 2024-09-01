@@ -1,4 +1,6 @@
 #include "minetimer.h"
+#include <QGuiApplication>
+#include <QStyleHints>
 
 MineTimer::MineTimer(QWidget* parent /*= nullptr*/)
 	: QLCDNumber(parent)
@@ -6,9 +8,13 @@ MineTimer::MineTimer(QWidget* parent /*= nullptr*/)
 {
 	this->setDigitCount(4);
 	this->display(0);
-	this->setStyleSheet(".QLCDNumber { border: 2px inset gray; background-color: black; color: red; }");
 	this->setSegmentStyle(QLCDNumber::Flat);
 	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+
+	if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
+		this->setStyleSheet(".QLCDNumber { border: 2px inset #303030; background-color: black; color: red; }");
+	else
+		this->setStyleSheet(".QLCDNumber { border: 2px inset gray; background-color: black; color: red; }");
 }
 
 void MineTimer::incrementTime()
@@ -25,4 +31,3 @@ QSize MineTimer::sizeHint() const
 {
 	return QSize(65, 35);
 }
-

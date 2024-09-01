@@ -2,6 +2,7 @@
 [Gg]enerate[d]
 [Bb]uild
 [Mm][Ss][Vv][Cc]*
+*build*/
 
 #kdevelop
 *.kdev4
@@ -9,6 +10,9 @@
 #vscode
 .vs
 .vscode
+
+#clion
+.idea
 
 # Compiled Object files
 *.slo

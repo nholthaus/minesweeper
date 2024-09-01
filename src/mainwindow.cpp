@@ -7,7 +7,9 @@
 #include "highScoreModel.h"
 
 #include <QDebug>
+#include <qfile.h>
 #include <QMenuBar>
+#include <QMessageBox>
 #include <QVBoxLayout>
 #include <QFrame>
 #include <QInputDialog>
@@ -15,6 +17,7 @@
 #include <QStatusBar>
 #include <QSettings>
 #include <QScopedArrayPointer>
+#include <qstyle.h>
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -46,19 +49,19 @@ void MainWindow::setDifficulty(HighScore::Difficulty difficulty)
 	{
 	case HighScore::beginner:
 		numRows = 9;
-		numCols = 9;
+		numCols  = 9;
 		numMines = 10;
 		beginnerAction->setChecked(true);
 		break;
 	case HighScore::intermediate:
 		numRows = 16;
-		numCols = 16;
+		numCols  = 16;
 		numMines = 40;
 		intermediateAction->setChecked(true);
 		break;
 	case HighScore::expert:
 		numRows = 16;
-		numCols = 30;
+		numCols  = 30;
 		numMines = 99;
 		expertAction->setChecked(true);
 		break;
@@ -67,21 +70,21 @@ void MainWindow::setDifficulty(HighScore::Difficulty difficulty)
 	default:
 		break;
 	}
-	
+
 	initialize();
 	adjustSize();
 }
 
 void MainWindow::initialize()
 {
-	QFrame* newMainFrame = new QFrame(this);
-	auto mainFrameLayout = new QVBoxLayout;
-	auto infoLayout = new QHBoxLayout;
-	gameBoard = new GameBoard(numRows, numCols, numMines, newMainFrame);
-	mineCounter = new MineCounter(newMainFrame);
-	mineTimer = new MineTimer(newMainFrame);
-	newGame = new QPushButton(newMainFrame);
-	gameClock = new QTimer(this);
+	QFrame* newMainFrame    = new QFrame(this);
+	auto    mainFrameLayout = new QVBoxLayout;
+	auto    infoLayout      = new QHBoxLayout;
+	gameBoard               = new GameBoard(numRows, numCols, numMines, newMainFrame);
+	mineCounter             = new MineCounter(newMainFrame);
+	mineTimer               = new MineTimer(newMainFrame);
+	newGame                 = new QPushButton(newMainFrame);
+	gameClock               = new QTimer(this);
 
 	mineCounter->setNumMines(numMines);
 
@@ -120,10 +123,10 @@ void MainWindow::setupStateMachine()
 {
 	m_machine = new QStateMachine;
 
-	unstartedState = new QState;
+	unstartedState  = new QState;
 	inProgressState = new QState;
-	victoryState = new QState;
-	defeatState = new QState;
+	victoryState    = new QState;
+	defeatState     = new QState;
 
 	unstartedState->addTransition(this, &MainWindow::startGame, inProgressState);
 
@@ -167,18 +170,18 @@ void MainWindow::setupStateMachine()
 
 void MainWindow::onVictory()
 {
-	if (!m_highScores[difficulty])
-		m_highScores[difficulty] = new HighScoreModel(difficulty);
+	if (!m_highScores.contains(difficulty))
+		m_highScores.insert(difficulty, HighScoreModel(difficulty));
 
-	if (m_highScores[difficulty]->isHighScore(mineTimer->time()))
+	if (m_highScores[difficulty].isHighScore(mineTimer->time()))
 	{
 		auto name = QInputDialog::getText(this, tr("Congratulations!"), tr("You've earned a high score!<br>Please enter your name:"));
-		m_highScores[difficulty]->addHighScore(HighScore(name, difficulty, mineTimer->time(), QDateTime::currentDateTime()));
+		m_highScores[difficulty].addHighScore(HighScore(name, difficulty, mineTimer->time(), QDateTime::currentDateTime()));
 		highScoreAction->trigger();
 	}
 }
 
-void MainWindow::closeEvent(QCloseEvent *event)
+void MainWindow::closeEvent(QCloseEvent* event)
 {
 	saveSettings();
 }
@@ -191,7 +194,7 @@ void MainWindow::setupMenus()
 	newGameAction->setShortcut(QKeySequence(Qt::Key_F2));
 	connect(newGameAction, &QAction::triggered, this, &MainWindow::startNewGame);
 
-	difficultyMenu = new QMenu(tr("Difficulty"));
+	difficultyMenu        = new QMenu(tr("Difficulty"));
 	difficultyActionGroup = new QActionGroup(difficultyMenu);
 
 	beginnerAction = new QAction(tr("Beginner"), difficultyActionGroup);
@@ -222,7 +225,7 @@ void MainWindow::setupMenus()
 	highScoreAction = new QAction(tr("High Scores..."));
 	connect(highScoreAction, &QAction::triggered, this, [this]()
 	{
-		HighScoreDialog* dialog = new HighScoreDialog(m_highScores, this);
+		auto* dialog = new HighScoreDialog(m_highScores, this);
 		dialog->setActiveTab(QVariant::fromValue(difficulty).toString());
 		dialog->exec();
 		dialog->deleteLater();
@@ -241,8 +244,30 @@ void MainWindow::setupMenus()
 	helpMenu = new QMenu(tr("Help"));
 
 	aboutAction = new QAction(tr("About..."));
+	aboutQtAction = new QAction(tr("About Qt..."));
 
 	helpMenu->addAction(aboutAction);
+	helpMenu->addAction(aboutQtAction);
+
+	aboutAction->setIcon(QIcon(":/mine"));
+	aboutQtAction->setIcon(this->style()->standardIcon(QStyle::SP_TitleBarMenuButton));
+
+	connect(aboutAction, &QAction::triggered, this, [this]
+	{
+		QFile licenseFile(":/LICENSE");
+		QString licenseText;
+		if (licenseFile.open(QIODevice::ReadOnly | QIODevice::Text))
+		{
+			licenseText = licenseFile.readAll();
+			licenseFile.close();
+		}
+		QMessageBox::about(this, "About Minesweeper", licenseText);
+	});
+
+	connect(aboutQtAction, &QAction::triggered, this, [this]
+	{
+		QMessageBox::aboutQt(this);
+	});
 
 	this->menuBar()->addMenu(gameMenu);
 	this->menuBar()->addMenu(helpMenu);
@@ -250,28 +275,44 @@ void MainWindow::setupMenus()
 
 void MainWindow::saveSettings()
 {
-	QSettings settings;
+	QSettings settings(APPINFO::organization, APPINFO::name);
 	settings.setValue("difficulty", QVariant::fromValue(difficulty).toString());
-	settings.beginWriteArray("High Scores", m_highScores.size());
+	settings.beginWriteArray("High Scores", static_cast<int>(m_highScores.size()));
 	int i = 0;
-	for (auto model : m_highScores)
+	for (const auto& model : m_highScores)
 	{
+		QByteArray data;
+		QDataStream stream(&data, QIODevice::WriteOnly);
+		stream << model;
+
 		settings.setArrayIndex(i++);
-		settings.setValue("model", QVariant::fromValue(*model));
+		settings.setValue("difficulty", model.difficulty());
+		settings.setValue("model", data);
 	}
 	settings.endArray();
 }
 
 void MainWindow::loadSettings()
 {
-	QSettings settings;
+	QSettings settings(APPINFO::organization, APPINFO::name);
 	setDifficulty(settings.value("difficulty").value<HighScore::Difficulty>());
-	int size = settings.beginReadArray("High Scores");
+
+	m_highScores.insert(HighScore::beginner, HighScoreModel{HighScore::beginner});
+	m_highScores.insert(HighScore::intermediate, HighScoreModel{HighScore::intermediate});
+	m_highScores.insert(HighScore::expert, HighScoreModel{HighScore::expert});
+
+	const int size = settings.beginReadArray("High Scores");
 	for (int i = 0; i < size; ++i)
 	{
 		settings.setArrayIndex(i);
-		HighScoreModel* model = new HighScoreModel(settings.value("model").value<HighScoreModel>());
-		m_highScores.insert(model->difficulty(), model);
+
+		HighScoreModel model;
+		QByteArray data = settings.value("model").toByteArray();
+		QDataStream stream(&data, QIODevice::ReadOnly);
+		stream >> model;
+
+		m_highScores[model.difficulty()] = std::move(model);
 	}
+
 	settings.endArray();
 }

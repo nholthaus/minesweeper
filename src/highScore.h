@@ -74,10 +74,10 @@ public:
 	HighScore(const HighScore& other);
 	HighScore& operator=(const HighScore& other);
 
-	QString name() const;
-	Difficulty difficulty() const;
-	quint32 score() const;
-	QDateTime date() const;
+	[[nodiscard]] QString name() const;
+	[[nodiscard]] Difficulty difficulty() const;
+	[[nodiscard]] quint32 score() const;
+	[[nodiscard]] QDateTime date() const;
 
 	void setName(QString name);
 	void setDifficultty(Difficulty difficulty);

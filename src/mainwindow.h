@@ -68,6 +68,7 @@ private:
 
 	QMenu* helpMenu;
 	QAction* aboutAction;
+	QAction* aboutQtAction;
 
 	QTimer* gameClock;
 
@@ -85,5 +86,5 @@ private:
 
 	HighScore::Difficulty difficulty;
 
-	QMap<HighScore::Difficulty, HighScoreModel*> m_highScores;
+	QMap<HighScore::Difficulty, HighScoreModel> m_highScores;
 };

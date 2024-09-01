@@ -1,14 +1,16 @@
-<!DOCTYPE RCC><RCC version="1.0">
-	<qresource>
-		<file alias="tilesheet">stylesheets/tilesheet.qss</file>
-    <file alias="flag">images/flag.png</file>
-    <file alias="mine">images/mine.png</file>
-    <file alias="explosion">images/explosion.png</file>
-    <file alias="tada">images/tada.png</file>
-    <file alias="wrong">images/wrong.png</file>
-    <file alias="emoji/smile">images/smile_emoji.png</file>
-    <file alias="emoji/injured">images/injured_emoji.png</file>
-    <file alias="emoji/sunglasses">images/sunglasses_emoji.png</file>
-    <file alias="emoji/wow">images/wow_emoji.png</file>
-	</qresource>
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource>
+        <file alias="LICENSE">../LICENSE</file>
+        <file alias="tilesheet">stylesheets/tilesheet.qss</file>
+        <file alias="flag">images/flag.png</file>
+        <file alias="mine">images/mine.png</file>
+        <file alias="explosion">images/explosion.png</file>
+        <file alias="tada">images/tada.png</file>
+        <file alias="wrong">images/wrong.png</file>
+        <file alias="emoji/smile">images/smile_emoji.png</file>
+        <file alias="emoji/injured">images/injured_emoji.png</file>
+        <file alias="emoji/sunglasses">images/sunglasses_emoji.png</file>
+        <file alias="emoji/wow">images/wow_emoji.png</file>
+    </qresource>
 </RCC>

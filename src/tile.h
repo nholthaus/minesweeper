@@ -87,9 +87,16 @@ private:
 	static bool m_firstClick;
 	Qt::MouseButtons m_buttons;
 	
-	static const QString unrevealedStyleSheet;
-	static const QString revealedStyleSheet;
-	static const QString revealedWithNumberStylesheet;
+	static const QString unrevealedStyleSheetLight;
+	static const QString revealedStyleSheetLight;
+	static const QString revealedWithNumberStylesheetLight;
+	static const QString unrevealedStyleSheetDark;
+	static const QString revealedStyleSheetDark;
+	static const QString revealedWithNumberStylesheetDark;
+
+	QString unrevealedStyleSheet;
+	QString revealedStyleSheet;
+	QString revealedWithNumberStylesheet;
 
 	QStateMachine m_machine;
 	QState* unrevealedState;

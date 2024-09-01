@@ -30,11 +30,15 @@ signals:
 
 private:
 
+	QList<QPair<unsigned int, unsigned int>> generateTileIndices(unsigned int rows, unsigned int columns);
+
+	void createTile(QPair<unsigned int, unsigned int> tileIndex);
 	void createTiles();
 
 	void defeatAnimation();
 
 	void setupLayout();
+	void addNeighbor(QPair<unsigned int, unsigned int> tileIndex);
 	void addNeighbors();
 	void checkVictory();
 
@@ -44,7 +48,8 @@ private:
 	unsigned int m_numCols;
 	unsigned int m_numMines;
 
-	QList<QList<Tile*>> m_tiles;
+	QList<QList<Tile*>>                      m_tiles;
+	QList<QPair<unsigned int, unsigned int>> m_tileIndices;
 
 	QSet<Tile*> m_mines;
 	QSet<Tile*> m_correctFlags;
@@ -53,6 +58,6 @@ private:
 
 	QTimer* explosionTimer;
 
-	bool m_defeat = false;
+	bool m_defeat  = false;
 	bool m_victory = false;
 };

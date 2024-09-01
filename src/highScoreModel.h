@@ -55,42 +55,45 @@ public:
 
 	enum Column
 	{
-		Name	= 0,
-		Score	= 1,
-		Date	= 2,
+		Name  = 0,
+		Score = 1,
+		Date  = 2,
 	};
+
 	Q_ENUM(Column);
 
 public:
 
 	HighScoreModel() = default;
-	HighScoreModel(HighScore::Difficulty difficulty, QObject* parent = nullptr);
+	explicit HighScoreModel(HighScore::Difficulty difficulty, QObject* parent = nullptr);
 	HighScoreModel(const HighScoreModel& other);
+	HighScoreModel(HighScoreModel&& other) noexcept;
 	HighScoreModel& operator=(const HighScoreModel& other);
+	HighScoreModel& operator=(HighScoreModel&& other) noexcept;
 
-	void addHighScore(HighScore score);
-	HighScore::Difficulty difficulty() const;
+	void addHighScore(const HighScore& score);
 	void setDifficulty(HighScore::Difficulty difficulty);
+	void setHighScores(const QVector<HighScore>& scores);
 
-	virtual QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
-	virtual QModelIndex parent(const QModelIndex &child) const override;
-	virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-	virtual int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-	virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-	virtual Qt::ItemFlags flags(const QModelIndex& index) const override;
-	virtual QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
+	[[nodiscard]] HighScore::Difficulty     difficulty() const;
+	[[nodiscard]] const QVector<HighScore>& highScores() const;
+	[[nodiscard]] bool                      isHighScore(int time) const;
 
-	const QVector<HighScore>& highScores() const;
-	void setHighScores(QVector<HighScore> scores);
-	bool isHighScore(int time) const;
+	[[nodiscard]] QModelIndex   index(int row, int column, const QModelIndex& parent = QModelIndex()) const override;
+	[[nodiscard]] QModelIndex   parent(const QModelIndex& child) const override;
+	[[nodiscard]] int           rowCount(const QModelIndex& parent = QModelIndex()) const override;
+	[[nodiscard]] int           columnCount(const QModelIndex& parent = QModelIndex()) const override;
+	[[nodiscard]] QVariant      data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+	[[nodiscard]] Qt::ItemFlags flags(const QModelIndex& index) const override;
+	[[nodiscard]] QVariant      headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 
 private:
 
-	HighScore::Difficulty m_difficulty;
-	QVector<HighScore> m_highScores;
+	HighScore::Difficulty m_difficulty{HighScore::beginner};
+	QVector<HighScore>    m_highScores;
 };
 
 Q_DECLARE_METATYPE(HighScoreModel);
 
-QDataStream &operator<<(QDataStream &out, const HighScoreModel&);
-QDataStream &operator>>(QDataStream &in, HighScoreModel&);
+QDataStream& operator<<(QDataStream& out, const HighScoreModel&);
+QDataStream& operator>>(QDataStream& in, HighScoreModel&);
