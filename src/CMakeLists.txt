@@ -96,4 +96,7 @@ set(CPACK_PACKAGE_EXECUTABLES "minesweeper" "minesweeper")
 set(CPACK_CREATE_DESKTOP_LINKS minesweeper)
 set(CPACK_PACKAGE_VERSION ${GIT_TAG})
 
+# Ignore .qt directory in the build directory
+set(CPACK_IGNORE_FILES "/\\.qt/;")
+
 include(CPack)
