@@ -45,7 +45,7 @@ if (WIN32)
 	                      WIN32_EXECUTABLE ON
 	                      )
 	install(TARGETS ${PROJECT_NAME}
-	        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+	        RUNTIME DESTINATION bin
 	        )
 elseif (APPLE)
 	set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE TRUE)
@@ -80,8 +80,6 @@ endif (WIN32)
 #-------------------------------------------------------------------------------
 #	INSTALLER
 #-------------------------------------------------------------------------------
-
-install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR NSIS)
 set(CPACK_PACKAGE_NAME "Minesweeper")
