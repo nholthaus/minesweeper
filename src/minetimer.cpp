@@ -10,11 +10,7 @@ MineTimer::MineTimer(QWidget* parent /*= nullptr*/)
 	this->display(0);
 	this->setSegmentStyle(QLCDNumber::Flat);
 	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-
-	if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
-		this->setStyleSheet(".QLCDNumber { border: 2px inset #303030; background-color: black; color: red; }");
-	else
-		this->setStyleSheet(".QLCDNumber { border: 2px inset gray; background-color: black; color: red; }");
+	this->setTheme(QGuiApplication::styleHints()->colorScheme());
 }
 
 void MineTimer::incrementTime()
@@ -25,6 +21,14 @@ void MineTimer::incrementTime()
 int MineTimer::time() const
 {
 	return m_seconds;
+}
+
+void  MineTimer::setTheme(Qt::ColorScheme colorScheme)
+{
+	if (colorScheme == Qt::ColorScheme::Dark)
+		this->setStyleSheet(".QLCDNumber { border: 2px inset #303030; background-color: black; color: red; }");
+	else
+		this->setStyleSheet(".QLCDNumber { border: 2px inset gray; background-color: black; color: red; }");
 }
 
 QSize MineTimer::sizeHint() const

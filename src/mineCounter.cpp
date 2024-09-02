@@ -9,11 +9,7 @@ MineCounter::MineCounter(QWidget* parent)
 	this->display(0);
 	this->setSegmentStyle(QLCDNumber::Flat);
 	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-
-	if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
-		this->setStyleSheet(".QLCDNumber { border: 2px inset #303030; background-color: black; color: red; }");
-	else
-		this->setStyleSheet(".QLCDNumber { border: 2px inset gray; background-color: black; color: red; }");
+	this->setTheme(QGuiApplication::styleHints()->colorScheme());
 }
 
 void MineCounter::setNumMines(int numMines)
@@ -26,6 +22,14 @@ void MineCounter::setFlagCount(unsigned int flagCount)
 {
 	m_flagCount = flagCount;
 	display((int)m_totalMines - (int)flagCount);
+}
+
+void MineCounter::setTheme(Qt::ColorScheme colorScheme)
+{
+	if (colorScheme == Qt::ColorScheme::Dark)
+		this->setStyleSheet(".QLCDNumber { border: 2px inset #303030; background-color: black; color: red; }");
+	else
+		this->setStyleSheet(".QLCDNumber { border: 2px inset gray; background-color: black; color: red; }");
 }
 
 QSize MineCounter::sizeHint() const

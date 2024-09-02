@@ -8,6 +8,7 @@ public:
 
 	void incrementTime();
 	int time() const;
+	void setTheme(Qt::ColorScheme colorScheme);
 	virtual QSize sizeHint() const override;
 
 private:

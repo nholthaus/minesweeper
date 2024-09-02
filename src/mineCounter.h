@@ -8,6 +8,7 @@ public:
 
 	void setNumMines(int numMines);
 	void setFlagCount(unsigned int flagCount);
+	void setTheme(Qt::ColorScheme colorScheme);
 	virtual QSize sizeHint() const override;
 
 private:

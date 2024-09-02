@@ -338,4 +338,6 @@ void MainWindow::changeEvent(QEvent* event)
 void MainWindow::setTheme(Qt::ColorScheme colorScheme)
 {
 	gameBoard->setTheme(colorScheme);
+	mineCounter->setTheme(colorScheme);
+	mineTimer->setTheme(colorScheme);
 }
