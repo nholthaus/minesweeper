@@ -48,8 +48,8 @@ if (WIN32)
 	        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 	        )
 elseif (APPLE)
-	set_target_properties(minesweeper PROPERTIES MACOSX_BUNDLE TRUE)
-	set_target_properties(minesweeper PROPERTIES
+	set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE TRUE)
+	set_target_properties(${PROJECT_NAME} PROPERTIES
 	                      MACOSX_BUNDLE_BUNDLE_NAME "Minesweeper"
 	                      MACOSX_BUNDLE_BUNDLE_VERSION "${GIT_TAG}"
 	                      MACOSX_BUNDLE_LONG_VERSION_STRING "${GIT_TAG}"
