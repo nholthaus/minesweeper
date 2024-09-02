@@ -39,10 +39,20 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
                       Threads::Threads
                       )
 
-set_target_properties(${PROJECT_NAME} PROPERTIES
-                      INSTALL_RPATH_USE_LINK_PATH TRUE
-                      WIN32_EXECUTABLE ON
-                      )
+if (WIN32)
+	set_target_properties(${PROJECT_NAME} PROPERTIES
+	                      INSTALL_RPATH_USE_LINK_PATH TRUE
+	                      WIN32_EXECUTABLE ON
+	                      )
+elseif (APPLE)
+	set_target_properties(minesweeper PROPERTIES MACOSX_BUNDLE TRUE)
+	set_target_properties(minesweeper PROPERTIES
+	                      MACOSX_BUNDLE_BUNDLE_NAME "Minesweeper"
+	                      MACOSX_BUNDLE_BUNDLE_VERSION "${GIT_TAG}"
+	                      MACOSX_BUNDLE_LONG_VERSION_STRING "${GIT_TAG}"
+	                      MACOSX_BUNDLE_GUI_IDENTIFIER "github.com/nholthaus/minesweeper"
+	                      )
+endif (WIN32)
 
 install(TARGETS ${PROJECT_NAME}
         BUNDLE DESTINATION .

@@ -50,3 +50,23 @@ jobs:
       - name: Test
         working-directory: ${{github.workspace}}/build
         run: ctest -C ${{env.BUILD_TYPE}}
+
+      - name: Upload .app Bundle
+        if: matrix.os == 'macos-latest'
+        uses: actions/upload-artifact@v3
+        with:
+          name: Minesweeper.app
+          path: ${{github.workspace}}/build/macos_bin/Minesweeper.app
+
+      - name: Package Windows Installer with CPack
+        if: matrix.os == 'windows-latest'
+        run: |
+          cd ${{github.workspace}}/build
+          cpack -G NSIS
+
+      - name: Upload Windows Installer
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v3
+        with:
+          name: Minesweeper-win64-installer.exe
+          path: ${{github.workspace}}/build/Minesweeper-*-win64.exe
