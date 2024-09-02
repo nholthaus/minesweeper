@@ -44,6 +44,9 @@ if (WIN32)
 	                      INSTALL_RPATH_USE_LINK_PATH TRUE
 	                      WIN32_EXECUTABLE ON
 	                      )
+	install(TARGETS ${PROJECT_NAME}
+	        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+	        )
 elseif (APPLE)
 	set_target_properties(minesweeper PROPERTIES MACOSX_BUNDLE TRUE)
 	set_target_properties(minesweeper PROPERTIES
@@ -52,12 +55,11 @@ elseif (APPLE)
 	                      MACOSX_BUNDLE_LONG_VERSION_STRING "${GIT_TAG}"
 	                      MACOSX_BUNDLE_GUI_IDENTIFIER "github.com/nholthaus/minesweeper"
 	                      )
+	# Install the .app bundle
+	install(TARGETS ${PROJECT_NAME}
+	        BUNDLE DESTINATION /Applications
+	        COMPONENT Runtime)
 endif (WIN32)
-
-install(TARGETS ${PROJECT_NAME}
-        BUNDLE DESTINATION .
-        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-        )
 
 #-------------------------------------------------------------------------------
 #	DEPLOY DLLS
