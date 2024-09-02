@@ -76,6 +76,7 @@ private:
 	QMenu* helpMenu;
 	QAction* aboutAction;
 	QAction* aboutQtAction;
+	QAction* checkVersionAction;
 
 	QTimer* gameClock;
 

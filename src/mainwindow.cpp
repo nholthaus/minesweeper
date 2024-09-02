@@ -24,7 +24,7 @@
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 	, mainFrame(nullptr)
-    , m_versionChecker{"nholthaus","minesweeper",APPINFO::version}
+	, m_versionChecker{"nholthaus", "minesweeper", APPINFO::version}
 {
 	this->setWindowIcon(QIcon(":/mine"));
 	setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
@@ -40,9 +40,13 @@ MainWindow::MainWindow(QWidget* parent)
 	{
 		newGame->setIcon(QIcon(":/emoji/sunglasses"));
 	});
-	connect(&m_versionChecker, &VersionChecker::newerVersionAvailable, this, [this](const QString& version)
+	connect(&m_versionChecker, &VersionChecker::newerVersionAvailable, this, [this](const QString& version, const QString& url)
 	{
-		QMessageBox::information(this, "New Version Available", "A newer version of minesweeper is available!");
+		QMessageBox msgBox(this);
+		msgBox.setWindowTitle(QString("Version %1 Available").arg(version));
+		msgBox.setTextFormat(Qt::RichText); //this is what makes the links clickable
+		msgBox.setText(QString("A new version of minesweeper is available!<br><a href='%1'>Click here to Download.</a>").arg(url));
+		msgBox.exec();
 	});
 
 	this->layout()->setSizeConstraint(QLayout::SetFixedSize);
@@ -252,18 +256,21 @@ void MainWindow::setupMenus()
 
 	helpMenu = new QMenu(tr("Help"));
 
-	aboutAction = new QAction(tr("About..."));
-	aboutQtAction = new QAction(tr("About Qt..."));
+	aboutAction        = new QAction(tr("About..."));
+	aboutQtAction      = new QAction(tr("About Qt..."));
+	checkVersionAction = new QAction(tr("Check for Updates..."));
 
 	helpMenu->addAction(aboutAction);
 	helpMenu->addAction(aboutQtAction);
+	helpMenu->addSeparator();
+	helpMenu->addAction(checkVersionAction);
 
 	aboutAction->setIcon(QIcon(":/mine"));
 	aboutQtAction->setIcon(this->style()->standardIcon(QStyle::SP_TitleBarMenuButton));
 
 	connect(aboutAction, &QAction::triggered, this, [this]
 	{
-		QFile licenseFile(":/LICENSE");
+		QFile   licenseFile(":/LICENSE");
 		QString licenseText;
 		if (licenseFile.open(QIODevice::ReadOnly | QIODevice::Text))
 		{
@@ -278,6 +285,15 @@ void MainWindow::setupMenus()
 		QMessageBox::aboutQt(this);
 	});
 
+	connect(checkVersionAction, &QAction::triggered, this, [this]
+	{
+		m_versionChecker.checkForNewerVersion();
+		connect(&m_versionChecker, &VersionChecker::noNewerVersion, this, [this]
+		{
+			QMessageBox::information(this, "No newer version", "You already have the latest version of Minesweeper installed.");
+		}, Qt::SingleShotConnection);
+	});
+
 	this->menuBar()->addMenu(gameMenu);
 	this->menuBar()->addMenu(helpMenu);
 }
@@ -290,7 +306,7 @@ void MainWindow::saveSettings()
 	int i = 0;
 	for (const auto& model : m_highScores)
 	{
-		QByteArray data;
+		QByteArray  data;
 		QDataStream stream(&data, QIODevice::WriteOnly);
 		stream << model;
 
@@ -316,8 +332,8 @@ void MainWindow::loadSettings()
 		settings.setArrayIndex(i);
 
 		HighScoreModel model;
-		QByteArray data = settings.value("model").toByteArray();
-		QDataStream stream(&data, QIODevice::ReadOnly);
+		QByteArray     data = settings.value("model").toByteArray();
+		QDataStream    stream(&data, QIODevice::ReadOnly);
 		stream >> model;
 
 		m_highScores[model.difficulty()] = std::move(model);
@@ -328,7 +344,7 @@ void MainWindow::loadSettings()
 
 void MainWindow::changeEvent(QEvent* event)
 {
-	if(event->type() == QEvent::ThemeChange || event->type() == QEvent::StyleChange)
+	if (event->type() == QEvent::ThemeChange || event->type() == QEvent::StyleChange)
 	{
 		this->setTheme(QGuiApplication::styleHints()->colorScheme());
 	}

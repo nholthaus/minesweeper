@@ -20,7 +20,7 @@ public:
 
 signals:
 
-	void newerVersionAvailable(const QString& latestVersion);
+	void newerVersionAvailable(const QString& latestVersion, const QString& latestUrl);
 	void noNewerVersion();
 	void errorOccurred(const QString& errorString);
 
@@ -35,7 +35,7 @@ private:
 	QString                m_repoName;
 	QVersionNumber         m_currentVersion;
 
-	void compareVersions(const QString& latestVersionString);
+	bool isNewer(const QString& latestVersionString) const;
 };
 
 #endif // VERSIONCHECKER_H
