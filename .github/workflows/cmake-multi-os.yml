@@ -17,20 +17,28 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, macos-latest]
-        qt-host:
-          - windows
-          - mac
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install Qt
+      - name: Install Qt on Windows
+        if: matrix.os == 'windows-latest'
         uses: jurplel/install-qt-action@v4
         with:
           version: '6.7.2'
-          host: ${{ matrix['qt-host'] }}
+          host: 'windows'
           target: 'desktop'
-          arch: ${{ matrix.os == 'windows-latest' && 'win64_msvc2019_64' || 'clang_64' }}
+          arch: 'win64_msvc2019_64'
+          modules: 'qtscxml'
+
+      - name: Install Qt on macOS
+        if: matrix.os == 'macos-latest'
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.7.2'
+          host: 'mac'
+          target: 'desktop'
+          arch: 'clang_64'
           modules: 'qtscxml'
 
       - name: Configure CMake
