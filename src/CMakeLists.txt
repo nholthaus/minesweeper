@@ -1,5 +1,5 @@
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
+cmake_policy(set CMP0087 NEW)
 configure_file(appinfo.h.in ${CMAKE_CURRENT_BINARY_DIR}/appinfo.h @ONLY NEWLINE_STYLE UNIX)
 
 qt_add_resources(RESOURCES ../resources/resources.qrc)
