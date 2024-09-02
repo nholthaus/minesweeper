@@ -45,7 +45,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
                       )
 
 install(TARGETS ${PROJECT_NAME}
-        BUNDLE  DESTINATION .
+        BUNDLE DESTINATION .
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         )
 
@@ -53,15 +53,17 @@ install(TARGETS ${PROJECT_NAME}
 #	DEPLOY DLLS
 #-------------------------------------------------------------------------------
 
-include(windeployqt)
 include(InstallRequiredSystemLibraries)
-windeployqt(${PROJECT_NAME})
-qt_generate_deploy_app_script(
-		TARGET ${PROJECT_NAME}
-		OUTPUT_SCRIPT deploy_script
-		NO_UNSUPPORTED_PLATFORM_ERROR
-		)
-install(SCRIPT ${deploy_script})
+if (WIN32)
+	include(windeployqt)
+	windeployqt(${PROJECT_NAME})
+	qt_generate_deploy_app_script(
+			TARGET ${PROJECT_NAME}
+			OUTPUT_SCRIPT deploy_script
+			NO_UNSUPPORTED_PLATFORM_ERROR
+			)
+	install(SCRIPT ${deploy_script})
+endif (WIN32)
 
 #-------------------------------------------------------------------------------
 #	INSTALLER
@@ -80,8 +82,8 @@ set(CPACK_NSIS_MUI_UNIICON "${CMAKE_SOURCE_DIR}/resources/icons/logo.ico")
 set(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\minesweeper.exe")
 set(CPACK_PACKAGE_HOMEPAGE_URL "https://github.com/nholthaus/minesweeper")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "${CPACK_PACKAGE_NAME}")
-set(CPACK_PACKAGE_EXECUTABLES "minesweeper" "minesweeper" )
+set(CPACK_PACKAGE_EXECUTABLES "minesweeper" "minesweeper")
 set(CPACK_CREATE_DESKTOP_LINKS minesweeper)
 set(CPACK_PACKAGE_VERSION ${GIT_TAG})
 
-INCLUDE(CPack)
+include(CPack)
