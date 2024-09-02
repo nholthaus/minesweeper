@@ -71,9 +71,8 @@ jobs:
 
       - name: Package Windows Installer with CPack
         if: matrix.os == 'windows-latest'
-        run: |
-          cd ${{github.workspace}}/build
-          cpack -G NSIS
+        working-directory: ${{github.workspace}}/build
+        run: cpack
 
       - name: Upload Windows Installer
         if: matrix.os == 'windows-latest'
