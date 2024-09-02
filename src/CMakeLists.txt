@@ -1,5 +1,5 @@
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-cmake_policy(set CMP0087 NEW)
+cmake_policy(SET CMP0087 NEW)
 configure_file(appinfo.h.in ${CMAKE_CURRENT_BINARY_DIR}/appinfo.h @ONLY NEWLINE_STYLE UNIX)
 
 qt_add_resources(RESOURCES ../resources/resources.qrc)
@@ -95,8 +95,5 @@ set(CPACK_PACKAGE_INSTALL_DIRECTORY "${CPACK_PACKAGE_NAME}")
 set(CPACK_PACKAGE_EXECUTABLES "minesweeper" "minesweeper")
 set(CPACK_CREATE_DESKTOP_LINKS minesweeper)
 set(CPACK_PACKAGE_VERSION ${GIT_TAG})
-
-# Ignore .qt directory in the build directory
-set(CPACK_IGNORE_FILES "/\\\\.qt/;")
 
 include(CPack)
