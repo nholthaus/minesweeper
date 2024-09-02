@@ -2,9 +2,7 @@ name: CMake Build
 
 on:
   push:
-    branches: [ $default-branch ]
-  pull_request:
-    branches: [ $default-branch ]
+    - '**'  # This will trigger the workflow on any branch
 
 jobs:
   build:
