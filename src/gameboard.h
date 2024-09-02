@@ -20,6 +20,7 @@ public:
 public slots:
 
 	void placeMines(Tile* firstClicked);
+	void setTheme(Qt::ColorScheme colorScheme);
 
 signals:
 

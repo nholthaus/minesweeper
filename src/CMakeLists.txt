@@ -5,27 +5,29 @@ configure_file(appinfo.h.in ${CMAKE_CURRENT_BINARY_DIR}/appinfo.h @ONLY NEWLINE_
 qt_add_resources(RESOURCES ../resources/resources.qrc)
 
 qt6_add_executable(${PROJECT_NAME}
-               gameboard.h
-               gameboard.cpp
-               highScore.cpp
-               highScore.h
-               highScoreDialog.cpp
-               highScoreDialog.h
-               highScoreModel.cpp
-               highScoreModel.h
-               main.cpp
-               mainwindow.cpp
-               mainwindow.h
-               mineCounter.h
-               mineCounter.cpp
-               minetimer.cpp
-               minetimer.h
-               tile.cpp
-               tile.h
-               ../resources/resources.rc
-               ${RESOURCES}
-               ${CMAKE_CURRENT_BINARY_DIR}/appinfo.h
-               )
+                   gameboard.h
+                   gameboard.cpp
+                   highScore.cpp
+                   highScore.h
+                   highScoreDialog.cpp
+                   highScoreDialog.h
+                   highScoreModel.cpp
+                   highScoreModel.h
+                   main.cpp
+                   mainwindow.cpp
+                   mainwindow.h
+                   mineCounter.h
+                   mineCounter.cpp
+                   minetimer.cpp
+                   minetimer.h
+                   tile.cpp
+                   tile.h
+                   versionChecker.cpp
+                   versionChecker.h
+                   ../resources/resources.rc
+                   ${RESOURCES}
+                   ${CMAKE_CURRENT_BINARY_DIR}/appinfo.h
+                   )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
                       Qt::Core
@@ -33,6 +35,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
                       Qt::Widgets
                       Qt::StateMachine
                       Qt::Concurrent
+                      Qt::Network
                       Threads::Threads
                       )
 

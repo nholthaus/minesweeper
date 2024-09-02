@@ -260,3 +260,11 @@ void GameBoard::placeMines(Tile* firstClicked)
 
 	emit initialized();
 }
+
+void GameBoard::setTheme(Qt::ColorScheme colorScheme)
+{
+	for(auto& index : m_tileIndices)
+	{
+		m_tiles[index.first][index.second]->setTheme(colorScheme);
+	}
+}

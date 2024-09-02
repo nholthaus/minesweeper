@@ -12,16 +12,19 @@
 #include <QMessageBox>
 #include <QVBoxLayout>
 #include <QFrame>
+#include <QGuiApplication>
 #include <QInputDialog>
 #include <QTimer>
 #include <QStatusBar>
 #include <QSettings>
 #include <QScopedArrayPointer>
 #include <qstyle.h>
+#include <QStyleHints>
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 	, mainFrame(nullptr)
+    , m_versionChecker{"nholthaus","minesweeper",APPINFO::version}
 {
 	this->setWindowIcon(QIcon(":/mine"));
 	setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
@@ -37,8 +40,14 @@ MainWindow::MainWindow(QWidget* parent)
 	{
 		newGame->setIcon(QIcon(":/emoji/sunglasses"));
 	});
+	connect(&m_versionChecker, &VersionChecker::newerVersionAvailable, this, [this](const QString& version)
+	{
+		QMessageBox::information(this, "New Version Available", "A newer version of minesweeper is available!");
+	});
 
 	this->layout()->setSizeConstraint(QLayout::SetFixedSize);
+
+	m_versionChecker.checkForNewerVersion();
 }
 
 void MainWindow::setDifficulty(HighScore::Difficulty difficulty)
@@ -261,7 +270,7 @@ void MainWindow::setupMenus()
 			licenseText = licenseFile.readAll();
 			licenseFile.close();
 		}
-		QMessageBox::about(this, "About Minesweeper", licenseText);
+		QMessageBox::about(this, "About Minesweeper", QString("Minesweeper").append("\nVersion: ").append(APPINFO::version).append("\n\n").append(licenseText));
 	});
 
 	connect(aboutQtAction, &QAction::triggered, this, [this]
@@ -315,4 +324,18 @@ void MainWindow::loadSettings()
 	}
 
 	settings.endArray();
+}
+
+void MainWindow::changeEvent(QEvent* event)
+{
+	if(event->type() == QEvent::ThemeChange || event->type() == QEvent::StyleChange)
+	{
+		this->setTheme(QGuiApplication::styleHints()->colorScheme());
+	}
+	QMainWindow::changeEvent(event);
+}
+
+void MainWindow::setTheme(Qt::ColorScheme colorScheme)
+{
+	gameBoard->setTheme(colorScheme);
 }

@@ -18,7 +18,7 @@ const QString Tile::unrevealedStyleSheetLight =
 	"{"
 	"	border: 1px solid darkgray;"
 	"	background: qradialgradient(cx : 0.4, cy : -0.1, fx : 0.4, fy : -0.1, radius : 1.35, stop : 0 #fff, stop: 1 #bbb);"
-	"	border - radius: 1px;"
+	"	border-radius: 1px;"
 	"}";
 
 const QString Tile::revealedStyleSheetLight =
@@ -42,7 +42,7 @@ const QString Tile::unrevealedStyleSheetDark =
 	"{"
 	"	border: 1px solid #1b1d20;"
 	"	background: qradialgradient(cx : 0.4, cy : -0.1, fx : 0.4, fy : -0.1, radius : 1.35, stop : 0 #4b4c4f, stop: 1 #1e1e1e);"
-	"	border - radius: 1px;"
+	"	border-radius: 1px;"
 	"}";
 
 const QString Tile::revealedStyleSheetDark =
@@ -109,18 +109,7 @@ Tile::Tile(TileLocation location, QWidget* parent /*= nullptr*/)
 	setCheckable(true);
 	setMouseTracking(true);
 
-	if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
-	{
-		unrevealedStyleSheet         = unrevealedStyleSheetDark;
-		revealedStyleSheet           = revealedStyleSheetDark;
-		revealedWithNumberStylesheet = revealedWithNumberStylesheetDark;
-	}
-	else
-	{
-		unrevealedStyleSheet         = unrevealedStyleSheetLight;
-		revealedStyleSheet           = revealedStyleSheetLight;
-		revealedWithNumberStylesheet = revealedWithNumberStylesheetLight;
-	}
+	this->setTheme(QGuiApplication::styleHints()->colorScheme());
 }
 
 Tile::~Tile()
@@ -284,8 +273,7 @@ void Tile::createStateMachine()
 	connect(unrevealedState, &QState::entered, [this]()
 	{
 		this->setIcon(blankIcon());
-		if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
-			this->setStyleSheet(unrevealedStyleSheet);
+		this->setStyleSheet(unrevealedStyleSheet);
 	});
 
 	connect(previewState, &QState::entered, [this]()
@@ -431,4 +419,30 @@ void Tile::setText()
 	QPushButton::setStyleSheet(revealedWithNumberStylesheet.arg(color));
 	if (m_adjacentMineCount)
 		QPushButton::setText(QString::number(m_adjacentMineCount));
+}
+
+void Tile::setTheme(Qt::ColorScheme colorScheme)
+{
+	if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
+	{
+		unrevealedStyleSheet         = unrevealedStyleSheetDark;
+		revealedStyleSheet           = revealedStyleSheetDark;
+		revealedWithNumberStylesheet = revealedWithNumberStylesheetDark;
+	}
+	else
+	{
+		unrevealedStyleSheet         = unrevealedStyleSheetLight;
+		revealedStyleSheet           = revealedStyleSheetLight;
+		revealedWithNumberStylesheet = revealedWithNumberStylesheetLight;
+	}
+
+	if (isUnrevealed() || isFlagged())
+	{
+		this->setStyleSheet(unrevealedStyleSheet);
+	}
+	if(isRevealed())
+	{
+		this->setStyleSheet(revealedStyleSheet);
+		setText();
+	}
 }

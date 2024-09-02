@@ -14,7 +14,10 @@ struct TileLocation
 
 class Tile : public QPushButton
 {
+private:
+
 	Q_OBJECT
+
 public:
 
 	Tile(TileLocation location, QWidget* parent = nullptr);
@@ -52,6 +55,7 @@ public slots:
 	void incrementAdjacentFlaggedCount();
 	void decrementAdjacentFlaggedCount();
 	void incrementAdjacentMineCount();
+	void setTheme(Qt::ColorScheme colorScheme);
 
 signals:
 

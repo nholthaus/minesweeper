@@ -15,6 +15,8 @@
 #include <QStateMachine>
 #include <QState>
 
+#include "VersionChecker.h"
+
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
@@ -46,6 +48,11 @@ private:
 	void setupStateMachine();
 	void saveSettings();
 	void loadSettings();
+
+protected:
+
+	void changeEvent(QEvent*) override;
+	void setTheme(Qt::ColorScheme colorScheme);
 
 private:
 
@@ -87,4 +94,6 @@ private:
 	HighScore::Difficulty difficulty;
 
 	QMap<HighScore::Difficulty, HighScoreModel> m_highScores;
+
+	VersionChecker m_versionChecker;
 };
