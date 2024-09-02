@@ -1,14 +1,14 @@
-name: CMake Build
+name: CMake on multiple platforms
 
 on:
   push:
     branches:
-      - '**'
+      - '**'  # This will trigger the workflow on any branch
 
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    
+
     strategy:
       fail-fast: false
       matrix:
@@ -19,23 +19,40 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install dependencies on Windows
+      - name: Install Python and aqtinstall on Windows
         if: runner.os == 'Windows'
         run: |
-          choco install qt --version=6.7.2 --pre --no-progress
-          choco install nsis --no-progress
+          choco install python --no-progress
+          python -m pip install --upgrade pip
+          pip install aqtinstall
+          aqt install-qt windows desktop 6.7.2 win64_mingw
 
-      - name: Install dependencies on macOS
+      - name: Install Python and aqtinstall on macOS
         if: runner.os == 'macOS'
         run: |
           brew update
-          brew install qt@6.7.2
+          brew install python
+          python3 -m pip install --upgrade pip
+          pip3 install aqtinstall
+          aqt install-qt mac desktop 6.7.2 clang_64
+
+      - name: Set up Qt environment variables on Windows
+        if: runner.os == 'Windows'
+        run: |
+          setx QT_DIR "C:\Qt\6.7.2\mingw_64"
+          setx PATH "%QT_DIR%\bin;%PATH%"
+
+      - name: Set up Qt environment variables on macOS
+        if: runner.os == 'macOS'
+        run: |
+          echo "export QT_DIR=/Users/runner/Qt/6.7.2/clang_64" >> $GITHUB_ENV
+          echo "export PATH=$QT_DIR/bin:$PATH" >> $GITHUB_ENV
 
       - name: Configure CMake
         run: |
           mkdir -p build
           cd build
-          cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+          cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DCMAKE_PREFIX_PATH=$QT_DIR
 
       - name: Build
         run: |
