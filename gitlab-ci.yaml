@@ -1,0 +1,44 @@
+stages:
+  - build
+
+variables:
+  QT_VERSION: "6.7.2"
+  BUILD_DIR: "build"
+
+# Windows build
+build_windows:
+  stage: build
+  tags:
+    - windows
+  before_script:
+    - choco install qt --version=$QT_VERSION --pre
+    - choco install nsis
+    - $env:QT_DIR = "C:/Qt/${QT_VERSION}/mingw_64"
+    - $env:PATH += ";$env:QT_DIR/bin"
+  script:
+    - mkdir $BUILD_DIR
+    - cd $BUILD_DIR
+    - cmake .. -G "Ninja" -DCMAKE_PREFIX_PATH="$env:QT_DIR/lib/cmake/Qt6"
+    - cmake --build .
+  artifacts:
+    paths:
+      - $BUILD_DIR
+
+# macOS build
+build_macos:
+  stage: build
+  tags:
+    - macos
+  before_script:
+    - brew update
+    - brew install qt@$QT_VERSION
+    - export QT_DIR="/usr/local/opt/qt@$QT_VERSION"
+    - export PATH="$QT_DIR/bin:$PATH"
+  script:
+    - mkdir $BUILD_DIR
+    - cd $BUILD_DIR
+    - cmake .. -G "Ninja" -DCMAKE_PREFIX_PATH="$QT_DIR/lib/cmake/Qt6"
+    - cmake --build .
+  artifacts:
+    paths:
+      - $BUILD_DIR
