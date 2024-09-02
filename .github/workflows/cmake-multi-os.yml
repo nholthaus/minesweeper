@@ -1,9 +1,5 @@
 name: CMake Build
 
-on:
-  push:
-    - '**'  # This will trigger the workflow on any branch
-
 jobs:
   build:
     runs-on: ${{ matrix.os }}
