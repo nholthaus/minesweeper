@@ -56,7 +56,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Minesweeper.app
-          path: ${{github.workspace}}/build/macos_bin/Minesweeper.app
+          path: ${{github.workspace}}/build/Minesweeper.app
 
       - name: Package Windows Installer with CPack
         if: matrix.os == 'windows-latest'

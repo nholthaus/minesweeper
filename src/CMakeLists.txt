@@ -57,7 +57,7 @@ elseif (APPLE)
 	                      )
 	# Install the .app bundle
 	install(TARGETS ${PROJECT_NAME}
-	        BUNDLE DESTINATION /Applications
+	        BUNDLE DESTINATION ${CMAKE_BINARY_DIR}
 	        COMPONENT Runtime)
 endif (WIN32)
 
