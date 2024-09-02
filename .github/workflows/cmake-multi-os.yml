@@ -5,40 +5,39 @@ variables:
   QT_VERSION: "6.7.2"
   BUILD_DIR: "build"
 
-# Windows build
-build_windows:
+# Cross-platform build job
+build:
   stage: build
-  tags:
-    - windows
-  before_script:
-    - choco install qt --version=$QT_VERSION --pre
-    - choco install nsis
-    - $env:QT_DIR = "C:/Qt/${QT_VERSION}/mingw_64"
-    - $env:PATH += ";$env:QT_DIR/bin"
-  script:
-    - mkdir $BUILD_DIR
-    - cd $BUILD_DIR
-    - cmake .. -G "Ninja" -DCMAKE_PREFIX_PATH="$env:QT_DIR/lib/cmake/Qt6"
-    - cmake --build .
-  artifacts:
-    paths:
-      - $BUILD_DIR
+  parallel:
+    matrix:
+      - OS: ["windows", "macos"]
+      - BUILD_TYPE: ["Release"]
 
-# macOS build
-build_macos:
-  stage: build
-  tags:
-    - macos
-  before_script:
-    - brew update
-    - brew install qt@$QT_VERSION
-    - export QT_DIR="/usr/local/opt/qt@$QT_VERSION"
-    - export PATH="$QT_DIR/bin:$PATH"
   script:
-    - mkdir $BUILD_DIR
+    - echo "Building on $OS with $BUILD_TYPE configuration"
+
+    # Windows-specific setup
+    - if [[ "$OS" == "windows" ]]; then choco install qt --version=$QT_VERSION --pre --no-progress; fi
+    - if [[ "$OS" == "windows" ]]; then choco install nsis --no-progress; fi
+
+    # macOS-specific setup
+    - if [[ "$OS" == "macos" ]]; then brew update; fi
+    - if [[ "$OS" == "macos" ]]; then brew install qt@$QT_VERSION; fi
+
+    # Set up environment variables for both OS
+    - if [[ "$OS" == "windows" ]]; then QT_DIR="C:/Qt/${QT_VERSION}/mingw_64"; fi
+    - if [[ "$OS" == "macos" ]]; then QT_DIR="/usr/local/opt/qt@$QT_VERSION"; fi
+    - export PATH="$QT_DIR/bin:$PATH"
+
+    # Configure CMake
+    - mkdir -p $BUILD_DIR
     - cd $BUILD_DIR
-    - cmake .. -G "Ninja" -DCMAKE_PREFIX_PATH="$QT_DIR/lib/cmake/Qt6"
-    - cmake --build .
+    - if [[ "$OS" == "windows" ]]; then cmake .. -G "Ninja" -DCMAKE_PREFIX_PATH="$QT_DIR/lib/cmake/Qt6" -DCMAKE_BUILD_TYPE=$BUILD_TYPE; fi
+    - if [[ "$OS" == "macos" ]]; then cmake .. -G "Ninja" -DCMAKE_PREFIX_PATH="$QT_DIR/lib/cmake/Qt6" -DCMAKE_BUILD_TYPE=$BUILD_TYPE; fi
+
+    # Build the project
+    - cmake --build . --config $BUILD_TYPE
+
   artifacts:
     paths:
       - $BUILD_DIR
