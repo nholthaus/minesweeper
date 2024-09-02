@@ -1,5 +1,10 @@
 name: CMake Build
 
+on:
+  push:
+    branches:
+      - '**'
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
