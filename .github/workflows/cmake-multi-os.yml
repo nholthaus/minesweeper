@@ -1,43 +1,49 @@
-stages:
-  - build
+name: CMake on multiple platforms
 
-variables:
-  QT_VERSION: "6.7.2"
-  BUILD_DIR: "build"
+on:
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
 
-# Cross-platform build job
-build:
-  stage: build
-  parallel:
-    matrix:
-      - OS: ["windows", "macos"]
-      - BUILD_TYPE: ["Release"]
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        build_type: [Release]
 
-  script:
-    - echo "Building on $OS with $BUILD_TYPE configuration"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    # Windows-specific setup
-    - if [[ "$OS" == "windows" ]]; then choco install qt --version=$QT_VERSION --pre --no-progress; fi
-    - if [[ "$OS" == "windows" ]]; then choco install nsis --no-progress; fi
+      - name: Install dependencies on Windows
+        if: runner.os == 'Windows'
+        run: |
+          choco install qt --version=6.7.2 --pre --no-progress
+          choco install nsis --no-progress
 
-    # macOS-specific setup
-    - if [[ "$OS" == "macos" ]]; then brew update; fi
-    - if [[ "$OS" == "macos" ]]; then brew install qt@$QT_VERSION; fi
+      - name: Install dependencies on macOS
+        if: runner.os == 'macOS'
+        run: |
+          brew update
+          brew install qt@6.7.2
 
-    # Set up environment variables for both OS
-    - if [[ "$OS" == "windows" ]]; then QT_DIR="C:/Qt/${QT_VERSION}/mingw_64"; fi
-    - if [[ "$OS" == "macos" ]]; then QT_DIR="/usr/local/opt/qt@$QT_VERSION"; fi
-    - export PATH="$QT_DIR/bin:$PATH"
+      - name: Configure CMake
+        run: |
+          mkdir -p build
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
 
-    # Configure CMake
-    - mkdir -p $BUILD_DIR
-    - cd $BUILD_DIR
-    - if [[ "$OS" == "windows" ]]; then cmake .. -G "Ninja" -DCMAKE_PREFIX_PATH="$QT_DIR/lib/cmake/Qt6" -DCMAKE_BUILD_TYPE=$BUILD_TYPE; fi
-    - if [[ "$OS" == "macos" ]]; then cmake .. -G "Ninja" -DCMAKE_PREFIX_PATH="$QT_DIR/lib/cmake/Qt6" -DCMAKE_BUILD_TYPE=$BUILD_TYPE; fi
+      - name: Build
+        run: |
+          cd build
+          cmake --build . --config ${{ matrix.build_type }}
 
-    # Build the project
-    - cmake --build . --config $BUILD_TYPE
-
-  artifacts:
-    paths:
-      - $BUILD_DIR
+      - name: Test
+        run: |
+          cd build
+          ctest --output-on-failure
