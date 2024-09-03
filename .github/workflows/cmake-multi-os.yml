@@ -55,14 +55,14 @@ jobs:
 
       - name: Install Application (macOS)
         if: matrix.os == 'macos-latest'
-        run: cmake --install ${{github.workspace}}/build
+        run: cmake --install ${{github.workspace}}/build --prefix ${{github.workspace}}/build/install
 
       - name: Upload .app Bundle
         if: matrix.os == 'macos-latest'
         uses: actions/upload-artifact@v3
         with:
           name: Minesweeper.app
-          path: ${{github.workspace}}/build/minesweeper.app
+          path: ${{github.workspace}}/build/install/Applications/Minesweeper.app
 
       - name: Package Windows Installer with CPack
         if: matrix.os == 'windows-latest'
@@ -104,6 +104,7 @@ jobs:
           body: "Release of Minesweeper version ${{ github.ref_name }}"
           draft: false
           prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload macOS .app to Release
         uses: actions/upload-release-asset@v1
@@ -112,6 +113,7 @@ jobs:
           asset_path: ./Minesweeper.app
           asset_name: Minesweeper.app
           asset_content_type: application/x-macosx-app
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Windows Installer to Release
         uses: actions/upload-release-asset@v1
@@ -120,3 +122,4 @@ jobs:
           asset_path: ./Minesweeper-win64-installer.exe
           asset_name: Minesweeper-win64-installer.exe
           asset_content_type: application/x-msdownload
+          token: ${{ secrets.GITHUB_TOKEN }}
