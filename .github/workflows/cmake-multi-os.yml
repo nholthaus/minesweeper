@@ -61,8 +61,8 @@ jobs:
         if: matrix.os == 'macos-latest'
         uses: actions/upload-artifact@v3
         with:
-          name: Minesweeper.app
-          path: ${{github.workspace}}/build/install/Applications/Minesweeper.app
+          name: minesweeper.app
+          path: ${{github.workspace}}/build/minesweeper.app
 
       - name: Package Windows Installer with CPack
         if: matrix.os == 'windows-latest'
@@ -86,7 +86,7 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v3
         with:
-          name: Minesweeper.app
+          name: minesweeper.app
           path: ./
 
       - name: Download Windows Installer
@@ -110,8 +110,8 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Minesweeper.app
-          asset_name: Minesweeper.app
+          asset_path: ./minesweeper.app
+          asset_name: minesweeper.app
           asset_content_type: application/x-macosx-app
           token: ${{ secrets.GITHUB_TOKEN }}
 
