@@ -4,7 +4,7 @@ on:
   push:
     branches: '**'
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
   release:
     types: [created]
 
@@ -83,15 +83,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Generate Changelog
-        id: changelog
-        run: |
-          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^)
-          CURRENT_TAG=${{ github.ref_name }}
-          echo "Generating changelog from $PREVIOUS_TAG to $CURRENT_TAG"
-          git log $PREVIOUS_TAG..$CURRENT_TAG --pretty=format:"%h - %s (%an)" > changelog.txt
-          echo "changelog=$(cat changelog.txt)" >> $GITHUB_ENV
-
       - name: Download Artifacts
         uses: actions/download-artifact@v3
         with:
@@ -110,10 +101,9 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           release_name: ${{ github.ref_name }}
-          body: ${{ env.changelog }}
+          body: "Release of Minesweeper version ${{ github.ref_name }}"
           draft: false
           prerelease: false
-          generate_release_notes: false
 
       - name: Upload macOS .app to Release
         uses: actions/upload-release-asset@v1
