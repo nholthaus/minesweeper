@@ -17,7 +17,6 @@
 #include <QTimer>
 #include <QStatusBar>
 #include <QSettings>
-#include <QScopedArrayPointer>
 #include <qstyle.h>
 #include <QStyleHints>
 

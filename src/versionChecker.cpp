@@ -1,4 +1,4 @@
-#include "VersionChecker.h"
+#include "versionChecker.h"
 
 VersionChecker::VersionChecker(const QString& repoOwner, const QString& repoName, const QString& currentVersion, QObject* parent)
 	: QObject(parent)

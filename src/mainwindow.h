@@ -15,7 +15,7 @@
 #include <QStateMachine>
 #include <QState>
 
-#include "VersionChecker.h"
+#include "versionChecker.h"
 
 class MainWindow : public QMainWindow
 {
