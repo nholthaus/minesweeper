@@ -3,12 +3,8 @@ name: release
 
 on:
   workflow_run:
-    workflows: [ build ]
-    types:
-      - completed
-  push:
-    tags:
-      - '**'
+    workflows: [build]
+    types: [completed]
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -16,6 +12,7 @@ env:
 jobs:
   release:
     runs-on: ubuntu-latest
+    if: github.ref_type == 'tag'
 
     steps:
       - uses: actions/checkout@v3
