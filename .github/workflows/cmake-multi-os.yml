@@ -87,7 +87,9 @@ jobs:
         id: changelog
         run: |
           PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^)
-          git log $PREVIOUS_TAG..HEAD --pretty=format:"%h - %s (%an)" > changelog.txt
+          CURRENT_TAG=${{ github.ref_name }}
+          echo "Generating changelog from $PREVIOUS_TAG to $CURRENT_TAG"
+          git log $PREVIOUS_TAG..$CURRENT_TAG --pretty=format:"%h - %s (%an)" > changelog.txt
           echo "changelog=$(cat changelog.txt)" >> $GITHUB_ENV
 
       - name: Download Artifacts
