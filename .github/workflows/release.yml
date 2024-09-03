@@ -1,17 +1,24 @@
+# .github/workflows/release.yml
 name: release
 
 on:
   workflow_run:
-    workflows: [ "build" ]
+    workflows: ["build"]
     types:
       - completed
   push:
     tags:
-      - '*'
+      - '**'
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') &&
+      github.event.workflow_run.conclusion == 'success'
 
     steps:
       - uses: actions/checkout@v3
