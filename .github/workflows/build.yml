@@ -3,9 +3,9 @@ name: build
 on:
   push:
     branches: '**'
+    tags: '**'
   pull_request:
     branches: [ "main" ]
-  tags: '**'
 
 env:
   BUILD_TYPE: Release
