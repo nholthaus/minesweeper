@@ -5,6 +5,8 @@ on:
     branches: '**'
   pull_request:
     branches: [ "main" ]
+  release:
+    types: [created]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -62,13 +64,6 @@ jobs:
           name: Minesweeper.app
           path: ${{github.workspace}}/build/install/Applications/Minesweeper.app
 
-      - name: Upload .app Bundle
-        if: matrix.os == 'macos-latest'
-        uses: actions/upload-artifact@v3
-        with:
-          name: Minesweeper.app
-          path: ${{github.workspace}}/build/Minesweeper.app
-
       - name: Package Windows Installer with CPack
         if: matrix.os == 'windows-latest'
         working-directory: ${{github.workspace}}/build
@@ -80,3 +75,56 @@ jobs:
         with:
           name: Minesweeper-win64-installer.exe
           path: ${{github.workspace}}/build/Minesweeper-*-win64.exe
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generate Changelog
+        id: changelog
+        run: |
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^)
+          git log $PREVIOUS_TAG..HEAD --pretty=format:"%h - %s (%an)" > changelog.txt
+          echo "changelog=$(cat changelog.txt)" >> $GITHUB_ENV
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: Minesweeper.app
+          path: ./
+
+      - name: Download Windows Installer
+        uses: actions/download-artifact@v3
+        with:
+          name: Minesweeper-win64-installer.exe
+          path: ./
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: ${{ github.ref_name }}
+          body: ${{ env.changelog }}
+          draft: false
+          prerelease: false
+          generate_release_notes: false
+
+      - name: Upload macOS .app to Release
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Minesweeper.app
+          asset_name: Minesweeper.app
+          asset_content_type: application/x-macosx-app
+
+      - name: Upload Windows Installer to Release
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Minesweeper-win64-installer.exe
+          asset_name: Minesweeper-win64-installer.exe
+          asset_content_type: application/x-msdownload
