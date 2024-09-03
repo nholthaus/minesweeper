@@ -3,7 +3,7 @@ name: release
 
 on:
   workflow_run:
-    workflows: ["build"]
+    workflows: ["build (windows-latest)"]
     types:
       - completed
 
