@@ -1,0 +1,57 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - '**'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download .app Bundle
+        uses: actions/download-artifact@v3
+        with:
+          name: minesweeper.app
+          path: ./
+
+      - name: Download Windows Installer
+        uses: actions/download-artifact@v3
+        with:
+          name: Minesweeper-win64-installer.exe
+          path: ./
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: ${{ github.ref_name }}
+          body: "Release of Minesweeper version ${{ github.ref_name }}"
+          draft: false
+          prerelease: false
+
+      - name: Upload macOS .app to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./minesweeper.app
+          asset_name: minesweeper.app
+          asset_content_type: application/x-macosx-app
+
+      - name: Upload Windows Installer to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Minesweeper-win64-installer.exe
+          asset_name: Minesweeper-win64-installer.exe
+          asset_content_type: application/x-msdownload
