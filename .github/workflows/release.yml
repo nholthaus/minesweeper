@@ -1,9 +1,13 @@
 name: Create Release
 
 on:
+  workflow_run:
+    workflows: [ "Build and Test" ]
+    types:
+      - completed
   push:
     tags:
-      - '**'
+      - '*'
 
 jobs:
   release:
