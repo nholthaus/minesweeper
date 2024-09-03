@@ -1,6 +1,6 @@
 # Minesweeper
 
-[![CMake](https://github.com/nholthaus/minesweeper/actions/workflows/cmake-multi-os.yml/badge.svg)](https://github.com/nholthaus/minesweeper/actions/workflows/cmake-multi-os.yml) [![GitHub Release](https://img.shields.io/github/release/nholthaus/minesweeper.svg?style=flat)]()
+[![CMake](https://github.com/nholthaus/minesweeper/actions/workflows/build.yml/badge.svg)](https://github.com/nholthaus/minesweeper/actions/workflows/build.yml) [![GitHub Release](https://img.shields.io/github/release/nholthaus/minesweeper.svg?style=flat)]()
 
 A free C++/Qt implementation of minesweeper, now with dark mode!
 
