@@ -4,7 +4,7 @@ on:
   push:
     branches: '**'
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
   release:
     types: [created]
 
@@ -55,14 +55,14 @@ jobs:
 
       - name: Install Application (macOS)
         if: matrix.os == 'macos-latest'
-        run: cmake --install ${{github.workspace}}/build --prefix ${{github.workspace}}/build/install
+        run: cmake --install ${{github.workspace}}/build
 
       - name: Upload .app Bundle
         if: matrix.os == 'macos-latest'
         uses: actions/upload-artifact@v3
         with:
           name: Minesweeper.app
-          path: ${{github.workspace}}/build/install/Applications/Minesweeper.app
+          path: ${{github.workspace}}/build/minesweeper.app
 
       - name: Package Windows Installer with CPack
         if: matrix.os == 'windows-latest'
