@@ -6,9 +6,6 @@ on:
     workflows: ["build"]
     types:
       - completed
-  push:
-    tags:
-      - '**'
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
