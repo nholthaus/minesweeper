@@ -32,12 +32,14 @@ jobs:
           name: Minesweeper-win64-installer.exe
           path: ${{github.workspace}}/Minesweeper-win64-installer.exe
           
-      - name: log downloads
-        id: log-download
-        run: |
-          pwd \
-          dir \
-          Get-ChildItem ${{github.workspace}}
+      - name: pwd
+        run: pwd
+
+      - name: ls
+        run: ls
+          
+      - name: ls2
+        run: ls ${{github.workspace}}
         
       - name: Create Release
         id: create_release
