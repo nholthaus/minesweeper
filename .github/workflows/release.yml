@@ -22,7 +22,7 @@ jobs:
         with:
           run_id: ${{ github.event.workflow_run.id }}
           name: minesweeper.app
-          path: ${{github.workspace}}/
+          path: ${{github.workspace}}/minesweeper.app
 
       - name: Download Windows Installer
         id: download-exe-artifact
@@ -30,17 +30,15 @@ jobs:
         with:
           run_id: ${{ github.event.workflow_run.id }}
           name: Minesweeper-win64-installer.exe
-          path: ${{github.workspace}}/
+          path: ${{github.workspace}}/Minesweeper-win64-installer.exe
           
       - name: log downloads
         id: log-download
-        run: dir
-        
-      - name: Extract Downloads
         run: |
-          7z x ${{github.workspace}}/minesweeper.app.zip \
-          7z x ${{github.workspace}}/Minesweeper-win64-installer.exe.zip
-
+          pwd \
+          dir \
+          Get-ChildItem ${{github.workspace}}
+        
       - name: Create Release
         id: create_release
         uses: actions/create-release@latest
