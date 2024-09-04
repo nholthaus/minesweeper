@@ -17,14 +17,18 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Download .app Bundle
-        uses: actions/download-artifact@v4.1.7
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v6
         with:
+          run_id: ${{ github.event.workflow_run.id }}
           name: minesweeper.app
           path: ./
 
       - name: Download Windows Installer
-        uses: actions/download-artifact@v4.1.7
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v6
         with:
+          run_id: ${{ github.event.workflow_run.id }}
           name: Minesweeper-win64-installer.exe
           path: ./
 
