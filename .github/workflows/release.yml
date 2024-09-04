@@ -31,7 +31,11 @@ jobs:
           run_id: ${{ github.event.workflow_run.id }}
           name: Minesweeper-win64-installer.exe
           path: ${{github.workspace}}/
-
+          
+      - name: log downloads
+        id: log-download
+        run: dir
+        
       - name: Extract Downloads
         run: |
           7z x ${{github.workspace}}/minesweeper.app.zip \
