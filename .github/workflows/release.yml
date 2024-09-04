@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Download .app Bundle
-        id: download-artifact
+        id: download-app-artifact
         uses: dawidd6/action-download-artifact@v6
         with:
           run_id: ${{ github.event.workflow_run.id }}
@@ -25,7 +25,7 @@ jobs:
           path: ${{github.workspace}}/
 
       - name: Download Windows Installer
-        id: download-artifact
+        id: download-exe-artifact
         uses: dawidd6/action-download-artifact@v6
         with:
           run_id: ${{ github.event.workflow_run.id }}
