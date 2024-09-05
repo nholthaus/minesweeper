@@ -56,12 +56,16 @@ jobs:
         if: matrix.os == 'macos-latest'
         run: cmake --install ${{github.workspace}}/build
 
+      - name: zip app bundle
+        if: matrix.os == 'macos-latest'
+        run: ditto -c -k --sequesterRsrc --keepParent ${{github.workspace}}/build/minesweeper.app ${{github.workspace}}/build/minesweeper.app.zip
+
       - name: Upload .app Bundle
         if: matrix.os == 'macos-latest'
         uses: actions/upload-artifact@v4
         with:
-          name: minesweeper.app
-          path: ${{github.workspace}}/build/minesweeper.app
+          name: minesweeper.app.zip
+          path: ${{github.workspace}}/build/minesweeper.app.zip
 
       - name: Package Windows Installer with CPack
         if: matrix.os == 'windows-latest'
