@@ -22,7 +22,7 @@ jobs:
         with:
           run_id: ${{ github.event.workflow_run.id }}
           name: minesweeper.app.zip
-          path: ${{github.workspace}}/minesweeper.app.zip
+          path: ${{github.workspace}}/
 
       - name: Download Windows Installer
         id: download-exe-artifact
@@ -30,7 +30,7 @@ jobs:
         with:
           run_id: ${{ github.event.workflow_run.id }}
           name: Minesweeper-win64-installer.exe
-          path: ${{github.workspace}}/Minesweeper-win64-installer.exe
+          path: ${{github.workspace}}/
           
       - name: pwd
         run: pwd
@@ -51,7 +51,7 @@ jobs:
           prerelease: false
 
       - name: Verify asset file types
-        run: file ${{ github.workspace }}/Minesweeper-win64-installer.exe/*.exe ${{ github.workspace }}/minesweeper.app.zip/minesweeper.app.zip
+        run: file ${{ github.workspace }}/Minesweeper-*.exe ${{ github.workspace }}/minesweeper.app.zip
 
       - name: Upload Windows Installer to Release
         uses: actions/upload-release-asset@v1
@@ -59,7 +59,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/Minesweeper-win64-installer.exe//Minesweeper-win64-installer.exe
+          asset_path: ${{ github.workspace }}/Minesweeper-*.exe
           asset_name: Minesweeper-win64-installer.exe
           asset_content_type: application/x-msdownload
 
@@ -69,6 +69,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/minesweeper.app.zip/minesweeper.app.zip
+          asset_path: ${{ github.workspace }}/minesweeper.app.zip
           asset_name: minesweeper.app.zip
           asset_content_type: application/x-macosx-app
