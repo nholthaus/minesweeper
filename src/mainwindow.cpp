@@ -312,8 +312,8 @@ void MainWindow::setupMenus()
 void MainWindow::saveSettings()
 {
 	QSettings settings(APPINFO::organization, APPINFO::name);
-	settings.setValue("difficulty", QVariant::fromValue(difficulty).toString());
-	settings.beginWriteArray("High Scores", static_cast<int>(m_highScores.size()));
+	settings.setValue("difficulty", QVariant::fromValue(difficulty).toString()); // last difficulty played
+	settings.beginWriteArray("High Scores", static_cast<int>(m_highScores.size())); // high scores for all difficulties
 	int i = 0;
 	for (const auto& model : m_highScores)
 	{
@@ -324,6 +324,13 @@ void MainWindow::saveSettings()
 		settings.setArrayIndex(i++);
 		settings.setValue("difficulty", model.difficulty());
 		settings.setValue("model", data);
+	}
+	settings.endArray();
+	{
+		QByteArray  data;
+		QDataStream stream(&data, QIODevice::WriteOnly);
+		stream << gameStats;
+		settings.setValue("stats", data);
 	}
 	settings.endArray();
 }
@@ -348,6 +355,12 @@ void MainWindow::loadSettings()
 		stream >> model;
 
 		m_highScores[model.difficulty()] = std::move(model);
+	}
+	settings.endArray();
+	{
+		QByteArray  data = settings.value("stats").toByteArray();
+		QDataStream    stream(&data, QIODevice::ReadOnly);
+		stream >> gameStats;
 	}
 
 	settings.endArray();

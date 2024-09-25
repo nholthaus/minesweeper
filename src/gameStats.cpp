@@ -39,3 +39,44 @@ void GameStats::addStat(HighScore::Difficulty difficulty, GameType type, size_t 
 	}
 	stats[difficulty].gamesPlayed.insert(time);
 }
+
+QDataStream& operator<<(QDataStream& stream, const GameStats& stats)
+{
+	stream << stats.stats.size();
+	for (auto it = stats.stats.begin(); it != stats.stats.end(); ++it)
+	{
+		stream << it->first << it->second.wins << it->second.losses << it->second.forfeits << it->second.gamesPlayed;
+	}
+	return stream;
+}
+
+QDataStream& operator>>(QDataStream& stream, GameStats& stats)
+{
+	// Check if the stream is valid before attempting to read
+	if (stream.status() != QDataStream::Ok)
+		return stream;
+
+	stats.stats.clear(); // Clear any existing data
+	size_t size;
+	stream >> size;
+
+	for (size_t i = 0; i < size; ++i)
+	{
+		HighScore::Difficulty    difficulty;
+		GameStats::GameStatsData data;
+
+		// Attempt to read data. If any part fails, return to avoid corrupted data
+		stream >> difficulty;
+		if (stream.status() != QDataStream::Ok)
+			return stream;
+
+		stream >> data.wins >> data.losses >> data.forfeits >> data.gamesPlayed;
+		if (stream.status() != QDataStream::Ok)
+			return stream;
+
+		// Add the read data to the map
+		stats.stats[difficulty] = data;
+	}
+
+	return stream;
+}

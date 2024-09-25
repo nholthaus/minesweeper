@@ -29,6 +29,8 @@ qt6_add_executable(${PROJECT_NAME}
                    ../resources/resources.rc
                    ${RESOURCES}
                    ${CMAKE_CURRENT_BINARY_DIR}/appinfo.h
+                   gameStatsDialog.cpp
+                   gameStatsDialog.h
 
                    )
 

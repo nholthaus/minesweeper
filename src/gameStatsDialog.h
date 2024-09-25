@@ -1,8 +1,8 @@
 // ---------------------------------------------------------------------------------------------------------------------
 //
-/// @file       gameStats.h
+/// @file       gameStatsDialog.h
 /// @author     Nic Holthaus
-/// @date       9/24/2024
+/// @date       9/25/2024
 ///
 /// @copyright The MIT License (MIT)
 ///
@@ -23,60 +23,28 @@
 //
 // ---------------------------------------------------------------------------------------------------------------------
 //
-/// @brief      Definition of the `GameStats` Class.
-/// @details
+/// @brief      Definition of the `GameStatsDialog` Class.
+/// @details    
 //
 // ---------------------------------------------------------------------------------------------------------------------
 
-#ifndef GAMESTATS_H
-#define GAMESTATS_H
+#ifndef GAMESTATSDIALOG_H
+#define GAMESTATSDIALOG_H
 
 //----------------------------
 //  INCLUDES
 //----------------------------
 
-#include <statistics.h>
-#include <highScore.h>
-
-#include <QObject>
+#include <QDialog>
 
 //----------------------------------------------------------------------------------------------------------------------
-//      CLASS: GameStats
+//      CLASS: GameStatsDialog 
 //----------------------------------------------------------------------------------------------------------------------
-/// @brief Stats about the player
+/// @brief 
 //----------------------------------------------------------------------------------------------------------------------
-class GameStats : public QObject
+class GameStatsDialog : public QDialog
 {
 	Q_OBJECT
-public:
-
-	enum GameType
-	{
-		Win,
-		Loss,
-		Forfeit,
-	};
-
-public:
-
-public slots:
-
-	void addStat(HighScore::Difficulty difficulty, GameStats::GameType type, size_t time);
-
-	friend QDataStream& operator<<(QDataStream& stream, const GameStats& stats);
-	friend QDataStream& operator>>(QDataStream& stream, GameStats& stats);
-
-private:
-
-	struct GameStatsData
-	{
-		Statistics<size_t>    wins;
-		Statistics<size_t>    losses;
-		Statistics<size_t>    forfeits;
-		Statistics<size_t>    gamesPlayed;
-	};
-
-	std::map<HighScore::Difficulty, GameStatsData> stats;
 };
 
-#endif //GAMESTATS_H
+#endif //GAMESTATSDIALOG_H
