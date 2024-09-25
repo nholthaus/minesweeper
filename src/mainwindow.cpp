@@ -19,6 +19,7 @@
 #include <QSettings>
 #include <qstyle.h>
 #include <QStyleHints>
+#include <QSignalTransition>
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -34,10 +35,12 @@ MainWindow::MainWindow(QWidget* parent)
 	connect(this, &MainWindow::defeat, this, [this]()
 	{
 		newGame->setIcon(QIcon(":/emoji/injured"));
+		gameStats.addStat(this->difficulty, GameStats::Loss, mineTimer->time());
 	});
 	connect(this, &MainWindow::victory, this, [this]()
 	{
 		newGame->setIcon(QIcon(":/emoji/sunglasses"));
+		gameStats.addStat(this->difficulty, GameStats::Win, mineTimer->time());
 	});
 	connect(&m_versionChecker, &VersionChecker::newerVersionAvailable, this, [this](const QString& version, const QString& url)
 	{
@@ -144,7 +147,7 @@ void MainWindow::setupStateMachine()
 
 	inProgressState->addTransition(this, &MainWindow::victory, victoryState);
 	inProgressState->addTransition(this, &MainWindow::defeat, defeatState);
-	inProgressState->addTransition(this, &MainWindow::startNewGame, unstartedState);
+	QSignalTransition* forfeitTransition = inProgressState->addTransition(this, &MainWindow::startNewGame, unstartedState);
 
 	victoryState->addTransition(this, &MainWindow::startNewGame, unstartedState);
 
@@ -158,6 +161,11 @@ void MainWindow::setupStateMachine()
 	connect(inProgressState, &QState::entered, [this]()
 	{
 		gameClock->start();
+	});
+
+	connect(forfeitTransition, &QSignalTransition::triggered, [this]()
+	{
+		gameStats.addStat(this->difficulty, GameStats::Forfeit, mineTimer->time());
 	});
 
 	connect(victoryState, &QState::entered, [this]()
@@ -195,6 +203,10 @@ void MainWindow::onVictory()
 
 void MainWindow::closeEvent(QCloseEvent* event)
 {
+	if (m_machine->configuration().contains(inProgressState))
+	{
+		gameStats.addStat(this->difficulty, GameStats::Forfeit, mineTimer->time());
+	}
 	saveSettings();
 }
 
