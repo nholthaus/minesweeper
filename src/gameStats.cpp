@@ -62,7 +62,7 @@ QDataStream& operator>>(QDataStream& stream, GameStats& stats)
 
 	for (size_t i = 0; i < size; ++i)
 	{
-		HighScore::Difficulty    difficulty;
+		HighScore::Difficulty	 difficulty;
 		GameStats::GameStatsData data;
 
 		// Attempt to read data. If any part fails, return to avoid corrupted data
@@ -80,3 +80,23 @@ QDataStream& operator>>(QDataStream& stream, GameStats& stats)
 
 	return stream;
 }
+
+size_t GameStats::played(HighScore::Difficulty difficulty) const noexcept { return this->stats.at(difficulty).gamesPlayed.count(); }
+
+size_t GameStats::wins(HighScore::Difficulty difficulty) const noexcept { return this->stats.at(difficulty).wins.count(); }
+
+size_t GameStats::losses(HighScore::Difficulty difficulty) const noexcept { return this->stats.at(difficulty).losses.count(); }
+
+size_t GameStats::forfeits(HighScore::Difficulty difficulty) const noexcept { return this->stats.at(difficulty).forfeits.count(); }
+
+double GameStats::winRate(HighScore::Difficulty difficulty) const noexcept { return 100.0 * (double)wins(difficulty) / (double)played(difficulty); }
+
+double GameStats::lossRate(HighScore::Difficulty difficulty) const noexcept { return 100.0 * (double)losses(difficulty) / (double)played(difficulty); }
+
+double GameStats::forfeitRate(HighScore::Difficulty difficulty) const noexcept { return 100.0 * (double)forfeits(difficulty) / (double)played(difficulty); }
+
+size_t GameStats::averageTimeToWin(HighScore::Difficulty difficulty) const noexcept { return this->stats.at(difficulty).wins.mean(); }
+
+size_t GameStats::averageTimeToLoss(HighScore::Difficulty difficulty) const noexcept { return this->stats.at(difficulty).losses.mean(); }
+
+size_t GameStats::averageTimeToForfeit(HighScore::Difficulty difficulty) const noexcept { return this->stats.at(difficulty).forfeits.mean(); }

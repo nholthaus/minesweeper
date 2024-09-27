@@ -31,7 +31,6 @@ qt6_add_executable(${PROJECT_NAME}
                    ${CMAKE_CURRENT_BINARY_DIR}/appinfo.h
                    gameStatsDialog.cpp
                    gameStatsDialog.h
-
                    )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE

@@ -1,25 +1,27 @@
-#include "appinfo.h"
 #include "mainwindow.h"
+#include "appinfo.h"
 #include "gameboard.h"
-#include "mineCounter.h"
-#include "minetimer.h"
 #include "highScoreDialog.h"
 #include "highScoreModel.h"
+#include "mineCounter.h"
+#include "minetimer.h"
 
 #include <QDebug>
-#include <qfile.h>
-#include <QMenuBar>
-#include <QMessageBox>
-#include <QVBoxLayout>
 #include <QFrame>
 #include <QGuiApplication>
 #include <QInputDialog>
-#include <QTimer>
-#include <QStatusBar>
+#include <QMenuBar>
+#include <QMessageBox>
 #include <QSettings>
-#include <qstyle.h>
-#include <QStyleHints>
 #include <QSignalTransition>
+#include <QStatusBar>
+#include <QStyleHints>
+#include <QTimer>
+#include <QVBoxLayout>
+#include <qfile.h>
+#include <qstyle.h>
+
+#include "gameStatsDialog.h"
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -32,24 +34,27 @@ MainWindow::MainWindow(QWidget* parent)
 	setupMenus();
 	loadSettings();
 
-	connect(this, &MainWindow::defeat, this, [this]()
-	{
-		newGame->setIcon(QIcon(":/emoji/injured"));
-		gameStats.addStat(this->difficulty, GameStats::Loss, mineTimer->time());
-	});
-	connect(this, &MainWindow::victory, this, [this]()
-	{
-		newGame->setIcon(QIcon(":/emoji/sunglasses"));
-		gameStats.addStat(this->difficulty, GameStats::Win, mineTimer->time());
-	});
-	connect(&m_versionChecker, &VersionChecker::newerVersionAvailable, this, [this](const QString& version, const QString& url)
-	{
-		QMessageBox msgBox(this);
-		msgBox.setWindowTitle(QString("Version %1 Available").arg(version));
-		msgBox.setTextFormat(Qt::RichText); //this is what makes the links clickable
-		msgBox.setText(QString("A new version of minesweeper is available!<br><a href='%1'>Click here to Download.</a>").arg(url));
-		msgBox.exec();
-	});
+	connect(this, &MainWindow::defeat, this,
+			[this]()
+			{
+				newGame->setIcon(QIcon(":/emoji/injured"));
+				gameStats.addStat(this->difficulty, GameStats::Loss, mineTimer->time());
+			});
+	connect(this, &MainWindow::victory, this,
+			[this]()
+			{
+				newGame->setIcon(QIcon(":/emoji/sunglasses"));
+				gameStats.addStat(this->difficulty, GameStats::Win, mineTimer->time());
+			});
+	connect(&m_versionChecker, &VersionChecker::newerVersionAvailable, this,
+			[this](const QString& version, const QString& url)
+			{
+				QMessageBox msgBox(this);
+				msgBox.setWindowTitle(QString("Version %1 Available").arg(version));
+				msgBox.setTextFormat(Qt::RichText); // this is what makes the links clickable
+				msgBox.setText(QString("A new version of minesweeper is available!<br><a href='%1'>Click here to Download.</a>").arg(url));
+				msgBox.exec();
+			});
 
 	this->layout()->setSizeConstraint(QLayout::SetFixedSize);
 
@@ -63,20 +68,20 @@ void MainWindow::setDifficulty(HighScore::Difficulty difficulty)
 	switch (difficulty)
 	{
 	case HighScore::beginner:
-		numRows = 9;
-		numCols  = 9;
+		numRows	 = 9;
+		numCols	 = 9;
 		numMines = 10;
 		beginnerAction->setChecked(true);
 		break;
 	case HighScore::intermediate:
-		numRows = 16;
-		numCols  = 16;
+		numRows	 = 16;
+		numCols	 = 16;
 		numMines = 40;
 		intermediateAction->setChecked(true);
 		break;
 	case HighScore::expert:
-		numRows = 16;
-		numCols  = 30;
+		numRows	 = 16;
+		numCols	 = 30;
 		numMines = 99;
 		expertAction->setChecked(true);
 		break;
@@ -92,14 +97,14 @@ void MainWindow::setDifficulty(HighScore::Difficulty difficulty)
 
 void MainWindow::initialize()
 {
-	QFrame* newMainFrame    = new QFrame(this);
-	auto    mainFrameLayout = new QVBoxLayout;
-	auto    infoLayout      = new QHBoxLayout;
-	gameBoard               = new GameBoard(numRows, numCols, numMines, newMainFrame);
-	mineCounter             = new MineCounter(newMainFrame);
-	mineTimer               = new MineTimer(newMainFrame);
-	newGame                 = new QPushButton(newMainFrame);
-	gameClock               = new QTimer(this);
+	QFrame* newMainFrame	= new QFrame(this);
+	auto	mainFrameLayout = new QVBoxLayout;
+	auto	infoLayout		= new QHBoxLayout;
+	gameBoard				= new GameBoard(numRows, numCols, numMines, newMainFrame);
+	mineCounter				= new MineCounter(newMainFrame);
+	mineTimer				= new MineTimer(newMainFrame);
+	newGame					= new QPushButton(newMainFrame);
+	gameClock				= new QTimer(this);
 
 	mineCounter->setNumMines(numMines);
 
@@ -138,10 +143,10 @@ void MainWindow::setupStateMachine()
 {
 	m_machine = new QStateMachine;
 
-	unstartedState  = new QState;
+	unstartedState	= new QState;
 	inProgressState = new QState;
-	victoryState    = new QState;
-	defeatState     = new QState;
+	victoryState	= new QState;
+	defeatState		= new QState;
 
 	unstartedState->addTransition(this, &MainWindow::startGame, inProgressState);
 
@@ -153,31 +158,20 @@ void MainWindow::setupStateMachine()
 
 	defeatState->addTransition(this, &MainWindow::startNewGame, unstartedState);
 
-	connect(unstartedState, &QState::entered, [this]()
-	{
-		initialize();
-	});
+	connect(unstartedState, &QState::entered, [this]() { initialize(); });
 
-	connect(inProgressState, &QState::entered, [this]()
-	{
-		gameClock->start();
-	});
+	connect(inProgressState, &QState::entered, [this]() { gameClock->start(); });
 
-	connect(forfeitTransition, &QSignalTransition::triggered, [this]()
-	{
-		gameStats.addStat(this->difficulty, GameStats::Forfeit, mineTimer->time());
-	});
+	connect(forfeitTransition, &QSignalTransition::triggered, [this]() { gameStats.addStat(this->difficulty, GameStats::Forfeit, mineTimer->time()); });
 
-	connect(victoryState, &QState::entered, [this]()
-	{
-		gameClock->stop();
-		onVictory();
-	});
+	connect(victoryState, &QState::entered,
+			[this]()
+			{
+				gameClock->stop();
+				onVictory();
+			});
 
-	connect(defeatState, &QState::entered, [this]()
-	{
-		gameClock->stop();
-	});
+	connect(defeatState, &QState::entered, [this]() { gameClock->stop(); });
 
 	m_machine->addState(unstartedState);
 	m_machine->addState(inProgressState);
@@ -218,42 +212,54 @@ void MainWindow::setupMenus()
 	newGameAction->setShortcut(QKeySequence(Qt::Key_F2));
 	connect(newGameAction, &QAction::triggered, this, &MainWindow::startNewGame);
 
-	difficultyMenu        = new QMenu(tr("Difficulty"));
+	difficultyMenu		  = new QMenu(tr("Difficulty"));
 	difficultyActionGroup = new QActionGroup(difficultyMenu);
 
 	beginnerAction = new QAction(tr("Beginner"), difficultyActionGroup);
 	beginnerAction->setCheckable(true);
-	QObject::connect(beginnerAction, &QAction::triggered, [this]()
-	{
-		setDifficulty(HighScore::beginner);
-	});
+	QObject::connect(beginnerAction, &QAction::triggered, [this]() { setDifficulty(HighScore::beginner); });
 
 	intermediateAction = new QAction(tr("Intermediate"), difficultyActionGroup);
 	intermediateAction->setCheckable(true);
-	connect(intermediateAction, &QAction::triggered, [this]()
-	{
-		setDifficulty(HighScore::intermediate);
-	});
+	connect(intermediateAction, &QAction::triggered, [this]() { setDifficulty(HighScore::intermediate); });
 
 	expertAction = new QAction(tr("Expert"), difficultyActionGroup);
 	expertAction->setCheckable(true);
-	connect(expertAction, &QAction::triggered, [this]()
-	{
-		setDifficulty(HighScore::expert);
-	});
+	connect(expertAction, &QAction::triggered, [this]() { setDifficulty(HighScore::expert); });
 
 	difficultyMenu->addAction(beginnerAction);
 	difficultyMenu->addAction(intermediateAction);
 	difficultyMenu->addAction(expertAction);
 
 	highScoreAction = new QAction(tr("High Scores..."));
-	connect(highScoreAction, &QAction::triggered, this, [this]()
-	{
-		auto* dialog = new HighScoreDialog(m_highScores, this);
-		dialog->setActiveTab(QVariant::fromValue(difficulty).toString());
-		dialog->exec();
-		dialog->deleteLater();
-	}, Qt::QueuedConnection);
+	connect(
+		highScoreAction, &QAction::triggered, this,
+		[this]()
+		{
+			QString difficulty = QVariant::fromValue(this->difficulty).toString();
+			QString tabName	   = difficulty[0].toUpper() + difficulty.mid(1).toLower();
+
+			auto* dialog = new HighScoreDialog(m_highScores, this);
+			dialog->setActiveTab(tabName);
+			dialog->exec();
+			dialog->deleteLater();
+		},
+		Qt::QueuedConnection);
+
+	statisticsAction = new QAction(tr("Statistics..."));
+	connect(
+		statisticsAction, &QAction::triggered, this,
+		[this]()
+		{
+			QString difficulty = QVariant::fromValue(this->difficulty).toString();
+			QString tabName	   = difficulty[0].toUpper() + difficulty.mid(1).toLower();
+
+			auto* dialog = new GameStatsDialog(gameStats, this);
+			dialog->setActiveTab(tabName);
+			dialog->exec();
+			dialog->deleteLater();
+		},
+		Qt::QueuedConnection);
 
 	exitAction = new QAction(tr("Exit"));
 	connect(exitAction, &QAction::triggered, this, &QMainWindow::close);
@@ -262,13 +268,14 @@ void MainWindow::setupMenus()
 	gameMenu->addSeparator();
 	gameMenu->addMenu(difficultyMenu);
 	gameMenu->addAction(highScoreAction);
+	gameMenu->addAction(statisticsAction);
 	gameMenu->addSeparator();
 	gameMenu->addAction(exitAction);
 
 	helpMenu = new QMenu(tr("Help"));
 
-	aboutAction        = new QAction(tr("About..."));
-	aboutQtAction      = new QAction(tr("About Qt..."));
+	aboutAction		   = new QAction(tr("About..."));
+	aboutQtAction	   = new QAction(tr("About Qt..."));
 	checkVersionAction = new QAction(tr("Check for Updates..."));
 
 	helpMenu->addAction(aboutAction);
@@ -279,31 +286,31 @@ void MainWindow::setupMenus()
 	aboutAction->setIcon(QIcon(":/mine"));
 	aboutQtAction->setIcon(this->style()->standardIcon(QStyle::SP_TitleBarMenuButton));
 
-	connect(aboutAction, &QAction::triggered, this, [this]
-	{
-		QFile   licenseFile(":/LICENSE");
-		QString licenseText;
-		if (licenseFile.open(QIODevice::ReadOnly | QIODevice::Text))
-		{
-			licenseText = licenseFile.readAll();
-			licenseFile.close();
-		}
-		QMessageBox::about(this, "About Minesweeper", QString("Minesweeper").append("\nVersion: ").append(APPINFO::version).append("\n\n").append(licenseText));
-	});
+	connect(aboutAction, &QAction::triggered, this,
+			[this]
+			{
+				QFile	licenseFile(":/LICENSE");
+				QString licenseText;
+				if (licenseFile.open(QIODevice::ReadOnly | QIODevice::Text))
+				{
+					licenseText = licenseFile.readAll();
+					licenseFile.close();
+				}
+				QMessageBox::about(this, "About Minesweeper",
+								   QString("Minesweeper").append("\nVersion: ").append(APPINFO::version).append("\n\n").append(licenseText));
+			});
 
-	connect(aboutQtAction, &QAction::triggered, this, [this]
-	{
-		QMessageBox::aboutQt(this);
-	});
+	connect(aboutQtAction, &QAction::triggered, this, [this] { QMessageBox::aboutQt(this); });
 
-	connect(checkVersionAction, &QAction::triggered, this, [this]
-	{
-		m_versionChecker.checkForNewerVersion();
-		connect(&m_versionChecker, &VersionChecker::noNewerVersion, this, [this]
-		{
-			QMessageBox::information(this, "No newer version", "You already have the latest version of Minesweeper installed.");
-		}, Qt::SingleShotConnection);
-	});
+	connect(checkVersionAction, &QAction::triggered, this,
+			[this]
+			{
+				m_versionChecker.checkForNewerVersion();
+				connect(
+					&m_versionChecker, &VersionChecker::noNewerVersion, this,
+					[this] { QMessageBox::information(this, "No newer version", "You already have the latest version of Minesweeper installed."); },
+					Qt::SingleShotConnection);
+			});
 
 	this->menuBar()->addMenu(gameMenu);
 	this->menuBar()->addMenu(helpMenu);
@@ -312,12 +319,12 @@ void MainWindow::setupMenus()
 void MainWindow::saveSettings()
 {
 	QSettings settings(APPINFO::organization, APPINFO::name);
-	settings.setValue("difficulty", QVariant::fromValue(difficulty).toString()); // last difficulty played
+	settings.setValue("difficulty", QVariant::fromValue(difficulty).toString());	// last difficulty played
 	settings.beginWriteArray("High Scores", static_cast<int>(m_highScores.size())); // high scores for all difficulties
 	int i = 0;
 	for (const auto& model : m_highScores)
 	{
-		QByteArray  data;
+		QByteArray	data;
 		QDataStream stream(&data, QIODevice::WriteOnly);
 		stream << model;
 
@@ -327,7 +334,7 @@ void MainWindow::saveSettings()
 	}
 	settings.endArray();
 	{
-		QByteArray  data;
+		QByteArray	data;
 		QDataStream stream(&data, QIODevice::WriteOnly);
 		stream << gameStats;
 		settings.setValue("stats", data);
@@ -350,16 +357,16 @@ void MainWindow::loadSettings()
 		settings.setArrayIndex(i);
 
 		HighScoreModel model;
-		QByteArray     data = settings.value("model").toByteArray();
-		QDataStream    stream(&data, QIODevice::ReadOnly);
+		QByteArray	   data = settings.value("model").toByteArray();
+		QDataStream	   stream(&data, QIODevice::ReadOnly);
 		stream >> model;
 
 		m_highScores[model.difficulty()] = std::move(model);
 	}
 	settings.endArray();
 	{
-		QByteArray  data = settings.value("stats").toByteArray();
-		QDataStream    stream(&data, QIODevice::ReadOnly);
+		QByteArray	data = settings.value("stats").toByteArray();
+		QDataStream stream(&data, QIODevice::ReadOnly);
 		stream >> gameStats;
 	}
 

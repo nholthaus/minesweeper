@@ -35,8 +35,8 @@
 //  INCLUDES
 //----------------------------
 
-#include <statistics.h>
 #include <highScore.h>
+#include <statistics.h>
 
 #include <QObject>
 
@@ -45,9 +45,9 @@
 //----------------------------------------------------------------------------------------------------------------------
 /// @brief Stats about the player
 //----------------------------------------------------------------------------------------------------------------------
-class GameStats : public QObject
+class GameStats
 {
-	Q_OBJECT
+	Q_GADGET
 public:
 
 	enum GameType
@@ -56,8 +56,30 @@ public:
 		Loss,
 		Forfeit,
 	};
+	Q_ENUM(GameType)
+
+	struct GameStatsData
+	{
+		Statistics<size_t> wins;
+		Statistics<size_t> losses;
+		Statistics<size_t> forfeits;
+		Statistics<size_t> gamesPlayed;
+	};
 
 public:
+
+	GameStats() = default;
+
+	[[nodiscard]] size_t played(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] size_t wins(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] size_t losses(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] size_t forfeits(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] double winRate(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] double lossRate(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] double forfeitRate(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] size_t averageTimeToWin(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] size_t averageTimeToLoss(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] size_t averageTimeToForfeit(HighScore::Difficulty difficulty) const noexcept;
 
 public slots:
 
@@ -68,15 +90,7 @@ public slots:
 
 private:
 
-	struct GameStatsData
-	{
-		Statistics<size_t>    wins;
-		Statistics<size_t>    losses;
-		Statistics<size_t>    forfeits;
-		Statistics<size_t>    gamesPlayed;
-	};
-
 	std::map<HighScore::Difficulty, GameStatsData> stats;
 };
 
-#endif //GAMESTATS_H
+#endif // GAMESTATS_H

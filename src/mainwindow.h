@@ -73,6 +73,7 @@ private:
 	QAction*      expertAction;
 	QAction*      customAction;
 	QAction*      highScoreAction;
+	QAction*      statisticsAction;
 	QAction*      exitAction;
 
 	QMenu*   helpMenu;

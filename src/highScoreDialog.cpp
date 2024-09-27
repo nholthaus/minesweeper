@@ -21,8 +21,11 @@ HighScoreDialog::HighScoreDialog(const QMap<HighScore::Difficulty, HighScoreMode
 
 	for (const auto& model : models)
 	{
+		QString difficulty = QVariant::fromValue(model.difficulty()).toString();
+		QString tabName = difficulty[0].toUpper() + difficulty.mid(1).toLower();
+
 		auto page = new QWidget;
-		tabWidget->addTab(page, QVariant::fromValue(model.difficulty()).toString());
+		tabWidget->addTab(page, tabName);
 		page->setLayout(new QVBoxLayout);
 		const auto view = new QTableView(this);
 		view->setModel(const_cast<HighScoreModel*>(&model));
