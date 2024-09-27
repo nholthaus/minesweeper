@@ -60,30 +60,30 @@ public:
 
 	struct GameStatsData
 	{
-		Statistics<size_t> wins;
-		Statistics<size_t> losses;
-		Statistics<size_t> forfeits;
-		Statistics<size_t> gamesPlayed;
+		Statistics<quint64> wins;
+		Statistics<quint64> losses;
+		Statistics<quint64> forfeits;
+		Statistics<quint64> gamesPlayed;
 	};
 
 public:
 
 	GameStats() = default;
 
-	[[nodiscard]] size_t played(HighScore::Difficulty difficulty) const noexcept;
-	[[nodiscard]] size_t wins(HighScore::Difficulty difficulty) const noexcept;
-	[[nodiscard]] size_t losses(HighScore::Difficulty difficulty) const noexcept;
-	[[nodiscard]] size_t forfeits(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] quint64 played(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] quint64 wins(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] quint64 losses(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] quint64 forfeits(HighScore::Difficulty difficulty) const noexcept;
 	[[nodiscard]] double winRate(HighScore::Difficulty difficulty) const noexcept;
 	[[nodiscard]] double lossRate(HighScore::Difficulty difficulty) const noexcept;
 	[[nodiscard]] double forfeitRate(HighScore::Difficulty difficulty) const noexcept;
-	[[nodiscard]] size_t averageTimeToWin(HighScore::Difficulty difficulty) const noexcept;
-	[[nodiscard]] size_t averageTimeToLoss(HighScore::Difficulty difficulty) const noexcept;
-	[[nodiscard]] size_t averageTimeToForfeit(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] quint64 averageTimeToWin(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] quint64 averageTimeToLoss(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] quint64 averageTimeToForfeit(HighScore::Difficulty difficulty) const noexcept;
 
 public slots:
 
-	void addStat(HighScore::Difficulty difficulty, GameStats::GameType type, size_t time);
+	void addStat(HighScore::Difficulty difficulty, GameStats::GameType type, quint64 time);
 
 	friend QDataStream& operator<<(QDataStream& stream, const GameStats& stats);
 	friend QDataStream& operator>>(QDataStream& stream, GameStats& stats);
