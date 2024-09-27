@@ -7,6 +7,8 @@ qt_add_resources(RESOURCES ../resources/resources.qrc)
 qt6_add_executable(${PROJECT_NAME}
                    gameboard.h
                    gameboard.cpp
+                   gameStats.cpp
+                   gameStats.h
                    highScore.cpp
                    highScore.h
                    highScoreDialog.cpp
@@ -27,6 +29,8 @@ qt6_add_executable(${PROJECT_NAME}
                    ../resources/resources.rc
                    ${RESOURCES}
                    ${CMAKE_CURRENT_BINARY_DIR}/appinfo.h
+                   gameStatsDialog.cpp
+                   gameStatsDialog.h
                    )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE

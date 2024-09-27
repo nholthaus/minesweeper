@@ -5,6 +5,7 @@
 #include "mineCounter.h"
 #include "minetimer.h"
 #include "highScoreModel.h"
+#include "gameStats.h"
 
 #include <QAction>
 #include <QActionGroup>
@@ -20,6 +21,7 @@
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
+
 public:
 
 	MainWindow(QWidget* parent = nullptr);
@@ -39,7 +41,7 @@ protected slots:
 
 protected:
 
-	virtual void closeEvent(QCloseEvent *event) override;
+	void closeEvent(QCloseEvent* event) override;
 
 private:
 
@@ -56,24 +58,25 @@ protected:
 
 private:
 
-	QFrame* mainFrame;
-	GameBoard* gameBoard;
+	QFrame*      mainFrame;
+	GameBoard*   gameBoard;
 	MineCounter* mineCounter;
-	MineTimer* mineTimer;
+	MineTimer*   mineTimer;
 	QPushButton* newGame;
 
-	QMenu* gameMenu;
-	QAction* newGameAction;
-	QMenu* difficultyMenu;
+	QMenu*        gameMenu;
+	QAction*      newGameAction;
+	QMenu*        difficultyMenu;
 	QActionGroup* difficultyActionGroup;
-	QAction* beginnerAction;
-	QAction* intermediateAction;
-	QAction* expertAction;
-	QAction* customAction;
-	QAction* highScoreAction;
-	QAction* exitAction;
+	QAction*      beginnerAction;
+	QAction*      intermediateAction;
+	QAction*      expertAction;
+	QAction*      customAction;
+	QAction*      highScoreAction;
+	QAction*      statisticsAction;
+	QAction*      exitAction;
 
-	QMenu* helpMenu;
+	QMenu*   helpMenu;
 	QAction* aboutAction;
 	QAction* aboutQtAction;
 	QAction* checkVersionAction;
@@ -81,10 +84,10 @@ private:
 	QTimer* gameClock;
 
 	QStateMachine* m_machine;
-	QState* unstartedState;
-	QState* inProgressState;
-	QState* victoryState;
-	QState* defeatState;
+	QState*        unstartedState;
+	QState*        inProgressState;
+	QState*        victoryState;
+	QState*        defeatState;
 
 	Tile* firstClicked;
 
@@ -93,6 +96,7 @@ private:
 	quint32 numMines;
 
 	HighScore::Difficulty difficulty;
+	GameStats             gameStats;
 
 	QMap<HighScore::Difficulty, HighScoreModel> m_highScores;
 
