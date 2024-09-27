@@ -431,7 +431,7 @@ bool operator>=(const Statistics<T>& lhs, const Statistics<T>& rhs) noexcept
 template <class T>
 QDataStream& operator<<(QDataStream& stream, const Statistics<T>& stats)
 {
-	stream << stats.m_count << stats.m_max << stats.m_min << stats.m_sum << stats.m_sumOfSquares;
+	stream << (quint64)stats.m_count << stats.m_max << stats.m_min << stats.m_sum << stats.m_sumOfSquares;
 	return stream;
 }
 
@@ -439,7 +439,10 @@ QDataStream& operator<<(QDataStream& stream, const Statistics<T>& stats)
 template <class T>
 QDataStream& operator>>(QDataStream& stream, Statistics<T>& stats)
 {
-	stream >> stats.m_count >> stats.m_max >> stats.m_min >> stats.m_sum >> stats.m_sumOfSquares;
+	quint64 count;
+	stream >> count >> stats.m_max >> stats.m_min >> stats.m_sum >> stats.m_sumOfSquares;
+	stats.m_count = count;
+
 	return stream;
 }
 

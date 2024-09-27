@@ -42,7 +42,7 @@ void GameStats::addStat(HighScore::Difficulty difficulty, GameType type, quint64
 
 QDataStream& operator<<(QDataStream& stream, const GameStats& stats)
 {
-	stream << stats.stats.size();
+	stream << (quint64)stats.stats.size();
 	for (auto it = stats.stats.begin(); it != stats.stats.end(); ++it)
 	{
 		stream << it->first << it->second.wins << it->second.losses << it->second.forfeits << it->second.gamesPlayed;
