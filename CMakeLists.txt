@@ -35,14 +35,10 @@ if (WIN32)
 	message(STATUS "Qt6 DIR: ${Qt6_DIR}")
 endif (WIN32)
 
-find_package(Qt6 6.2.4 REQUIRED COMPONENTS Core Gui Widgets StateMachine Concurrent Network)
-if (Qt6Core_VERSION VERSION_GREATER_EQUAL 6.3.0)
-	qt_standard_project_setup()
-else ()
-	set(CMAKE_AUTOMOC ON)
-	set(CMAKE_AUTORCC ON)
-	set(CMAKE_AUTOUIC ON)
-endif ()
+find_package(Qt6 6.7.2 REQUIRED
+             COMPONENTS Core Gui Widgets StateMachine Concurrent Network
+             HINTS /opt/Qt/6.7.2/gcc_64)
+qt_standard_project_setup()
 
 #-------------------------------------------------------------------------------
 #	CONFIGURATION
