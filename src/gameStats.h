@@ -70,16 +70,16 @@ public:
 
 	GameStats() = default;
 
-	[[nodiscard]] quint64 played(HighScore::Difficulty difficulty) const noexcept;
-	[[nodiscard]] quint64 wins(HighScore::Difficulty difficulty) const noexcept;
-	[[nodiscard]] quint64 losses(HighScore::Difficulty difficulty) const noexcept;
-	[[nodiscard]] quint64 forfeits(HighScore::Difficulty difficulty) const noexcept;
-	[[nodiscard]] double winRate(HighScore::Difficulty difficulty) const noexcept;
-	[[nodiscard]] double lossRate(HighScore::Difficulty difficulty) const noexcept;
-	[[nodiscard]] double forfeitRate(HighScore::Difficulty difficulty) const noexcept;
-	[[nodiscard]] quint64 averageTimeToWin(HighScore::Difficulty difficulty) const noexcept;
-	[[nodiscard]] quint64 averageTimeToLoss(HighScore::Difficulty difficulty) const noexcept;
-	[[nodiscard]] quint64 averageTimeToForfeit(HighScore::Difficulty difficulty) const noexcept;
+	[[nodiscard]] quint64 played(HighScore::Difficulty difficulty) noexcept;
+	[[nodiscard]] quint64 wins(HighScore::Difficulty difficulty) noexcept;
+	[[nodiscard]] quint64 losses(HighScore::Difficulty difficulty) noexcept;
+	[[nodiscard]] quint64 forfeits(HighScore::Difficulty difficulty) noexcept;
+	[[nodiscard]] double winRate(HighScore::Difficulty difficulty) noexcept;
+	[[nodiscard]] double lossRate(HighScore::Difficulty difficulty) noexcept;
+	[[nodiscard]] double forfeitRate(HighScore::Difficulty difficulty) noexcept;
+	[[nodiscard]] quint64 averageTimeToWin(HighScore::Difficulty difficulty) noexcept;
+	[[nodiscard]] quint64 averageTimeToLoss(HighScore::Difficulty difficulty) noexcept;
+	[[nodiscard]] quint64 averageTimeToForfeit(HighScore::Difficulty difficulty) noexcept;
 
 public slots:
 

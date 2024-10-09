@@ -81,22 +81,22 @@ QDataStream& operator>>(QDataStream& stream, GameStats& stats)
 	return stream;
 }
 
-quint64 GameStats::played(HighScore::Difficulty difficulty) const noexcept { return this->stats.at(difficulty).gamesPlayed.count(); }
+quint64 GameStats::played(HighScore::Difficulty difficulty) noexcept { return this->stats[difficulty].gamesPlayed.count(); }
 
-quint64 GameStats::wins(HighScore::Difficulty difficulty) const noexcept { return this->stats.at(difficulty).wins.count(); }
+quint64 GameStats::wins(HighScore::Difficulty difficulty) noexcept { return this->stats[difficulty].wins.count(); }
 
-quint64 GameStats::losses(HighScore::Difficulty difficulty) const noexcept { return this->stats.at(difficulty).losses.count(); }
+quint64 GameStats::losses(HighScore::Difficulty difficulty) noexcept { return this->stats[difficulty].losses.count(); }
 
-quint64 GameStats::forfeits(HighScore::Difficulty difficulty) const noexcept { return this->stats.at(difficulty).forfeits.count(); }
+quint64 GameStats::forfeits(HighScore::Difficulty difficulty) noexcept { return this->stats[difficulty].forfeits.count(); }
 
-double GameStats::winRate(HighScore::Difficulty difficulty) const noexcept { return 100.0 * (double)wins(difficulty) / (double)played(difficulty); }
+double GameStats::winRate(HighScore::Difficulty difficulty) noexcept { return 100.0 * (double)wins(difficulty) / (double)played(difficulty); }
 
-double GameStats::lossRate(HighScore::Difficulty difficulty) const noexcept { return 100.0 * (double)losses(difficulty) / (double)played(difficulty); }
+double GameStats::lossRate(HighScore::Difficulty difficulty) noexcept { return 100.0 * (double)losses(difficulty) / (double)played(difficulty); }
 
-double GameStats::forfeitRate(HighScore::Difficulty difficulty) const noexcept { return 100.0 * (double)forfeits(difficulty) / (double)played(difficulty); }
+double GameStats::forfeitRate(HighScore::Difficulty difficulty) noexcept { return 100.0 * (double)forfeits(difficulty) / (double)played(difficulty); }
 
-quint64 GameStats::averageTimeToWin(HighScore::Difficulty difficulty) const noexcept { return this->stats.at(difficulty).wins.mean(); }
+quint64 GameStats::averageTimeToWin(HighScore::Difficulty difficulty) noexcept { return this->stats[difficulty].wins.mean(); }
 
-quint64 GameStats::averageTimeToLoss(HighScore::Difficulty difficulty) const noexcept { return this->stats.at(difficulty).losses.mean(); }
+quint64 GameStats::averageTimeToLoss(HighScore::Difficulty difficulty) noexcept { return this->stats.at(difficulty).losses.mean(); }
 
-quint64 GameStats::averageTimeToForfeit(HighScore::Difficulty difficulty) const noexcept { return this->stats.at(difficulty).forfeits.mean(); }
+quint64 GameStats::averageTimeToForfeit(HighScore::Difficulty difficulty) noexcept { return this->stats.at(difficulty).forfeits.mean(); }
