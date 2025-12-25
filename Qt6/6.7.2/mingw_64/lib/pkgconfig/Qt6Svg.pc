@@ -1,0 +1,13 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 Svg
+Description: Qt Svg module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6Svg
+Cflags: -I${includedir}/QtSvg -I${includedir} -DQT_SVG_LIB
+Requires: Qt6Core Qt6Gui

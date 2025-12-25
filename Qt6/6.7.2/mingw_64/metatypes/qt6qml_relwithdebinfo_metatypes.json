@@ -1,0 +1,5263 @@
+[
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "TypeNotAvailable"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "527"
+                    },
+                    {
+                        "name": "QML.Creatable",
+                        "value": "false"
+                    },
+                    {
+                        "name": "QML.UncreatableReason",
+                        "value": "Type not available."
+                    }
+                ],
+                "className": "QQmlTypeNotAvailable",
+                "object": true,
+                "qualifiedClassName": "QQmlTypeNotAvailable",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqml.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlAnimationTimer",
+                "object": true,
+                "qualifiedClassName": "QQmlAnimationTimer",
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "startAnimations",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "stopTimer",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QAbstractAnimationTimer"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qabstractanimationjob_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QJSEngine",
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "uiLanguage",
+                        "notify": "uiLanguageChanged",
+                        "read": "uiLanguage",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setUiLanguage"
+                    }
+                ],
+                "qualifiedClassName": "QJSEngine",
+                "signals": [
+                    {
+                        "access": "public",
+                        "name": "uiLanguageChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qjsengine.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlAbstractProfilerAdapter",
+                "object": true,
+                "qualifiedClassName": "QQmlAbstractProfilerAdapter",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "features",
+                                "type": "quint64"
+                            }
+                        ],
+                        "name": "profilingEnabled",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "features",
+                                "type": "quint64"
+                            }
+                        ],
+                        "name": "profilingEnabledWhileWaiting",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "profilingDisabled",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "profilingDisabledWhileWaiting",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "dataRequested",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "timer",
+                                "type": "QElapsedTimer"
+                            }
+                        ],
+                        "name": "referenceTimeKnown",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    },
+                    {
+                        "access": "public",
+                        "name": "QQmlProfilerDefinitions"
+                    }
+                ]
+            },
+            {
+                "className": "QQmlAbstractProfilerAdapterFactory",
+                "object": true,
+                "qualifiedClassName": "QQmlAbstractProfilerAdapterFactory",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlabstractprofileradapter_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlApplicationEngine",
+                "object": true,
+                "qualifiedClassName": "QQmlApplicationEngine",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "object",
+                                "type": "QObject*"
+                            },
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            }
+                        ],
+                        "name": "objectCreated",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            }
+                        ],
+                        "name": "objectCreationFailed",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            }
+                        ],
+                        "name": "load",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "filePath",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "load",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "uri",
+                                "type": "QAnyStringView"
+                            },
+                            {
+                                "name": "typeName",
+                                "type": "QAnyStringView"
+                            }
+                        ],
+                        "name": "loadFromModule",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "initialProperties",
+                                "type": "QVariantMap"
+                            }
+                        ],
+                        "name": "setInitialProperties",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "extraFileSelectors",
+                                "type": "QStringList"
+                            }
+                        ],
+                        "name": "setExtraFileSelectors",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "data",
+                                "type": "QByteArray"
+                            },
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            }
+                        ],
+                        "name": "loadData",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "data",
+                                "type": "QByteArray"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "loadData",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "name": "_q_loadTranslations",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlEngine"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlapplicationengine.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "Binding"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    },
+                    {
+                        "name": "ImmediatePropertyNames",
+                        "value": "objectName,target,property,value,when,delayed,restoreMode"
+                    }
+                ],
+                "className": "QQmlBind",
+                "enums": [
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "RestorationMode",
+                        "values": [
+                            "RestoreNone",
+                            "RestoreBinding",
+                            "RestoreValue",
+                            "RestoreBindingOrValue"
+                        ]
+                    }
+                ],
+                "interfaces": [
+                    [
+                        {
+                            "className": "QQmlParserStatus",
+                            "id": "\"org.qt-project.Qt.QQmlParserStatus\""
+                        }
+                    ],
+                    [
+                        {
+                            "className": "QQmlPropertyValueSource",
+                            "id": "\"org.qt-project.Qt.QQmlPropertyValueSource\""
+                        }
+                    ]
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "target",
+                        "read": "object",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QObject*",
+                        "user": false,
+                        "write": "setObject"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "property",
+                        "read": "property",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setProperty"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 2,
+                        "name": "value",
+                        "read": "value",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QVariant",
+                        "user": false,
+                        "write": "setValue"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 3,
+                        "name": "when",
+                        "read": "when",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false,
+                        "write": "setWhen"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 4,
+                        "name": "delayed",
+                        "read": "delayed",
+                        "required": false,
+                        "revision": 520,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false,
+                        "write": "setDelayed"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 5,
+                        "name": "restoreMode",
+                        "notify": "restoreModeChanged",
+                        "read": "restoreMode",
+                        "required": false,
+                        "revision": 526,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "RestorationMode",
+                        "user": false,
+                        "write": "setRestoreMode"
+                    }
+                ],
+                "qualifiedClassName": "QQmlBind",
+                "signals": [
+                    {
+                        "access": "public",
+                        "name": "restoreModeChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "private",
+                        "name": "targetValueChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    },
+                    {
+                        "access": "public",
+                        "name": "QQmlPropertyValueSource"
+                    },
+                    {
+                        "access": "public",
+                        "name": "QQmlParserStatus"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlbind_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "Qt"
+                    },
+                    {
+                        "name": "QML.Singleton",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Qt"
+                    },
+                    {
+                        "name": "QML.ExtensionIsNamespace",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    },
+                    {
+                        "name": "QML.StrictArguments",
+                        "value": "true"
+                    }
+                ],
+                "className": "QtObject",
+                "enums": [
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "LoadingMode",
+                        "values": [
+                            "Asynchronous",
+                            "Synchronous"
+                        ]
+                    }
+                ],
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "callback",
+                                "type": "QJSValue"
+                            }
+                        ],
+                        "name": "include",
+                        "returnType": "QJSValue"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QString"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "include",
+                        "returnType": "QJSValue"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "value",
+                                "type": "QJSValue"
+                            }
+                        ],
+                        "name": "isQtObject",
+                        "returnType": "bool"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "color",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "r",
+                                "type": "double"
+                            },
+                            {
+                                "name": "g",
+                                "type": "double"
+                            },
+                            {
+                                "name": "b",
+                                "type": "double"
+                            },
+                            {
+                                "name": "a",
+                                "type": "double"
+                            }
+                        ],
+                        "name": "rgba",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "r",
+                                "type": "double"
+                            },
+                            {
+                                "name": "g",
+                                "type": "double"
+                            },
+                            {
+                                "name": "b",
+                                "type": "double"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "rgba",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "h",
+                                "type": "double"
+                            },
+                            {
+                                "name": "s",
+                                "type": "double"
+                            },
+                            {
+                                "name": "l",
+                                "type": "double"
+                            },
+                            {
+                                "name": "a",
+                                "type": "double"
+                            }
+                        ],
+                        "name": "hsla",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "h",
+                                "type": "double"
+                            },
+                            {
+                                "name": "s",
+                                "type": "double"
+                            },
+                            {
+                                "name": "l",
+                                "type": "double"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "hsla",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "h",
+                                "type": "double"
+                            },
+                            {
+                                "name": "s",
+                                "type": "double"
+                            },
+                            {
+                                "name": "v",
+                                "type": "double"
+                            },
+                            {
+                                "name": "a",
+                                "type": "double"
+                            }
+                        ],
+                        "name": "hsva",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "h",
+                                "type": "double"
+                            },
+                            {
+                                "name": "s",
+                                "type": "double"
+                            },
+                            {
+                                "name": "v",
+                                "type": "double"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "hsva",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "lhs",
+                                "type": "QVariant"
+                            },
+                            {
+                                "name": "rhs",
+                                "type": "QVariant"
+                            }
+                        ],
+                        "name": "colorEqual",
+                        "returnType": "bool"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "x",
+                                "type": "double"
+                            },
+                            {
+                                "name": "y",
+                                "type": "double"
+                            },
+                            {
+                                "name": "width",
+                                "type": "double"
+                            },
+                            {
+                                "name": "height",
+                                "type": "double"
+                            }
+                        ],
+                        "name": "rect",
+                        "returnType": "QRectF"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "x",
+                                "type": "double"
+                            },
+                            {
+                                "name": "y",
+                                "type": "double"
+                            }
+                        ],
+                        "name": "point",
+                        "returnType": "QPointF"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "width",
+                                "type": "double"
+                            },
+                            {
+                                "name": "height",
+                                "type": "double"
+                            }
+                        ],
+                        "name": "size",
+                        "returnType": "QSizeF"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "x",
+                                "type": "double"
+                            },
+                            {
+                                "name": "y",
+                                "type": "double"
+                            }
+                        ],
+                        "name": "vector2d",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "x",
+                                "type": "double"
+                            },
+                            {
+                                "name": "y",
+                                "type": "double"
+                            },
+                            {
+                                "name": "z",
+                                "type": "double"
+                            }
+                        ],
+                        "name": "vector3d",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "x",
+                                "type": "double"
+                            },
+                            {
+                                "name": "y",
+                                "type": "double"
+                            },
+                            {
+                                "name": "z",
+                                "type": "double"
+                            },
+                            {
+                                "name": "w",
+                                "type": "double"
+                            }
+                        ],
+                        "name": "vector4d",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "scalar",
+                                "type": "double"
+                            },
+                            {
+                                "name": "x",
+                                "type": "double"
+                            },
+                            {
+                                "name": "y",
+                                "type": "double"
+                            },
+                            {
+                                "name": "z",
+                                "type": "double"
+                            }
+                        ],
+                        "name": "quaternion",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "name": "matrix4x4",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "m11",
+                                "type": "double"
+                            },
+                            {
+                                "name": "m12",
+                                "type": "double"
+                            },
+                            {
+                                "name": "m13",
+                                "type": "double"
+                            },
+                            {
+                                "name": "m14",
+                                "type": "double"
+                            },
+                            {
+                                "name": "m21",
+                                "type": "double"
+                            },
+                            {
+                                "name": "m22",
+                                "type": "double"
+                            },
+                            {
+                                "name": "m23",
+                                "type": "double"
+                            },
+                            {
+                                "name": "m24",
+                                "type": "double"
+                            },
+                            {
+                                "name": "m31",
+                                "type": "double"
+                            },
+                            {
+                                "name": "m32",
+                                "type": "double"
+                            },
+                            {
+                                "name": "m33",
+                                "type": "double"
+                            },
+                            {
+                                "name": "m34",
+                                "type": "double"
+                            },
+                            {
+                                "name": "m41",
+                                "type": "double"
+                            },
+                            {
+                                "name": "m42",
+                                "type": "double"
+                            },
+                            {
+                                "name": "m43",
+                                "type": "double"
+                            },
+                            {
+                                "name": "m44",
+                                "type": "double"
+                            }
+                        ],
+                        "name": "matrix4x4",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "value",
+                                "type": "QJSValue"
+                            }
+                        ],
+                        "name": "matrix4x4",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "color",
+                                "type": "QJSValue"
+                            },
+                            {
+                                "name": "factor",
+                                "type": "double"
+                            }
+                        ],
+                        "name": "lighter",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "color",
+                                "type": "QJSValue"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "lighter",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "color",
+                                "type": "QJSValue"
+                            },
+                            {
+                                "name": "factor",
+                                "type": "double"
+                            }
+                        ],
+                        "name": "darker",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "color",
+                                "type": "QJSValue"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "darker",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "baseColor",
+                                "type": "QJSValue"
+                            },
+                            {
+                                "name": "value",
+                                "type": "double"
+                            }
+                        ],
+                        "name": "alpha",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "baseColor",
+                                "type": "QJSValue"
+                            },
+                            {
+                                "name": "tintColor",
+                                "type": "QJSValue"
+                            }
+                        ],
+                        "name": "tint",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "date",
+                                "type": "QDate"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "formatDate",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "dateTime",
+                                "type": "QDateTime"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "formatDate",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "string",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "formatDate",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "date",
+                                "type": "QDate"
+                            },
+                            {
+                                "name": "format",
+                                "type": "Qt::DateFormat"
+                            }
+                        ],
+                        "name": "formatDate",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "dateTime",
+                                "type": "QDateTime"
+                            },
+                            {
+                                "name": "format",
+                                "type": "Qt::DateFormat"
+                            }
+                        ],
+                        "name": "formatDate",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "string",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "format",
+                                "type": "Qt::DateFormat"
+                            }
+                        ],
+                        "name": "formatDate",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "time",
+                                "type": "QTime"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "formatTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "dateTime",
+                                "type": "QDateTime"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "formatTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "time",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "formatTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "time",
+                                "type": "QTime"
+                            },
+                            {
+                                "name": "format",
+                                "type": "Qt::DateFormat"
+                            }
+                        ],
+                        "name": "formatTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "dateTime",
+                                "type": "QDateTime"
+                            },
+                            {
+                                "name": "format",
+                                "type": "Qt::DateFormat"
+                            }
+                        ],
+                        "name": "formatTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "time",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "format",
+                                "type": "Qt::DateFormat"
+                            }
+                        ],
+                        "name": "formatTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "date",
+                                "type": "QDateTime"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "formatDateTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "string",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "formatDateTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "date",
+                                "type": "QDateTime"
+                            },
+                            {
+                                "name": "format",
+                                "type": "Qt::DateFormat"
+                            }
+                        ],
+                        "name": "formatDateTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "string",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "format",
+                                "type": "Qt::DateFormat"
+                            }
+                        ],
+                        "name": "formatDateTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "date",
+                                "type": "QDate"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            },
+                            {
+                                "name": "formatType",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "formatDate",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "date",
+                                "type": "QDate"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatDate",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "date",
+                                "type": "QDate"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatDate",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "dateTime",
+                                "type": "QDateTime"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            },
+                            {
+                                "name": "formatType",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "formatDate",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "dateTime",
+                                "type": "QDateTime"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatDate",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "dateTime",
+                                "type": "QDateTime"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatDate",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "string",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            },
+                            {
+                                "name": "formatType",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "formatDate",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "string",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatDate",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "string",
+                                "type": "QString"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatDate",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "time",
+                                "type": "QTime"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            },
+                            {
+                                "name": "formatType",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "formatTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "time",
+                                "type": "QTime"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "time",
+                                "type": "QTime"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "dateTime",
+                                "type": "QDateTime"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            },
+                            {
+                                "name": "formatType",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "formatTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "dateTime",
+                                "type": "QDateTime"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "dateTime",
+                                "type": "QDateTime"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "time",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            },
+                            {
+                                "name": "formatType",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "formatTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "time",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "time",
+                                "type": "QString"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "date",
+                                "type": "QDateTime"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            },
+                            {
+                                "name": "formatType",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "formatDateTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "date",
+                                "type": "QDateTime"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatDateTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "date",
+                                "type": "QDateTime"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatDateTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "string",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            },
+                            {
+                                "name": "formatType",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "formatDateTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "string",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "locale",
+                                "type": "QLocale"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatDateTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "string",
+                                "type": "QString"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formatDateTime",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "name": "locale",
+                        "returnType": "QLocale"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "locale",
+                        "returnType": "QLocale"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            }
+                        ],
+                        "name": "url",
+                        "returnType": "QUrl"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            }
+                        ],
+                        "name": "resolvedUrl",
+                        "returnType": "QUrl"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            },
+                            {
+                                "name": "context",
+                                "type": "QObject*"
+                            }
+                        ],
+                        "name": "resolvedUrl",
+                        "returnType": "QUrl"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            }
+                        ],
+                        "name": "openUrlExternally",
+                        "returnType": "bool"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "fontSpecifier",
+                                "type": "QJSValue"
+                            }
+                        ],
+                        "name": "font",
+                        "returnType": "QVariant"
+                    },
+                    {
+                        "access": "public",
+                        "name": "fontFamilies",
+                        "returnType": "QStringList"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "data",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "md5",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "data",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "btoa",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "data",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "atob",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "name": "quit",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "retCode",
+                                "type": "int"
+                            }
+                        ],
+                        "name": "exit",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "qml",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "parent",
+                                "type": "QObject*"
+                            },
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            }
+                        ],
+                        "name": "createQmlObject",
+                        "returnType": "QObject*"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "qml",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "parent",
+                                "type": "QObject*"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "createQmlObject",
+                        "returnType": "QObject*"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            },
+                            {
+                                "name": "parent",
+                                "type": "QObject*"
+                            }
+                        ],
+                        "name": "createComponent",
+                        "returnType": "QQmlComponent*"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            },
+                            {
+                                "name": "mode",
+                                "type": "QQmlComponent::CompilationMode"
+                            },
+                            {
+                                "name": "parent",
+                                "type": "QObject*"
+                            }
+                        ],
+                        "name": "createComponent",
+                        "returnType": "QQmlComponent*"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            },
+                            {
+                                "name": "mode",
+                                "type": "QQmlComponent::CompilationMode"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "createComponent",
+                        "returnType": "QQmlComponent*"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "createComponent",
+                        "returnType": "QQmlComponent*"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "moduleUri",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "typeName",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "parent",
+                                "type": "QObject*"
+                            }
+                        ],
+                        "name": "createComponent",
+                        "returnType": "QQmlComponent*"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "moduleUri",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "typeName",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "mode",
+                                "type": "QQmlComponent::CompilationMode"
+                            },
+                            {
+                                "name": "parent",
+                                "type": "QObject*"
+                            }
+                        ],
+                        "name": "createComponent",
+                        "returnType": "QQmlComponent*"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "moduleUri",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "typeName",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "mode",
+                                "type": "QQmlComponent::CompilationMode"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "createComponent",
+                        "returnType": "QQmlComponent*"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "moduleUri",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "typeName",
+                                "type": "QString"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "createComponent",
+                        "returnType": "QQmlComponent*"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "function",
+                                "type": "QJSValue"
+                            }
+                        ],
+                        "name": "binding",
+                        "returnType": "QJSValue"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "args",
+                                "type": "QQmlV4Function*"
+                            }
+                        ],
+                        "name": "callLater",
+                        "returnType": "void"
+                    }
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "application",
+                        "read": "application",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QQmlApplication*",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "platform",
+                        "read": "platform",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QQmlPlatform*",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 2,
+                        "name": "inputMethod",
+                        "read": "inputMethod",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QObject*",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 3,
+                        "name": "styleHints",
+                        "read": "styleHints",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QObject*",
+                        "user": false
+                    },
+                    {
+                        "bindable": "uiLanguageBindable",
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 4,
+                        "name": "uiLanguage",
+                        "read": "uiLanguage",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setUiLanguage"
+                    }
+                ],
+                "qualifiedClassName": "QtObject",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlbuiltinfunctions_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "Connections"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    },
+                    {
+                        "name": "QML.HasCustomParser",
+                        "value": "true"
+                    }
+                ],
+                "className": "QQmlConnections",
+                "interfaces": [
+                    [
+                        {
+                            "className": "QQmlParserStatus",
+                            "id": "\"org.qt-project.Qt.QQmlParserStatus\""
+                        }
+                    ]
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "target",
+                        "notify": "targetChanged",
+                        "read": "target",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QObject*",
+                        "user": false,
+                        "write": "setTarget"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "enabled",
+                        "notify": "enabledChanged",
+                        "read": "isEnabled",
+                        "required": false,
+                        "revision": 515,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false,
+                        "write": "setEnabled"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 2,
+                        "name": "ignoreUnknownSignals",
+                        "read": "ignoreUnknownSignals",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false,
+                        "write": "setIgnoreUnknownSignals"
+                    }
+                ],
+                "qualifiedClassName": "QQmlConnections",
+                "signals": [
+                    {
+                        "access": "public",
+                        "name": "targetChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "enabledChanged",
+                        "returnType": "void",
+                        "revision": 515
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    },
+                    {
+                        "access": "public",
+                        "name": "QQmlParserStatus"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlconnections_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlContext",
+                "object": true,
+                "qualifiedClassName": "QQmlContext",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlcontext.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlDebugConnector",
+                "object": true,
+                "qualifiedClassName": "QQmlDebugConnector",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            },
+            {
+                "className": "QQmlDebugConnectorFactory",
+                "object": true,
+                "qualifiedClassName": "QQmlDebugConnectorFactory",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmldebugconnector_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlDebugServer",
+                "object": true,
+                "qualifiedClassName": "QQmlDebugServer",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugConnector"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmldebugserver_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlDebugServerConnection",
+                "object": true,
+                "qualifiedClassName": "QQmlDebugServerConnection",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            },
+            {
+                "className": "QQmlDebugServerConnectionFactory",
+                "object": true,
+                "qualifiedClassName": "QQmlDebugServerConnectionFactory",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmldebugserverconnection_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlDebugService",
+                "object": true,
+                "qualifiedClassName": "QQmlDebugService",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QJSEngine*"
+                            }
+                        ],
+                        "name": "attachedToEngine",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QJSEngine*"
+                            }
+                        ],
+                        "name": "detachedFromEngine",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "message",
+                                "type": "QByteArray"
+                            }
+                        ],
+                        "name": "messageToClient",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "messages",
+                                "type": "QList<QByteArray>"
+                            }
+                        ],
+                        "name": "messagesToClient",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmldebugservice_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlDebugServiceFactory",
+                "object": true,
+                "qualifiedClassName": "QQmlDebugServiceFactory",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmldebugservicefactory_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QV4DebugService",
+                "object": true,
+                "qualifiedClassName": "QV4DebugService",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugService"
+                    }
+                ]
+            },
+            {
+                "className": "QQmlProfilerService",
+                "object": true,
+                "qualifiedClassName": "QQmlProfilerService",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugService"
+                    }
+                ]
+            },
+            {
+                "className": "QQmlEngineDebugService",
+                "object": true,
+                "qualifiedClassName": "QQmlEngineDebugService",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugService"
+                    }
+                ]
+            },
+            {
+                "className": "QQmlDebugTranslationService",
+                "object": true,
+                "qualifiedClassName": "QQmlDebugTranslationService",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugService"
+                    }
+                ]
+            },
+            {
+                "className": "QQmlInspectorService",
+                "object": true,
+                "qualifiedClassName": "QQmlInspectorService",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugService"
+                    }
+                ]
+            },
+            {
+                "className": "QDebugMessageService",
+                "object": true,
+                "qualifiedClassName": "QDebugMessageService",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugService"
+                    }
+                ]
+            },
+            {
+                "className": "QQmlEngineControlService",
+                "object": true,
+                "qualifiedClassName": "QQmlEngineControlService",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugService"
+                    }
+                ]
+            },
+            {
+                "className": "QQmlNativeDebugService",
+                "object": true,
+                "qualifiedClassName": "QQmlNativeDebugService",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugService"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmldebugserviceinterfaces_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlDelayedCallQueue",
+                "object": true,
+                "qualifiedClassName": "QQmlDelayedCallQueue",
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "ticked",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmldelayedcallqueue_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlImageProviderBase",
+                "object": true,
+                "qualifiedClassName": "QQmlImageProviderBase",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            },
+            {
+                "className": "QQmlEngine",
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "offlineStoragePath",
+                        "notify": "offlineStoragePathChanged",
+                        "read": "offlineStoragePath",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setOfflineStoragePath"
+                    }
+                ],
+                "qualifiedClassName": "QQmlEngine",
+                "signals": [
+                    {
+                        "access": "public",
+                        "name": "offlineStoragePathChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "quit",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "retCode",
+                                "type": "int"
+                            }
+                        ],
+                        "name": "exit",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "warnings",
+                                "type": "QList<QQmlError>"
+                            }
+                        ],
+                        "name": "warnings",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "retranslate",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QJSEngine"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlengine.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlExpression",
+                "object": true,
+                "qualifiedClassName": "QQmlExpression",
+                "signals": [
+                    {
+                        "access": "public",
+                        "name": "valueChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlexpression.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlExtensionPlugin",
+                "interfaces": [
+                    [
+                        {
+                            "className": "QQmlExtensionInterface",
+                            "id": "\"org.qt-project.Qt.QQmlExtensionInterface/1.0\""
+                        }
+                    ],
+                    [
+                        {
+                            "className": "QQmlTypesExtensionInterface",
+                            "id": "\"org.qt-project.Qt.QQmlTypesExtensionInterface/1.0\""
+                        }
+                    ]
+                ],
+                "object": true,
+                "qualifiedClassName": "QQmlExtensionPlugin",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    },
+                    {
+                        "access": "public",
+                        "name": "QQmlExtensionInterface"
+                    }
+                ]
+            },
+            {
+                "className": "QQmlEngineExtensionPlugin",
+                "interfaces": [
+                    [
+                        {
+                            "className": "QQmlEngineExtensionInterface",
+                            "id": "\"org.qt-project.Qt.QQmlEngineExtensionInterface\""
+                        }
+                    ]
+                ],
+                "object": true,
+                "qualifiedClassName": "QQmlEngineExtensionPlugin",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    },
+                    {
+                        "access": "public",
+                        "name": "QQmlEngineExtensionInterface"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlextensionplugin.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlFileSelector",
+                "object": true,
+                "qualifiedClassName": "QQmlFileSelector",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlfileselector.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    }
+                ],
+                "className": "QQmlApplication",
+                "object": true,
+                "properties": [
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "arguments",
+                        "read": "args",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QStringList",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "name",
+                        "notify": "nameChanged",
+                        "read": "name",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setName"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 2,
+                        "name": "version",
+                        "notify": "versionChanged",
+                        "read": "version",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setVersion"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 3,
+                        "name": "organization",
+                        "notify": "organizationChanged",
+                        "read": "organization",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setOrganization"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 4,
+                        "name": "domain",
+                        "notify": "domainChanged",
+                        "read": "domain",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setDomain"
+                    }
+                ],
+                "qualifiedClassName": "QQmlApplication",
+                "signals": [
+                    {
+                        "access": "public",
+                        "name": "aboutToQuit",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "nameChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "versionChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "organizationChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "domainChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "arg",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "setName",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "arg",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "setVersion",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "arg",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "setOrganization",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "arg",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "setDomain",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlglobal_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QList<QQmlLocale::DayOfWeek>"
+                    },
+                    {
+                        "name": "QML.Sequence",
+                        "value": "QQmlLocale::DayOfWeek"
+                    }
+                ],
+                "className": "DayOfWeekList",
+                "gadget": true,
+                "qualifiedClassName": "DayOfWeekList"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QLocale"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "QQmlLocaleValueType"
+                    },
+                    {
+                        "name": "QML.Creatable",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.CreationMethod",
+                        "value": "construct"
+                    }
+                ],
+                "className": "QQmlLocaleValueType",
+                "constructors": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "QQmlLocaleValueType",
+                        "returnType": ""
+                    }
+                ],
+                "gadget": true,
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "format",
+                                "type": "QLocale::CurrencySymbolFormat"
+                            }
+                        ],
+                        "name": "currencySymbol",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "isCloned": true,
+                        "name": "currencySymbol",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "format",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "dateTimeFormat",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "isCloned": true,
+                        "name": "dateTimeFormat",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "format",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "timeFormat",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "isCloned": true,
+                        "name": "timeFormat",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "format",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "dateFormat",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "isCloned": true,
+                        "name": "dateFormat",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "index",
+                                "type": "int"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "monthName",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "index",
+                                "type": "int"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "monthName",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "index",
+                                "type": "int"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "standaloneMonthName",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "index",
+                                "type": "int"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "standaloneMonthName",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "index",
+                                "type": "int"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "dayName",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "index",
+                                "type": "int"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "dayName",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "index",
+                                "type": "int"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "standaloneDayName",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "index",
+                                "type": "int"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "standaloneDayName",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "args",
+                                "type": "QQmlV4Function*"
+                            }
+                        ],
+                        "name": "formattedDataSize",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "bytes",
+                                "type": "double"
+                            },
+                            {
+                                "name": "precision",
+                                "type": "int"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QLocale::DataSizeFormats"
+                            }
+                        ],
+                        "name": "formattedDataSize",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "bytes",
+                                "type": "double"
+                            },
+                            {
+                                "name": "precision",
+                                "type": "int"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formattedDataSize",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "bytes",
+                                "type": "double"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "formattedDataSize",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "args",
+                                "type": "QQmlV4Function*"
+                            }
+                        ],
+                        "name": "toString",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "toString",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "i",
+                                "type": "int"
+                            }
+                        ],
+                        "name": "toString",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "f",
+                                "type": "double"
+                            }
+                        ],
+                        "name": "toString",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "f",
+                                "type": "double"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "precision",
+                                "type": "int"
+                            }
+                        ],
+                        "name": "toString",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "f",
+                                "type": "double"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QString"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "toString",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "dateTime",
+                                "type": "QDateTime"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "toString",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "dateTime",
+                                "type": "QDateTime"
+                            },
+                            {
+                                "name": "format",
+                                "type": "QLocale::FormatType"
+                            }
+                        ],
+                        "name": "toString",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "dateTime",
+                                "type": "QDateTime"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "toString",
+                        "returnType": "QString"
+                    }
+                ],
+                "properties": [
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "firstDayOfWeek",
+                        "read": "firstDayOfWeek",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QQmlLocale::DayOfWeek",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "measurementSystem",
+                        "read": "measurementSystem",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QLocale::MeasurementSystem",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 2,
+                        "name": "textDirection",
+                        "read": "textDirection",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "Qt::LayoutDirection",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 3,
+                        "name": "weekDays",
+                        "read": "weekDays",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QList<QQmlLocale::DayOfWeek>",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 4,
+                        "name": "uiLanguages",
+                        "read": "uiLanguages",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QStringList",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 5,
+                        "name": "name",
+                        "read": "name",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 6,
+                        "name": "nativeLanguageName",
+                        "read": "nativeLanguageName",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 7,
+                        "name": "nativeCountryName",
+                        "read": "nativeCountryName",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 8,
+                        "name": "nativeTerritoryName",
+                        "read": "nativeTerritoryName",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 9,
+                        "name": "decimalPoint",
+                        "read": "decimalPoint",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 10,
+                        "name": "groupSeparator",
+                        "read": "groupSeparator",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 11,
+                        "name": "percent",
+                        "read": "percent",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 12,
+                        "name": "zeroDigit",
+                        "read": "zeroDigit",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 13,
+                        "name": "negativeSign",
+                        "read": "negativeSign",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 14,
+                        "name": "positiveSign",
+                        "read": "positiveSign",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 15,
+                        "name": "exponential",
+                        "read": "exponential",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 16,
+                        "name": "amText",
+                        "read": "amText",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 17,
+                        "name": "pmText",
+                        "read": "pmText",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 18,
+                        "name": "numberOptions",
+                        "read": "numberOptions",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QLocale::NumberOptions",
+                        "user": false,
+                        "write": "setNumberOptions"
+                    }
+                ],
+                "qualifiedClassName": "QQmlLocaleValueType"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "Locale"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "514"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "QLocale"
+                    }
+                ],
+                "className": "QQmlLocale",
+                "enums": [
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "DayOfWeek",
+                        "values": [
+                            "Sunday",
+                            "Monday",
+                            "Tuesday",
+                            "Wednesday",
+                            "Thursday",
+                            "Friday",
+                            "Saturday"
+                        ]
+                    }
+                ],
+                "namespace": true,
+                "qualifiedClassName": "QQmlLocale"
+            }
+        ],
+        "inputFile": "qqmllocale_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "LoggingCategory"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "520"
+                    }
+                ],
+                "className": "QQmlLoggingCategory",
+                "enums": [
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "DefaultLogLevel",
+                        "values": [
+                            "Debug",
+                            "Info",
+                            "Warning",
+                            "Critical",
+                            "Fatal"
+                        ]
+                    }
+                ],
+                "interfaces": [
+                    [
+                        {
+                            "className": "QQmlParserStatus",
+                            "id": "\"org.qt-project.Qt.QQmlParserStatus\""
+                        }
+                    ]
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "name",
+                        "read": "name",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setName"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "defaultLogLevel",
+                        "read": "defaultLogLevel",
+                        "required": false,
+                        "revision": 524,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "DefaultLogLevel",
+                        "user": false,
+                        "write": "setDefaultLogLevel"
+                    }
+                ],
+                "qualifiedClassName": "QQmlLoggingCategory",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    },
+                    {
+                        "access": "public",
+                        "name": "QQmlParserStatus"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlloggingcategory_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    }
+                ],
+                "className": "QQmlPlatform",
+                "object": true,
+                "properties": [
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "os",
+                        "read": "os",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "pluginName",
+                        "read": "pluginName",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "QQmlPlatform",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlplatform_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlProfiler",
+                "object": true,
+                "qualifiedClassName": "QQmlProfiler",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QList<QQmlProfilerData>"
+                            },
+                            {
+                                "type": "QQmlProfiler::LocationHash"
+                            }
+                        ],
+                        "name": "dataReady",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    },
+                    {
+                        "access": "public",
+                        "name": "QQmlProfilerDefinitions"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlprofiler_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "527"
+                    }
+                ],
+                "className": "QQmlProperty",
+                "gadget": true,
+                "properties": [
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": true,
+                        "index": 0,
+                        "name": "object",
+                        "read": "object",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QObject*",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": true,
+                        "index": 1,
+                        "name": "name",
+                        "read": "name",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "QQmlProperty"
+            }
+        ],
+        "inputFile": "qqmlproperty.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlPropertyMap",
+                "methods": [
+                    {
+                        "access": "public",
+                        "name": "keys",
+                        "returnType": "QStringList"
+                    }
+                ],
+                "object": true,
+                "qualifiedClassName": "QQmlPropertyMap",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "key",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "value",
+                                "type": "QVariant"
+                            }
+                        ],
+                        "name": "valueChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlpropertymap.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "ParentProperty",
+                        "value": "parent"
+                    },
+                    {
+                        "name": "QML.Element",
+                        "value": "Timer"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    }
+                ],
+                "className": "QQmlTimer",
+                "interfaces": [
+                    [
+                        {
+                            "className": "QQmlParserStatus",
+                            "id": "\"org.qt-project.Qt.QQmlParserStatus\""
+                        }
+                    ]
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "interval",
+                        "notify": "intervalChanged",
+                        "read": "interval",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false,
+                        "write": "setInterval"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "running",
+                        "notify": "runningChanged",
+                        "read": "isRunning",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false,
+                        "write": "setRunning"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 2,
+                        "name": "repeat",
+                        "notify": "repeatChanged",
+                        "read": "isRepeating",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false,
+                        "write": "setRepeating"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 3,
+                        "name": "triggeredOnStart",
+                        "notify": "triggeredOnStartChanged",
+                        "read": "triggeredOnStart",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false,
+                        "write": "setTriggeredOnStart"
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 4,
+                        "name": "parent",
+                        "read": "parent",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QObject*",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "QQmlTimer",
+                "signals": [
+                    {
+                        "access": "public",
+                        "name": "triggered",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "runningChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "intervalChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "repeatChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "triggeredOnStartChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "start",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "stop",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "restart",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "name": "ticked",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    },
+                    {
+                        "access": "public",
+                        "name": "QQmlParserStatus"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmltimer_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlTypeLoaderNetworkReplyProxy",
+                "object": true,
+                "qualifiedClassName": "QQmlTypeLoaderNetworkReplyProxy",
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "finished",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "qint64"
+                            },
+                            {
+                                "type": "qint64"
+                            }
+                        ],
+                        "name": "downloadProgress",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QNetworkReply*"
+                            }
+                        ],
+                        "name": "manualFinished",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmltypeloadernetworkreplyproxy_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlGadgetPtrWrapper",
+                "object": true,
+                "qualifiedClassName": "QQmlGadgetPtrWrapper",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "point"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QPointF"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "QQmlPointFValueType"
+                    },
+                    {
+                        "name": "QML.Creatable",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.CreationMethod",
+                        "value": "structured"
+                    }
+                ],
+                "className": "QQmlPointFValueType",
+                "constructors": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "point",
+                                "type": "QPoint"
+                            }
+                        ],
+                        "name": "QQmlPointFValueType",
+                        "returnType": ""
+                    }
+                ],
+                "gadget": true,
+                "methods": [
+                    {
+                        "access": "public",
+                        "name": "toString",
+                        "returnType": "QString"
+                    }
+                ],
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 0,
+                        "name": "x",
+                        "read": "x",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false,
+                        "write": "setX"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 1,
+                        "name": "y",
+                        "read": "y",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false,
+                        "write": "setY"
+                    }
+                ],
+                "qualifiedClassName": "QQmlPointFValueType"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QPoint"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "QQmlPointValueType"
+                    },
+                    {
+                        "name": "QML.Creatable",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.CreationMethod",
+                        "value": "structured"
+                    }
+                ],
+                "className": "QQmlPointValueType",
+                "constructors": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "point",
+                                "type": "QPointF"
+                            }
+                        ],
+                        "name": "QQmlPointValueType",
+                        "returnType": ""
+                    }
+                ],
+                "gadget": true,
+                "methods": [
+                    {
+                        "access": "public",
+                        "name": "toString",
+                        "returnType": "QString"
+                    }
+                ],
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 0,
+                        "name": "x",
+                        "read": "x",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false,
+                        "write": "setX"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 1,
+                        "name": "y",
+                        "read": "y",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false,
+                        "write": "setY"
+                    }
+                ],
+                "qualifiedClassName": "QQmlPointValueType"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "size"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QSizeF"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "QQmlSizeFValueType"
+                    },
+                    {
+                        "name": "QML.Creatable",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.CreationMethod",
+                        "value": "structured"
+                    }
+                ],
+                "className": "QQmlSizeFValueType",
+                "constructors": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "size",
+                                "type": "QSize"
+                            }
+                        ],
+                        "name": "QQmlSizeFValueType",
+                        "returnType": ""
+                    }
+                ],
+                "gadget": true,
+                "methods": [
+                    {
+                        "access": "public",
+                        "name": "toString",
+                        "returnType": "QString"
+                    }
+                ],
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 0,
+                        "name": "width",
+                        "read": "width",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false,
+                        "write": "setWidth"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 1,
+                        "name": "height",
+                        "read": "height",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false,
+                        "write": "setHeight"
+                    }
+                ],
+                "qualifiedClassName": "QQmlSizeFValueType"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QSize"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "QQmlSizeValueType"
+                    },
+                    {
+                        "name": "QML.Creatable",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.CreationMethod",
+                        "value": "structured"
+                    }
+                ],
+                "className": "QQmlSizeValueType",
+                "constructors": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "size",
+                                "type": "QSizeF"
+                            }
+                        ],
+                        "name": "QQmlSizeValueType",
+                        "returnType": ""
+                    }
+                ],
+                "gadget": true,
+                "methods": [
+                    {
+                        "access": "public",
+                        "name": "toString",
+                        "returnType": "QString"
+                    }
+                ],
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 0,
+                        "name": "width",
+                        "read": "width",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false,
+                        "write": "setWidth"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 1,
+                        "name": "height",
+                        "read": "height",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false,
+                        "write": "setHeight"
+                    }
+                ],
+                "qualifiedClassName": "QQmlSizeValueType"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "rect"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QRectF"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "QQmlRectFValueType"
+                    },
+                    {
+                        "name": "QML.Creatable",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.CreationMethod",
+                        "value": "structured"
+                    }
+                ],
+                "className": "QQmlRectFValueType",
+                "constructors": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "rect",
+                                "type": "QRect"
+                            }
+                        ],
+                        "name": "QQmlRectFValueType",
+                        "returnType": ""
+                    }
+                ],
+                "gadget": true,
+                "methods": [
+                    {
+                        "access": "public",
+                        "name": "toString",
+                        "returnType": "QString"
+                    }
+                ],
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 0,
+                        "name": "x",
+                        "read": "x",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false,
+                        "write": "setX"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 1,
+                        "name": "y",
+                        "read": "y",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false,
+                        "write": "setY"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 2,
+                        "name": "width",
+                        "read": "width",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false,
+                        "write": "setWidth"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 3,
+                        "name": "height",
+                        "read": "height",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false,
+                        "write": "setHeight"
+                    },
+                    {
+                        "constant": false,
+                        "designable": false,
+                        "final": true,
+                        "index": 4,
+                        "name": "left",
+                        "read": "left",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": false,
+                        "final": true,
+                        "index": 5,
+                        "name": "right",
+                        "read": "right",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": false,
+                        "final": true,
+                        "index": 6,
+                        "name": "top",
+                        "read": "top",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": false,
+                        "final": true,
+                        "index": 7,
+                        "name": "bottom",
+                        "read": "bottom",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "QQmlRectFValueType"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QRect"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "QQmlRectValueType"
+                    },
+                    {
+                        "name": "QML.Creatable",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.CreationMethod",
+                        "value": "structured"
+                    }
+                ],
+                "className": "QQmlRectValueType",
+                "constructors": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "rect",
+                                "type": "QRectF"
+                            }
+                        ],
+                        "name": "QQmlRectValueType",
+                        "returnType": ""
+                    }
+                ],
+                "gadget": true,
+                "methods": [
+                    {
+                        "access": "public",
+                        "name": "toString",
+                        "returnType": "QString"
+                    }
+                ],
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 0,
+                        "name": "x",
+                        "read": "x",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false,
+                        "write": "setX"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 1,
+                        "name": "y",
+                        "read": "y",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false,
+                        "write": "setY"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 2,
+                        "name": "width",
+                        "read": "width",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false,
+                        "write": "setWidth"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 3,
+                        "name": "height",
+                        "read": "height",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false,
+                        "write": "setHeight"
+                    },
+                    {
+                        "constant": false,
+                        "designable": false,
+                        "final": true,
+                        "index": 4,
+                        "name": "left",
+                        "read": "left",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": false,
+                        "final": true,
+                        "index": 5,
+                        "name": "right",
+                        "read": "right",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": false,
+                        "final": true,
+                        "index": 6,
+                        "name": "top",
+                        "read": "top",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": false,
+                        "final": true,
+                        "index": 7,
+                        "name": "bottom",
+                        "read": "bottom",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "QQmlRectValueType"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QEasingCurve"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "QQmlEasingValueType"
+                    },
+                    {
+                        "name": "QML.Creatable",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.CreationMethod",
+                        "value": "structured"
+                    }
+                ],
+                "className": "QQmlEasingValueType",
+                "gadget": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 0,
+                        "name": "type",
+                        "read": "type",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QQmlEasingEnums::Type",
+                        "user": false,
+                        "write": "setType"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 1,
+                        "name": "amplitude",
+                        "read": "amplitude",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false,
+                        "write": "setAmplitude"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 2,
+                        "name": "overshoot",
+                        "read": "overshoot",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false,
+                        "write": "setOvershoot"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 3,
+                        "name": "period",
+                        "read": "period",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false,
+                        "write": "setPeriod"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": true,
+                        "index": 4,
+                        "name": "bezierCurve",
+                        "read": "bezierCurve",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QVariantList",
+                        "user": false,
+                        "write": "setBezierCurve"
+                    }
+                ],
+                "qualifiedClassName": "QQmlEasingValueType"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "Easing"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    }
+                ],
+                "className": "QQmlEasingEnums",
+                "enums": [
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "Type",
+                        "values": [
+                            "Linear",
+                            "InQuad",
+                            "OutQuad",
+                            "InOutQuad",
+                            "OutInQuad",
+                            "InCubic",
+                            "OutCubic",
+                            "InOutCubic",
+                            "OutInCubic",
+                            "InQuart",
+                            "OutQuart",
+                            "InOutQuart",
+                            "OutInQuart",
+                            "InQuint",
+                            "OutQuint",
+                            "InOutQuint",
+                            "OutInQuint",
+                            "InSine",
+                            "OutSine",
+                            "InOutSine",
+                            "OutInSine",
+                            "InExpo",
+                            "OutExpo",
+                            "InOutExpo",
+                            "OutInExpo",
+                            "InCirc",
+                            "OutCirc",
+                            "InOutCirc",
+                            "OutInCirc",
+                            "InElastic",
+                            "OutElastic",
+                            "InOutElastic",
+                            "OutInElastic",
+                            "InBack",
+                            "OutBack",
+                            "InOutBack",
+                            "OutInBack",
+                            "InBounce",
+                            "OutBounce",
+                            "InOutBounce",
+                            "OutInBounce",
+                            "InCurve",
+                            "OutCurve",
+                            "SineCurve",
+                            "CosineCurve",
+                            "BezierSpline",
+                            "Bezier"
+                        ]
+                    }
+                ],
+                "namespace": true,
+                "qualifiedClassName": "QQmlEasingEnums"
+            }
+        ],
+        "inputFile": "qqmlvaluetype_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "Debugger",
+                "object": true,
+                "qualifiedClassName": "QV4::Debugging::Debugger",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qv4debugging_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QV4Include",
+                "object": true,
+                "qualifiedClassName": "QV4Include",
+                "slots": [
+                    {
+                        "access": "private",
+                        "name": "finished",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qv4include_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "Profiler",
+                "object": true,
+                "qualifiedClassName": "QV4::Profiling::Profiler",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QV4::Profiling::FunctionLocationHash"
+                            },
+                            {
+                                "type": "QList<QV4::Profiling::FunctionCallProperties>"
+                            },
+                            {
+                                "type": "QList<QV4::Profiling::MemoryAllocationProperties>"
+                            }
+                        ],
+                        "name": "dataReady",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qv4profiling_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "ReactionHandler",
+                "object": true,
+                "qualifiedClassName": "QV4::Promise::ReactionHandler",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qv4promiseobject_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "MultiplyWrappedQObjectMap",
+                "object": true,
+                "qualifiedClassName": "QV4::MultiplyWrappedQObjectMap",
+                "slots": [
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "type": "QObject*"
+                            }
+                        ],
+                        "name": "removeDestroyedObject",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    },
+                    {
+                        "access": "private",
+                        "name": "QHash<QObjectBiPointer,QV4::WeakValue>"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qv4qobjectwrapper_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Sequence",
+                        "value": "double"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "std::vector<qreal>"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    }
+                ],
+                "className": "QRealStdVectorForeign",
+                "gadget": true,
+                "qualifiedClassName": "QRealStdVectorForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Sequence",
+                        "value": "double"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QList<qreal>"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    }
+                ],
+                "className": "QRealListForeign",
+                "gadget": true,
+                "qualifiedClassName": "QRealListForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Sequence",
+                        "value": "double"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "std::vector<double>"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    }
+                ],
+                "className": "QDoubleStdVectorForeign",
+                "gadget": true,
+                "qualifiedClassName": "QDoubleStdVectorForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Sequence",
+                        "value": "float"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "std::vector<float>"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    }
+                ],
+                "className": "QFloatStdVectorForeign",
+                "gadget": true,
+                "qualifiedClassName": "QFloatStdVectorForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Sequence",
+                        "value": "int"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "std::vector<int>"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    }
+                ],
+                "className": "QIntStdVectorForeign",
+                "gadget": true,
+                "qualifiedClassName": "QIntStdVectorForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Sequence",
+                        "value": "bool"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "std::vector<bool>"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    }
+                ],
+                "className": "QBoolStdVectorForeign",
+                "gadget": true,
+                "qualifiedClassName": "QBoolStdVectorForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Sequence",
+                        "value": "QString"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "std::vector<QString>"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    }
+                ],
+                "className": "QStringStdVectorForeign",
+                "gadget": true,
+                "qualifiedClassName": "QStringStdVectorForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Sequence",
+                        "value": "QUrl"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "std::vector<QUrl>"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "512"
+                    }
+                ],
+                "className": "QUrlStdVectorForeign",
+                "gadget": true,
+                "qualifiedClassName": "QUrlStdVectorForeign"
+            }
+        ],
+        "inputFile": "qv4sequenceobject_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "ObjectReferenceHash",
+                "object": true,
+                "qualifiedClassName": "ObjectReferenceHash",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmldebugservice.cpp",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlFileNetworkReply",
+                "object": true,
+                "qualifiedClassName": "QQmlFileNetworkReply",
+                "signals": [
+                    {
+                        "access": "public",
+                        "name": "finished",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "qint64"
+                            },
+                            {
+                                "type": "qint64"
+                            }
+                        ],
+                        "name": "downloadProgress",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "networkFinished",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "qint64"
+                            },
+                            {
+                                "type": "qint64"
+                            }
+                        ],
+                        "name": "networkDownloadProgress",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlfile.cpp",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlXMLHttpRequest",
+                "object": true,
+                "qualifiedClassName": "QQmlXMLHttpRequest",
+                "slots": [
+                    {
+                        "access": "private",
+                        "name": "readyRead",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "type": "QNetworkReply::NetworkError"
+                            }
+                        ],
+                        "name": "error",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "name": "finished",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlxmlhttprequest.cpp",
+        "outputRevision": 68
+    }
+]

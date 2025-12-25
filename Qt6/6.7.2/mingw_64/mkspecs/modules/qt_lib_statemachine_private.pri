@@ -1,0 +1,11 @@
+QT.statemachine_private.VERSION = 6.7.2
+QT.statemachine_private.name = QtStateMachine
+QT.statemachine_private.module =
+QT.statemachine_private.libs = $$QT_MODULE_LIB_BASE
+QT.statemachine_private.includes = $$QT_MODULE_INCLUDE_BASE/QtStateMachine/6.7.2 $$QT_MODULE_INCLUDE_BASE/QtStateMachine/6.7.2/QtStateMachine
+QT.statemachine_private.frameworks = 
+QT.statemachine_private.depends = core_private statemachine gui_private
+QT.statemachine_private.uses = 
+QT.statemachine_private.module_config = v2 internal_module
+QT.statemachine_private.enabled_features = 
+QT.statemachine_private.disabled_features = 

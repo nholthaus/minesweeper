@@ -1,0 +1,196 @@
+[
+    {
+        "classes": [
+            {
+                "className": "QSizeChangeListener",
+                "object": true,
+                "qualifiedClassName": "QSizeChangeListener",
+                "slots": [
+                    {
+                        "access": "private",
+                        "name": "onSizeChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    },
+                    {
+                        "access": "public",
+                        "name": "QVector<QSize>"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "geometrytestutils_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlDataTest",
+                "object": true,
+                "qualifiedClassName": "QQmlDataTest",
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "initTestCase",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "init",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qmlutils_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "TestHTTPServer",
+                "object": true,
+                "qualifiedClassName": "TestHTTPServer",
+                "slots": [
+                    {
+                        "access": "private",
+                        "name": "newConnection",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "name": "disconnected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "name": "readyRead",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "name": "sendOne",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            },
+            {
+                "className": "ThreadedTestHTTPServer",
+                "object": true,
+                "qualifiedClassName": "ThreadedTestHTTPServer",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QThread"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "testhttpserver_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QaimModel",
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "number",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "addItem",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "index",
+                                "type": "int"
+                            }
+                        ],
+                        "name": "removeItem",
+                        "returnType": "void"
+                    }
+                ],
+                "object": true,
+                "qualifiedClassName": "QQuickViewTestUtils::QaimModel",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QAbstractListModel"
+                    }
+                ]
+            },
+            {
+                "className": "StressTestModel",
+                "object": true,
+                "qualifiedClassName": "QQuickViewTestUtils::StressTestModel",
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "updateModel",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QAbstractListModel"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "viewtestutils_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "SignalMultiSpy",
+                "object": true,
+                "qualifiedClassName": "QQuickVisualTestUtils::SignalMultiSpy",
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "receive",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "visualtestutils_p.h",
+        "outputRevision": 68
+    }
+]

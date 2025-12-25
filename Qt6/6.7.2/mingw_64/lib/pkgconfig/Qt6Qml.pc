@@ -1,0 +1,13 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 Qml
+Description: Qt Qml module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6Qml  -lQt6QmlBuiltins
+Cflags: -I${includedir}/QtQml -I${includedir} -DQT_QML_LIB
+Requires: Qt6Core Qt6QmlIntegration Qt6Network

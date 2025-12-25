@@ -1,0 +1,191 @@
+[
+    {
+        "classes": [
+            {
+                "className": "QQuickWidget",
+                "enums": [
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "ResizeMode",
+                        "values": [
+                            "SizeViewToRootObject",
+                            "SizeRootObjectToView"
+                        ]
+                    },
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "Status",
+                        "values": [
+                            "Null",
+                            "Ready",
+                            "Loading",
+                            "Error"
+                        ]
+                    }
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "resizeMode",
+                        "read": "resizeMode",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "ResizeMode",
+                        "user": false,
+                        "write": "setResizeMode"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "status",
+                        "notify": "statusChanged",
+                        "read": "status",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "Status",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 2,
+                        "name": "source",
+                        "read": "source",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QUrl",
+                        "user": false,
+                        "write": "setSource"
+                    }
+                ],
+                "qualifiedClassName": "QQuickWidget",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QQuickWidget::Status"
+                            }
+                        ],
+                        "name": "statusChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "error",
+                                "type": "QQuickWindow::SceneGraphError"
+                            },
+                            {
+                                "name": "message",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "sceneGraphError",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QUrl"
+                            }
+                        ],
+                        "name": "setSource",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            },
+                            {
+                                "name": "component",
+                                "type": "QQmlComponent*"
+                            },
+                            {
+                                "name": "item",
+                                "type": "QObject*"
+                            }
+                        ],
+                        "name": "setContent",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "name": "continueExecute",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "name": "createFramebufferObject",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "name": "destroyFramebufferObject",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "name": "triggerUpdate",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "name": "focusObject",
+                                "type": "QObject*"
+                            }
+                        ],
+                        "name": "propagateFocusObjectChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QWidget"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qquickwidget.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQuickWidgetOffscreenWindow",
+                "object": true,
+                "qualifiedClassName": "QQuickWidgetOffscreenWindow",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQuickWindow"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qquickwidget_p.h",
+        "outputRevision": 68
+    }
+]

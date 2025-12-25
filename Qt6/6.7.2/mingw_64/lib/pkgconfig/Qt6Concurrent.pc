@@ -1,0 +1,13 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 Concurrent
+Description: Qt Concurrent module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6Concurrent
+Cflags: -I${includedir}/QtConcurrent -I${includedir} -DQT_CONCURRENT_LIB
+Requires: Qt6Core

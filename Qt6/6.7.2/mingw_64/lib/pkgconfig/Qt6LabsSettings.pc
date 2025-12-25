@@ -1,0 +1,13 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 LabsSettings
+Description: Qt LabsSettings module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6LabsSettings
+Cflags: -I${includedir}/QtLabsSettings -I${includedir} -DQT_LABSSETTINGS_LIB
+Requires: Qt6Core Qt6Qml

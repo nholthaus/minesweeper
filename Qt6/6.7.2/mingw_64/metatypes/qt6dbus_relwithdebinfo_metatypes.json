@@ -1,0 +1,1008 @@
+[
+    {
+        "classes": [
+            {
+                "className": "QDBusAbstractAdaptor",
+                "object": true,
+                "qualifiedClassName": "QDBusAbstractAdaptor",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qdbusabstractadaptor.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QDBusAdaptorConnector",
+                "object": true,
+                "qualifiedClassName": "QDBusAdaptorConnector",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "obj",
+                                "type": "QObject*"
+                            },
+                            {
+                                "name": "metaObject",
+                                "type": "const QMetaObject*"
+                            },
+                            {
+                                "name": "sid",
+                                "type": "int"
+                            },
+                            {
+                                "name": "args",
+                                "type": "QVariantList"
+                            }
+                        ],
+                        "name": "relaySignal",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "relaySlot",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "polish",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qdbusabstractadaptor_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QDBusAbstractInterface",
+                "object": true,
+                "qualifiedClassName": "QDBusAbstractInterface",
+                "slots": [
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "type": "QString"
+                            },
+                            {
+                                "type": "QString"
+                            },
+                            {
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "_q_serviceOwnerChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QDBusAbstractInterfaceBase"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qdbusabstractinterface.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QDBusConnection",
+                "enums": [
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "BusType",
+                        "values": [
+                            "SessionBus",
+                            "SystemBus",
+                            "ActivationBus"
+                        ]
+                    },
+                    {
+                        "alias": "RegisterOption",
+                        "isClass": false,
+                        "isFlag": true,
+                        "name": "RegisterOptions",
+                        "values": [
+                            "ExportAdaptors",
+                            "ExportScriptableSlots",
+                            "ExportScriptableSignals",
+                            "ExportScriptableProperties",
+                            "ExportScriptableInvokables",
+                            "ExportScriptableContents",
+                            "ExportNonScriptableSlots",
+                            "ExportNonScriptableSignals",
+                            "ExportNonScriptableProperties",
+                            "ExportNonScriptableInvokables",
+                            "ExportNonScriptableContents",
+                            "ExportAllSlots",
+                            "ExportAllSignals",
+                            "ExportAllProperties",
+                            "ExportAllInvokables",
+                            "ExportAllContents",
+                            "ExportAllSignal",
+                            "ExportChildObjects"
+                        ]
+                    },
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "UnregisterMode",
+                        "values": [
+                            "UnregisterNode",
+                            "UnregisterTree"
+                        ]
+                    }
+                ],
+                "gadget": true,
+                "qualifiedClassName": "QDBusConnection"
+            }
+        ],
+        "inputFile": "qdbusconnection.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QDBusConnectionPrivate",
+                "object": true,
+                "qualifiedClassName": "QDBusConnectionPrivate",
+                "signals": [
+                    {
+                        "access": "public",
+                        "name": "dispatchStatusChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "msg",
+                                "type": "QDBusMessage"
+                            }
+                        ],
+                        "name": "spyHooksFinished",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "pcall",
+                                "type": "QDBusPendingCallPrivate*"
+                            },
+                            {
+                                "name": "msg",
+                                "type": "void*"
+                            },
+                            {
+                                "name": "timeout",
+                                "type": "int"
+                            }
+                        ],
+                        "name": "messageNeedsSending",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "pcall",
+                                "type": "QDBusPendingCallPrivate*"
+                            },
+                            {
+                                "name": "msg",
+                                "type": "void*"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "messageNeedsSending",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "oldOwner",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "newOwner",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "serviceOwnerChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "error",
+                                "type": "QDBusError"
+                            },
+                            {
+                                "name": "message",
+                                "type": "QDBusMessage"
+                            }
+                        ],
+                        "name": "callWithCallbackFailed",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "enable",
+                                "type": "bool"
+                            }
+                        ],
+                        "name": "setDispatchEnabled",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "doDispatch",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "qintptr"
+                            }
+                        ],
+                        "name": "socketRead",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "qintptr"
+                            }
+                        ],
+                        "name": "socketWrite",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "o",
+                                "type": "QObject*"
+                            }
+                        ],
+                        "name": "objectDestroyed",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "obj",
+                                "type": "QObject*"
+                            },
+                            {
+                                "type": "const QMetaObject*"
+                            },
+                            {
+                                "name": "signalId",
+                                "type": "int"
+                            },
+                            {
+                                "name": "args",
+                                "type": "QVariantList"
+                            }
+                        ],
+                        "name": "relaySignal",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "oldOwner",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "newOwner",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "serviceOwnerChangedNoLock",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "name": "serviceName",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "registerServiceNoLock",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "name": "serviceName",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "unregisterServiceNoLock",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "name": "handleDBusDisconnection",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qdbusconnection_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QDBusConnectionInterface",
+                "enums": [
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "ServiceQueueOptions",
+                        "values": [
+                            "DontQueueService",
+                            "QueueService",
+                            "ReplaceExistingService"
+                        ]
+                    },
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "ServiceReplacementOptions",
+                        "values": [
+                            "DontAllowReplacement",
+                            "AllowReplacement"
+                        ]
+                    },
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "RegisterServiceReply",
+                        "values": [
+                            "ServiceNotRegistered",
+                            "ServiceRegistered",
+                            "ServiceQueued"
+                        ]
+                    }
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "registeredServiceNames",
+                        "read": "registeredServiceNames",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QDBusReply<QStringList>",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "activatableServiceNames",
+                        "read": "activatableServiceNames",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QDBusReply<QStringList>",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "QDBusConnectionInterface",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "service",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "serviceRegistered",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "service",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "serviceUnregistered",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "oldOwner",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "newOwner",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "serviceOwnerChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "error",
+                                "type": "QDBusError"
+                            },
+                            {
+                                "name": "call",
+                                "type": "QDBusMessage"
+                            }
+                        ],
+                        "name": "callWithCallbackFailed",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "NameAcquired",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "NameLost",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QString"
+                            },
+                            {
+                                "type": "QString"
+                            },
+                            {
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "NameOwnerChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "registeredServiceNames",
+                        "returnType": "QDBusReply<QStringList>"
+                    },
+                    {
+                        "access": "public",
+                        "name": "activatableServiceNames",
+                        "returnType": "QDBusReply<QStringList>"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "serviceName",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "isServiceRegistered",
+                        "returnType": "QDBusReply<bool>"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "serviceOwner",
+                        "returnType": "QDBusReply<QString>"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "serviceName",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "unregisterService",
+                        "returnType": "QDBusReply<bool>"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "serviceName",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "qoption",
+                                "type": "ServiceQueueOptions"
+                            },
+                            {
+                                "name": "roption",
+                                "type": "ServiceReplacementOptions"
+                            }
+                        ],
+                        "name": "registerService",
+                        "returnType": "QDBusReply<QDBusConnectionInterface::RegisterServiceReply>"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "serviceName",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "qoption",
+                                "type": "ServiceQueueOptions"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "registerService",
+                        "returnType": "QDBusReply<QDBusConnectionInterface::RegisterServiceReply>"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "serviceName",
+                                "type": "QString"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "registerService",
+                        "returnType": "QDBusReply<QDBusConnectionInterface::RegisterServiceReply>"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "serviceName",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "servicePid",
+                        "returnType": "QDBusReply<uint>"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "serviceName",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "serviceUid",
+                        "returnType": "QDBusReply<uint>"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "startService",
+                        "returnType": "QDBusReply<void>"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QDBusAbstractInterface"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qdbusconnectioninterface.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QDBusConnectionManager",
+                "object": true,
+                "qualifiedClassName": "QDBusConnectionManager",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QDaemonThread"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qdbusconnectionmanager_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QDBusError",
+                "enums": [
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "ErrorType",
+                        "values": [
+                            "NoError",
+                            "Other",
+                            "Failed",
+                            "NoMemory",
+                            "ServiceUnknown",
+                            "NoReply",
+                            "BadAddress",
+                            "NotSupported",
+                            "LimitsExceeded",
+                            "AccessDenied",
+                            "NoServer",
+                            "Timeout",
+                            "NoNetwork",
+                            "AddressInUse",
+                            "Disconnected",
+                            "InvalidArgs",
+                            "UnknownMethod",
+                            "TimedOut",
+                            "InvalidSignature",
+                            "UnknownInterface",
+                            "UnknownObject",
+                            "UnknownProperty",
+                            "PropertyReadOnly",
+                            "InternalError",
+                            "InvalidService",
+                            "InvalidObjectPath",
+                            "InvalidInterface",
+                            "InvalidMember",
+                            "LastErrorType"
+                        ]
+                    }
+                ],
+                "gadget": true,
+                "qualifiedClassName": "QDBusError"
+            }
+        ],
+        "inputFile": "qdbuserror.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QDBusPendingCallWatcher",
+                "object": true,
+                "qualifiedClassName": "QDBusPendingCallWatcher",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "self",
+                                "type": "QDBusPendingCallWatcher*"
+                            }
+                        ],
+                        "name": "finished",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "isCloned": true,
+                        "name": "finished",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    },
+                    {
+                        "access": "public",
+                        "name": "QDBusPendingCall"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qdbuspendingcall.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QDBusPendingCallWatcherHelper",
+                "object": true,
+                "qualifiedClassName": "QDBusPendingCallWatcherHelper",
+                "signals": [
+                    {
+                        "access": "public",
+                        "name": "finished",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "msg",
+                                "type": "QDBusMessage"
+                            }
+                        ],
+                        "name": "reply",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "error",
+                                "type": "QDBusError"
+                            },
+                            {
+                                "name": "msg",
+                                "type": "QDBusMessage"
+                            }
+                        ],
+                        "name": "error",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qdbuspendingcall_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QDBusServer",
+                "object": true,
+                "qualifiedClassName": "QDBusServer",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "connection",
+                                "type": "QDBusConnection"
+                            }
+                        ],
+                        "name": "newConnection",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qdbusserver.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QDBusServiceWatcher",
+                "enums": [
+                    {
+                        "alias": "WatchModeFlag",
+                        "isClass": false,
+                        "isFlag": true,
+                        "name": "WatchMode",
+                        "values": [
+                            "WatchForRegistration",
+                            "WatchForUnregistration",
+                            "WatchForOwnerChange"
+                        ]
+                    }
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "bindable": "bindableWatchedServices",
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "watchedServices",
+                        "read": "watchedServices",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QStringList",
+                        "user": false,
+                        "write": "setWatchedServices"
+                    },
+                    {
+                        "bindable": "bindableWatchMode",
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "watchMode",
+                        "read": "watchMode",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "WatchMode",
+                        "user": false,
+                        "write": "setWatchMode"
+                    }
+                ],
+                "qualifiedClassName": "QDBusServiceWatcher",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "service",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "serviceRegistered",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "service",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "serviceUnregistered",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "service",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "oldOwner",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "newOwner",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "serviceOwnerChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "type": "QString"
+                            },
+                            {
+                                "type": "QString"
+                            },
+                            {
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "_q_serviceOwnerChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qdbusservicewatcher.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QDBusVirtualObject",
+                "object": true,
+                "qualifiedClassName": "QDBusVirtualObject",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qdbusvirtualobject.h",
+        "outputRevision": 68
+    }
+]

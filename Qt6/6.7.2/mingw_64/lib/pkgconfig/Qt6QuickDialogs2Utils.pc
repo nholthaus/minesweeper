@@ -1,0 +1,13 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 QuickDialogs2Utils
+Description: Qt QuickDialogs2Utils module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6QuickDialogs2Utils
+Cflags: -I${includedir}/QtQuickDialogs2Utils -I${includedir} -DQT_QUICKDIALOGS2UTILS_LIB
+Requires: Qt6Core

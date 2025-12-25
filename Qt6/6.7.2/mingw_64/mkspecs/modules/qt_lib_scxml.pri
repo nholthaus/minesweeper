@@ -1,0 +1,19 @@
+QT.scxml.VERSION = 6.7.2
+QT.scxml.name = QtScxml
+QT.scxml.module = Qt6Scxml
+QT.scxml.libs = $$QT_MODULE_LIB_BASE
+QT.scxml.ldflags = 
+QT.scxml.includes = $$QT_MODULE_INCLUDE_BASE $$QT_MODULE_INCLUDE_BASE/QtScxml
+QT.scxml.frameworks = 
+QT.scxml.bins = $$QT_MODULE_BIN_BASE
+QT.scxml.plugin_types = scxmldatamodel
+QT.scxml.depends =  core
+QT.scxml.uses = 
+QT.scxml.module_config = v2
+QT.scxml.CONFIG = c++11 qscxmlc
+QT.scxml.DEFINES = QT_SCXML_LIB
+QT.scxml.enabled_features = scxml-ecmascriptdatamodel
+QT.scxml.disabled_features = 
+QT_CONFIG += scxml-ecmascriptdatamodel
+QT_MODULES += scxml
+

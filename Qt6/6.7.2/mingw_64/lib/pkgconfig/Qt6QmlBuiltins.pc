@@ -1,0 +1,13 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 QmlBuiltins
+Description: Qt QmlBuiltins module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6QmlBuiltins
+Cflags: -I${includedir}/QtQmlBuiltins -I${includedir} -DQT_QMLBUILTINS_LIB
+Requires: Qt6Core Qt6QmlIntegration

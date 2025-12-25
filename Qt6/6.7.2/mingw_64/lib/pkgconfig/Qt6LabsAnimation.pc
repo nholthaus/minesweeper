@@ -1,0 +1,13 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 LabsAnimation
+Description: Qt LabsAnimation module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6LabsAnimation
+Cflags: -I${includedir}/QtLabsAnimation -I${includedir} -DQT_LABSANIMATION_LIB
+Requires: Qt6Qml Qt6Quick

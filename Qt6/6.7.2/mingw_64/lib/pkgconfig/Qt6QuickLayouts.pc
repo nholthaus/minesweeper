@@ -1,0 +1,13 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 QuickLayouts
+Description: Qt QuickLayouts module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6QuickLayouts
+Cflags: -I${includedir}/QtQuickLayouts -I${includedir} -DQT_QUICKLAYOUTS_LIB
+Requires: Qt6Core Qt6Gui Qt6Quick Qt6Qml

@@ -1,0 +1,13 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 QmlCompiler
+Description: Qt QmlCompiler module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6QmlCompiler
+Cflags: -I${includedir}/QtQmlCompiler -I${includedir} -DQT_QMLCOMPILER_LIB
+Requires: Qt6Core Qt6Qml

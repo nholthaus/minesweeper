@@ -1,0 +1,12 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 QuickControls2Imagine
+Description: Qt QuickControls2Imagine module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6QuickControls2Imagine
+Cflags: -I${includedir}/QtQuickControls2Imagine -I${includedir} -DQT_QUICKCONTROLS2IMAGINE_LIB

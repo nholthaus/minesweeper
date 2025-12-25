@@ -1,0 +1,5 @@
+#!D:\a\mingw-builds\mingw-builds\buildroot\x86_64-1120-posix-seh-rt_v9-rev3\mingw64\opt/bin/python3.9.exe
+import sys
+from lib2to3.main import main
+
+sys.exit(main("lib2to3.fixes"))

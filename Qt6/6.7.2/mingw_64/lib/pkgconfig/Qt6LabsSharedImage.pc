@@ -1,0 +1,13 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 LabsSharedImage
+Description: Qt LabsSharedImage module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6LabsSharedImage
+Cflags: -I${includedir}/QtLabsSharedImage -I${includedir} -DQT_LABSSHAREDIMAGE_LIB
+Requires: Qt6Core Qt6Gui Qt6Quick
