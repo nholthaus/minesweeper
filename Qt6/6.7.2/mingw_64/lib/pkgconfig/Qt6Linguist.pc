@@ -1,0 +1,11 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 Linguist
+Description: Qt Linguist module
+Version: 6.7.2
+Cflags:  -DQT_LINGUIST_LIB

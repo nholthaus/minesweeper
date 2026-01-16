@@ -1,0 +1,11 @@
+QT.qmlbuiltins_private.VERSION = 6.7.2
+QT.qmlbuiltins_private.name = QtQmlBuiltins
+QT.qmlbuiltins_private.module =
+QT.qmlbuiltins_private.libs = $$QT_MODULE_LIB_BASE
+QT.qmlbuiltins_private.includes = $$QT_MODULE_INCLUDE_BASE/QtQmlBuiltins/6.7.2 $$QT_MODULE_INCLUDE_BASE/QtQmlBuiltins/6.7.2/QtQmlBuiltins
+QT.qmlbuiltins_private.frameworks = 
+QT.qmlbuiltins_private.depends = qmlbuiltins
+QT.qmlbuiltins_private.uses = 
+QT.qmlbuiltins_private.module_config = v2 staticlib internal_module
+QT.qmlbuiltins_private.enabled_features = qml-jit qml-profiler qml-preview qml-xml-http-request qml-locale qml-animation qml-worker-script qml-itemmodel qml-xmllistmodel qml-python
+QT.qmlbuiltins_private.disabled_features = 

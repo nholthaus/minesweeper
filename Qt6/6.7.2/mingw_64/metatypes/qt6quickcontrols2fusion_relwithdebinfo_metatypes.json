@@ -1,0 +1,330 @@
+[
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "Fusion"
+                    },
+                    {
+                        "name": "QML.Singleton",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.AddedInVersion",
+                        "value": "515"
+                    }
+                ],
+                "className": "QQuickFusionStyle",
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "palette",
+                                "type": "QQuickPalette*"
+                            }
+                        ],
+                        "name": "highlight",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "palette",
+                                "type": "QQuickPalette*"
+                            }
+                        ],
+                        "name": "highlightedText",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "palette",
+                                "type": "QQuickPalette*"
+                            }
+                        ],
+                        "name": "outline",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "palette",
+                                "type": "QQuickPalette*"
+                            }
+                        ],
+                        "name": "highlightedOutline",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "palette",
+                                "type": "QQuickPalette*"
+                            }
+                        ],
+                        "name": "tabFrameColor",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "palette",
+                                "type": "QQuickPalette*"
+                            },
+                            {
+                                "name": "highlighted",
+                                "type": "bool"
+                            },
+                            {
+                                "name": "down",
+                                "type": "bool"
+                            },
+                            {
+                                "name": "hovered",
+                                "type": "bool"
+                            }
+                        ],
+                        "name": "buttonColor",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "palette",
+                                "type": "QQuickPalette*"
+                            },
+                            {
+                                "name": "highlighted",
+                                "type": "bool"
+                            },
+                            {
+                                "name": "down",
+                                "type": "bool"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "buttonColor",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "palette",
+                                "type": "QQuickPalette*"
+                            },
+                            {
+                                "name": "highlighted",
+                                "type": "bool"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "buttonColor",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "palette",
+                                "type": "QQuickPalette*"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "buttonColor",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "palette",
+                                "type": "QQuickPalette*"
+                            },
+                            {
+                                "name": "highlighted",
+                                "type": "bool"
+                            },
+                            {
+                                "name": "enabled",
+                                "type": "bool"
+                            }
+                        ],
+                        "name": "buttonOutline",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "palette",
+                                "type": "QQuickPalette*"
+                            },
+                            {
+                                "name": "highlighted",
+                                "type": "bool"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "buttonOutline",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "palette",
+                                "type": "QQuickPalette*"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "buttonOutline",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "baseColor",
+                                "type": "QColor"
+                            }
+                        ],
+                        "name": "gradientStart",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "baseColor",
+                                "type": "QColor"
+                            }
+                        ],
+                        "name": "gradientStop",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "colorA",
+                                "type": "QColor"
+                            },
+                            {
+                                "name": "colorB",
+                                "type": "QColor"
+                            },
+                            {
+                                "name": "factor",
+                                "type": "int"
+                            }
+                        ],
+                        "name": "mergedColors",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "colorA",
+                                "type": "QColor"
+                            },
+                            {
+                                "name": "colorB",
+                                "type": "QColor"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "mergedColors",
+                        "returnType": "QColor"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "palette",
+                                "type": "QQuickPalette*"
+                            }
+                        ],
+                        "name": "grooveColor",
+                        "returnType": "QColor"
+                    }
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": true,
+                        "index": 0,
+                        "name": "lightShade",
+                        "read": "lightShade",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QColor",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": true,
+                        "index": 1,
+                        "name": "darkShade",
+                        "read": "darkShade",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QColor",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": true,
+                        "index": 2,
+                        "name": "topShadow",
+                        "read": "topShadow",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QColor",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": true,
+                        "index": 3,
+                        "name": "innerContrastLine",
+                        "read": "innerContrastLine",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QColor",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "QQuickFusionStyle",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qquickfusionstyle_p.h",
+        "outputRevision": 68
+    }
+]

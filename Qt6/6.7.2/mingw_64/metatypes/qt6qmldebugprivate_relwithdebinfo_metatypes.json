@@ -1,0 +1,552 @@
+[
+    {
+        "classes": [
+            {
+                "className": "QQmlDebugClient",
+                "object": true,
+                "qualifiedClassName": "QQmlDebugClient",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "state",
+                                "type": "State"
+                            }
+                        ],
+                        "name": "stateChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmldebugclient_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlDebugConnection",
+                "object": true,
+                "qualifiedClassName": "QQmlDebugConnection",
+                "signals": [
+                    {
+                        "access": "public",
+                        "name": "connected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "disconnected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "socketError",
+                                "type": "QAbstractSocket::SocketError"
+                            }
+                        ],
+                        "name": "socketError",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "socketState",
+                                "type": "QAbstractSocket::SocketState"
+                            }
+                        ],
+                        "name": "socketStateChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmldebugconnection_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlDebugMessageClient",
+                "object": true,
+                "qualifiedClassName": "QQmlDebugMessageClient",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QtMsgType"
+                            },
+                            {
+                                "type": "QString"
+                            },
+                            {
+                                "type": "QQmlDebugContextInfo"
+                            }
+                        ],
+                        "name": "message",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugClient"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmldebugmessageclient_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlDebugTranslationClient",
+                "object": true,
+                "qualifiedClassName": "QQmlDebugTranslationClient",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugClient"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmldebugtranslationclient_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlEngineControlClient",
+                "object": true,
+                "qualifiedClassName": "QQmlEngineControlClient",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "engineId",
+                                "type": "int"
+                            },
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "engineAboutToBeAdded",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "engineId",
+                                "type": "int"
+                            },
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "engineAdded",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "engineId",
+                                "type": "int"
+                            },
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "engineAboutToBeRemoved",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "engineId",
+                                "type": "int"
+                            },
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "engineRemoved",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugClient"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlenginecontrolclient_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlEngineDebugClient",
+                "object": true,
+                "qualifiedClassName": "QQmlEngineDebugClient",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "objectId",
+                                "type": "qint32"
+                            }
+                        ],
+                        "name": "newObject",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QByteArray"
+                            },
+                            {
+                                "type": "QVariant"
+                            }
+                        ],
+                        "name": "valueChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "result",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugClient"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlenginedebugclient_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlInspectorClient",
+                "object": true,
+                "qualifiedClassName": "QQmlInspectorClient",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "requestId",
+                                "type": "int"
+                            },
+                            {
+                                "name": "result",
+                                "type": "bool"
+                            }
+                        ],
+                        "name": "responseReceived",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugClient"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlinspectorclient_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlPreviewClient",
+                "object": true,
+                "qualifiedClassName": "QQmlPreviewClient",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "path",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "request",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "message",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "error",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "info",
+                                "type": "FpsInfo"
+                            }
+                        ],
+                        "name": "fps",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugClient"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlpreviewclient_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlProfilerClient",
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "recording",
+                        "notify": "recordingChanged",
+                        "read": "isRecording",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false,
+                        "write": "setRecording"
+                    }
+                ],
+                "qualifiedClassName": "QQmlProfilerClient",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "maximumTime",
+                                "type": "qint64"
+                            }
+                        ],
+                        "name": "complete",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "timestamp",
+                                "type": "qint64"
+                            },
+                            {
+                                "name": "engineIds",
+                                "type": "QList<int>"
+                            }
+                        ],
+                        "name": "traceFinished",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "timestamp",
+                                "type": "qint64"
+                            },
+                            {
+                                "name": "engineIds",
+                                "type": "QList<int>"
+                            }
+                        ],
+                        "name": "traceStarted",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "arg",
+                                "type": "bool"
+                            }
+                        ],
+                        "name": "recordingChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "features",
+                                "type": "quint64"
+                            }
+                        ],
+                        "name": "recordedFeaturesChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "cleared",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugClient"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlprofilerclient_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlProfilerEventReceiver",
+                "object": true,
+                "qualifiedClassName": "QQmlProfilerEventReceiver",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlprofilereventreceiver_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QV4DebugClient",
+                "object": true,
+                "qualifiedClassName": "QV4DebugClient",
+                "signals": [
+                    {
+                        "access": "public",
+                        "name": "connected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "interrupted",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "result",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "failure",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "stopped",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QQmlDebugClient"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qv4debugclient_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "LocalSocketSignalTranslator",
+                "object": true,
+                "qualifiedClassName": "LocalSocketSignalTranslator",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QAbstractSocket::SocketError"
+                            }
+                        ],
+                        "name": "socketError",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QAbstractSocket::SocketState"
+                            }
+                        ],
+                        "name": "socketStateChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmldebugconnection.cpp",
+        "outputRevision": 68
+    }
+]

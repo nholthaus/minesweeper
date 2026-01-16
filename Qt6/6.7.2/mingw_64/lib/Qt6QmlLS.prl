@@ -1,0 +1,5 @@
+QMAKE_PRL_TARGET = libQt6QmlLS.a
+QMAKE_PRL_CONFIG = static
+QMAKE_PRL_VERSION = 6.7.2
+QMAKE_PRL_LIBS = $$[QT_INSTALL_LIBS]/libQt6QmlDom.a $$[QT_INSTALL_LIBS]/libQt6QmlBuiltins.a $$[QT_INSTALL_LIBS]/libQt6Qml.a $$[QT_INSTALL_LIBS]/libQt6QmlCompiler.a $$[QT_INSTALL_LIBS]/libQt6Qml.a $$[QT_INSTALL_LIBS]/libQt6QmlBuiltins.a $$[QT_INSTALL_LIBS]/libQt6Network.a -lws2_32 -lshell32 $$[QT_INSTALL_LIBS]/libQt6QmlToolingSettings.a $$[QT_INSTALL_LIBS]/libQt6LanguageServer.a $$[QT_INSTALL_LIBS]/libQt6JsonRpc.a $$[QT_INSTALL_LIBS]/libQt6Core.a -lmpr -luserenv
+QMAKE_PRL_LIBS_FOR_CMAKE = $$[QT_INSTALL_LIBS]/libQt6QmlDom.a;$$[QT_INSTALL_LIBS]/libQt6QmlBuiltins.a;$$[QT_INSTALL_LIBS]/libQt6Qml.a;$$[QT_INSTALL_LIBS]/libQt6QmlCompiler.a;$$[QT_INSTALL_LIBS]/libQt6Qml.a;$$[QT_INSTALL_LIBS]/libQt6QmlBuiltins.a;$$[QT_INSTALL_LIBS]/libQt6Network.a;-lws2_32;-lshell32;$$[QT_INSTALL_LIBS]/libQt6QmlToolingSettings.a;$$[QT_INSTALL_LIBS]/libQt6LanguageServer.a;$$[QT_INSTALL_LIBS]/libQt6JsonRpc.a;$$[QT_INSTALL_LIBS]/libQt6Core.a;-lmpr;-luserenv

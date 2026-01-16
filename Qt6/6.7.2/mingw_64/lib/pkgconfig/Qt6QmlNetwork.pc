@@ -1,0 +1,13 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 QmlNetwork
+Description: Qt QmlNetwork module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6QmlNetwork
+Cflags: -I${includedir}/QtQmlNetwork -I${includedir} -DQT_QMLNETWORK_LIB
+Requires: Qt6Core Qt6Network Qt6Qml

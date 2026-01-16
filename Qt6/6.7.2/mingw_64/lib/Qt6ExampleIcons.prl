@@ -1,0 +1,5 @@
+QMAKE_PRL_TARGET = libQt6ExampleIcons.a
+QMAKE_PRL_CONFIG = static
+QMAKE_PRL_VERSION = 6.7.2
+QMAKE_PRL_LIBS = $$[QT_INSTALL_PREFIX]/lib/objects-RelWithDebInfo/ExampleIconsPrivate_resources_1/.qt/rcc/qrc_example_icons_init.cpp.obj $$[QT_INSTALL_LIBS]/libQt6ExampleIcons.a
+QMAKE_PRL_LIBS_FOR_CMAKE = $$[QT_INSTALL_PREFIX]/lib/objects-RelWithDebInfo/ExampleIconsPrivate_resources_1/.qt/rcc/qrc_example_icons_init.cpp.obj;$$[QT_INSTALL_LIBS]/libQt6ExampleIcons.a

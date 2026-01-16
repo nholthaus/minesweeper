@@ -1,0 +1,12 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 QuickControls2WindowsStyleImpl
+Description: Qt QuickControls2WindowsStyleImpl module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6QuickControls2WindowsStyleImpl
+Cflags: -I${includedir}/QtQuickControls2WindowsStyleImpl -I${includedir} -DQT_QUICKCONTROLS2WINDOWSSTYLEIMPL_LIB

@@ -1,0 +1,62 @@
+[
+    {
+        "classes": [
+            {
+                "className": "QOpenGLWidget",
+                "enums": [
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "UpdateBehavior",
+                        "values": [
+                            "NoPartialUpdate",
+                            "PartialUpdate"
+                        ]
+                    },
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "TargetBuffer",
+                        "type": "uint8_t",
+                        "values": [
+                            "LeftBuffer",
+                            "RightBuffer"
+                        ]
+                    }
+                ],
+                "object": true,
+                "qualifiedClassName": "QOpenGLWidget",
+                "signals": [
+                    {
+                        "access": "public",
+                        "name": "aboutToCompose",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "frameSwapped",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "aboutToResize",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "resized",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QWidget"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qopenglwidget.h",
+        "outputRevision": 68
+    }
+]

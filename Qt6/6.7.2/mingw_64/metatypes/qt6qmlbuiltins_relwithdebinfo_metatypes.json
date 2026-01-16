@@ -1,0 +1,955 @@
+[
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "void"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "undefined"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "void"
+                    }
+                ],
+                "className": "QQmlVoidForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlVoidForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "var"
+                    },
+                    {
+                        "name": "QML.Element",
+                        "value": "variant"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QVariant"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "QQmlVarForeign"
+                    }
+                ],
+                "className": "QQmlVarForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlVarForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "QtObject"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Object"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QObject"
+                    },
+                    {
+                        "name": "QML.Root",
+                        "value": "true"
+                    }
+                ],
+                "className": "QQmlQtObjectForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlQtObjectForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "int"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Number"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "int"
+                    }
+                ],
+                "className": "QQmlIntForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlIntForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "real"
+                    },
+                    {
+                        "name": "QML.Element",
+                        "value": "double"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Number"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "double"
+                    }
+                ],
+                "className": "QQmlDoubleForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlDoubleForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "string"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "String"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QString"
+                    }
+                ],
+                "className": "QQmlStringForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlStringForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "bool"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Boolean"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "bool"
+                    }
+                ],
+                "className": "QQmlBoolForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlBoolForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "date"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Date"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QDateTime"
+                    }
+                ],
+                "className": "QQmlDateForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlDateForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "url"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "URL"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QUrl"
+                    }
+                ],
+                "className": "QQmlUrlForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlUrlForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "regexp"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "RegExp"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QRegularExpression"
+                    }
+                ],
+                "className": "QQmlRegexpForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlRegexpForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "std::nullptr_t"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "QQmlNullForeign"
+                    }
+                ],
+                "className": "QQmlNullForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlNullForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QVariantMap"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Object"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    }
+                ],
+                "className": "QQmlQVariantMapForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlQVariantMapForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Number"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "qint8"
+                    }
+                ],
+                "className": "QQmlQint8Foreign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlQint8Foreign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Number"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "quint8"
+                    }
+                ],
+                "className": "QQmlQuint8Foreign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlQuint8Foreign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Number"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "short"
+                    }
+                ],
+                "className": "QQmlShortForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlShortForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Number"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "ushort"
+                    }
+                ],
+                "className": "QQmlUshortForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlUshortForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Number"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "uint"
+                    }
+                ],
+                "className": "QQmlUintForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlUintForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Number"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "qlonglong"
+                    }
+                ],
+                "className": "QQmlQlonglongForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlQlonglongForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Number"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "qulonglong"
+                    }
+                ],
+                "className": "QQmlQulonglongForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlQulonglongForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Number"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "float"
+                    }
+                ],
+                "className": "QQmlFloatForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlFloatForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QChar"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "String"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    }
+                ],
+                "className": "QQmlQCharForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlQCharForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QDate"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Date"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    }
+                ],
+                "className": "QQmlQDateForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlQDateForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QTime"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "Date"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    }
+                ],
+                "className": "QQmlQTimeForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlQTimeForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "ArrayBuffer"
+                    },
+                    {
+                        "name": "QML.ExtensionIsJavaScript",
+                        "value": "true"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QByteArray"
+                    }
+                ],
+                "className": "QQmlQByteArrayForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlQByteArrayForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QStringList"
+                    },
+                    {
+                        "name": "QML.Sequence",
+                        "value": "QString"
+                    }
+                ],
+                "className": "QQmlQStringListForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlQStringListForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QVariantList"
+                    },
+                    {
+                        "name": "QML.Sequence",
+                        "value": "QVariant"
+                    }
+                ],
+                "className": "QQmlQVariantListForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlQVariantListForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QObjectList"
+                    },
+                    {
+                        "name": "QML.Sequence",
+                        "value": "QObject*"
+                    }
+                ],
+                "className": "QQmlQObjectListForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlQObjectListForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QJSValue"
+                    },
+                    {
+                        "name": "QML.Extended",
+                        "value": "QQmlQJSValueForeign"
+                    }
+                ],
+                "className": "QQmlQJSValueForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlQJSValueForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "Component"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QQmlComponent"
+                    },
+                    {
+                        "name": "QML.Attached",
+                        "value": "QQmlComponentAttached"
+                    }
+                ],
+                "className": "QQmlComponentForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlComponentForeign"
+            },
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "anonymous"
+                    },
+                    {
+                        "name": "QML.Foreign",
+                        "value": "QQmlScriptString"
+                    }
+                ],
+                "className": "QQmlScriptStringForeign",
+                "gadget": true,
+                "qualifiedClassName": "QQmlScriptStringForeign"
+            }
+        ],
+        "inputFile": "qqmlbuiltins_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlComponent",
+                "enums": [
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "CompilationMode",
+                        "values": [
+                            "PreferSynchronous",
+                            "Asynchronous"
+                        ]
+                    },
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "Status",
+                        "values": [
+                            "Null",
+                            "Ready",
+                            "Loading",
+                            "Error"
+                        ]
+                    }
+                ],
+                "methods": [
+                    {
+                        "access": "public",
+                        "name": "errorString",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "protected",
+                        "arguments": [
+                            {
+                                "type": "QQmlV4Function*"
+                            }
+                        ],
+                        "name": "createObject",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "protected",
+                        "arguments": [
+                            {
+                                "name": "parent",
+                                "type": "QObject*"
+                            },
+                            {
+                                "name": "properties",
+                                "type": "QVariantMap"
+                            }
+                        ],
+                        "name": "createObject",
+                        "returnType": "QObject*"
+                    },
+                    {
+                        "access": "protected",
+                        "arguments": [
+                            {
+                                "name": "parent",
+                                "type": "QObject*"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "createObject",
+                        "returnType": "QObject*"
+                    },
+                    {
+                        "access": "protected",
+                        "isCloned": true,
+                        "name": "createObject",
+                        "returnType": "QObject*"
+                    },
+                    {
+                        "access": "protected",
+                        "arguments": [
+                            {
+                                "type": "QQmlV4Function*"
+                            }
+                        ],
+                        "name": "incubateObject",
+                        "returnType": "void"
+                    }
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "progress",
+                        "notify": "progressChanged",
+                        "read": "progress",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "qreal",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "status",
+                        "notify": "statusChanged",
+                        "read": "status",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "Status",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 2,
+                        "name": "url",
+                        "read": "url",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QUrl",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "QQmlComponent",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QQmlComponent::Status"
+                            }
+                        ],
+                        "name": "statusChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "qreal"
+                            }
+                        ],
+                        "name": "progressChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            }
+                        ],
+                        "name": "loadUrl",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            },
+                            {
+                                "name": "mode",
+                                "type": "CompilationMode"
+                            }
+                        ],
+                        "name": "loadUrl",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "uri",
+                                "type": "QAnyStringView"
+                            },
+                            {
+                                "name": "typeName",
+                                "type": "QAnyStringView"
+                            },
+                            {
+                                "name": "mode",
+                                "type": "QQmlComponent::CompilationMode"
+                            }
+                        ],
+                        "name": "loadFromModule",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "uri",
+                                "type": "QAnyStringView"
+                            },
+                            {
+                                "name": "typeName",
+                                "type": "QAnyStringView"
+                            }
+                        ],
+                        "isCloned": true,
+                        "name": "loadFromModule",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "type": "QByteArray"
+                            },
+                            {
+                                "name": "baseUrl",
+                                "type": "QUrl"
+                            }
+                        ],
+                        "name": "setData",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlcomponent.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlComponentAttached",
+                "object": true,
+                "qualifiedClassName": "QQmlComponentAttached",
+                "signals": [
+                    {
+                        "access": "public",
+                        "name": "completed",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "destruction",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qqmlcomponentattached_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QQmlScriptString",
+                "gadget": true,
+                "qualifiedClassName": "QQmlScriptString"
+            }
+        ],
+        "inputFile": "qqmlscriptstring.h",
+        "outputRevision": 68
+    }
+]

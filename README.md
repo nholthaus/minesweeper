@@ -21,9 +21,9 @@ You'll need CMake, a C++20 compiler (e.g. g++13 or clang-18) and Qt 6.7.2 or new
 ```bash
 git clone https://github.com/nholthaus/minesweeper.git
 cd minesweeper
+$env:PATH = "E:\minesweeper\Qt6\Tools\mingw1120_64\bin;E:\minesweeper\Qt6\6.7.2\mingw_64\bin";
 mkdir build
 cd build
-cmake -DCMAKE_BUILD_TYPE=Release ..
-cmake --build . --target minesweeper -- -j
-./bin/minesweeper
+mingw32-make -j8 2>&1
+Start-Process "e:\minesweeper\build\bin\minesweeper.exe"
 ```

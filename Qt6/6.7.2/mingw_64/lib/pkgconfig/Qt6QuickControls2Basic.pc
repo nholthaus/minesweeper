@@ -1,0 +1,12 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 QuickControls2Basic
+Description: Qt QuickControls2Basic module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6QuickControls2Basic
+Cflags: -I${includedir}/QtQuickControls2Basic -I${includedir} -DQT_QUICKCONTROLS2BASIC_LIB

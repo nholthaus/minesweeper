@@ -1,0 +1,70 @@
+[
+    {
+        "classes": [
+            {
+                "className": "QTestEventLoop",
+                "object": true,
+                "qualifiedClassName": "QTestEventLoop",
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "exitLoop",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qtesteventloop.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QAbstractItemModelTester",
+                "object": true,
+                "qualifiedClassName": "QAbstractItemModelTester",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qabstractitemmodeltester.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QTestLog",
+                "enums": [
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "LogMode",
+                        "values": [
+                            "Plain",
+                            "XML",
+                            "LightXML",
+                            "JUnitXML",
+                            "CSV",
+                            "TeamCity",
+                            "TAP"
+                        ]
+                    }
+                ],
+                "gadget": true,
+                "qualifiedClassName": "QTestLog"
+            }
+        ],
+        "inputFile": "qtestlog_p.h",
+        "outputRevision": 68
+    }
+]

@@ -1,0 +1,13 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 StateMachineQml
+Description: Qt StateMachineQml module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6StateMachineQml
+Cflags: -I${includedir}/QtStateMachineQml -I${includedir} -DQT_STATEMACHINEQML_LIB
+Requires: Qt6Core Qt6Qml Qt6StateMachine

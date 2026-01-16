@@ -1,0 +1,1136 @@
+[
+    {
+        "classes": [
+            {
+                "className": "QScxmlCppDataModel",
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "initialDataValues",
+                                "type": "QVariantMap"
+                            }
+                        ],
+                        "name": "setup",
+                        "returnType": "bool"
+                    }
+                ],
+                "object": true,
+                "qualifiedClassName": "QScxmlCppDataModel",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QScxmlDataModel"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qscxmlcppdatamodel.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QScxmlDataModel",
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "initialDataValues",
+                                "type": "QVariantMap"
+                            }
+                        ],
+                        "name": "setup",
+                        "returnType": "bool"
+                    }
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "bindable": "bindableStateMachine",
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "stateMachine",
+                        "notify": "stateMachineChanged",
+                        "read": "stateMachine",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QScxmlStateMachine*",
+                        "user": false,
+                        "write": "setStateMachine"
+                    }
+                ],
+                "qualifiedClassName": "QScxmlDataModel",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "stateMachine",
+                                "type": "QScxmlStateMachine*"
+                            }
+                        ],
+                        "name": "stateMachineChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qscxmldatamodel.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QScxmlDataModelPlugin",
+                "object": true,
+                "qualifiedClassName": "QScxmlDataModelPlugin",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qscxmldatamodelplugin_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QScxmlError",
+                "gadget": true,
+                "properties": [
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "valid",
+                        "read": "isValid",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "fileName",
+                        "read": "fileName",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 2,
+                        "name": "line",
+                        "read": "line",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 3,
+                        "name": "column",
+                        "read": "column",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 4,
+                        "name": "description",
+                        "read": "description",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "QScxmlError"
+            }
+        ],
+        "inputFile": "qscxmlerror.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QScxmlEvent",
+                "enums": [
+                    {
+                        "isClass": false,
+                        "isFlag": false,
+                        "name": "EventType",
+                        "values": [
+                            "PlatformEvent",
+                            "InternalEvent",
+                            "ExternalEvent"
+                        ]
+                    }
+                ],
+                "gadget": true,
+                "methods": [
+                    {
+                        "access": "public",
+                        "name": "clear",
+                        "returnType": "void"
+                    }
+                ],
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "name",
+                        "read": "name",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setName"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "eventType",
+                        "read": "eventType",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "EventType",
+                        "user": false,
+                        "write": "setEventType"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 2,
+                        "name": "scxmlType",
+                        "read": "scxmlType",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 3,
+                        "name": "sendId",
+                        "read": "sendId",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setSendId"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 4,
+                        "name": "origin",
+                        "read": "origin",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setOrigin"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 5,
+                        "name": "originType",
+                        "read": "originType",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setOriginType"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 6,
+                        "name": "invokeId",
+                        "read": "invokeId",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setInvokeId"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 7,
+                        "name": "delay",
+                        "read": "delay",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false,
+                        "write": "setDelay"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 8,
+                        "name": "data",
+                        "read": "data",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QVariant",
+                        "user": false,
+                        "write": "setData"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 9,
+                        "name": "errorEvent",
+                        "read": "isErrorEvent",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 10,
+                        "name": "errorMessage",
+                        "read": "errorMessage",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setErrorMessage"
+                    }
+                ],
+                "qualifiedClassName": "QScxmlEvent"
+            }
+        ],
+        "inputFile": "qscxmlevent.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QScxmlInvokableService",
+                "object": true,
+                "properties": [
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "parentStateMachine",
+                        "read": "parentStateMachine",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QScxmlStateMachine*",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "id",
+                        "read": "id",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 2,
+                        "name": "name",
+                        "read": "name",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "QScxmlInvokableService",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            },
+            {
+                "className": "QScxmlInvokableServiceFactory",
+                "object": true,
+                "properties": [
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "invokeInfo",
+                        "read": "invokeInfo",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QScxmlExecutableContent::InvokeInfo",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "parameters",
+                        "read": "parameters",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QList<QScxmlExecutableContent::ParameterInfo>",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 2,
+                        "name": "names",
+                        "read": "names",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QList<QScxmlExecutableContent::StringId>",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "QScxmlInvokableServiceFactory",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            },
+            {
+                "className": "QScxmlStaticScxmlServiceFactory",
+                "object": true,
+                "qualifiedClassName": "QScxmlStaticScxmlServiceFactory",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QScxmlInvokableServiceFactory"
+                    }
+                ]
+            },
+            {
+                "className": "QScxmlDynamicScxmlServiceFactory",
+                "object": true,
+                "qualifiedClassName": "QScxmlDynamicScxmlServiceFactory",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QScxmlInvokableServiceFactory"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qscxmlinvokableservice.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QScxmlScxmlService",
+                "object": true,
+                "properties": [
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "stateMachine",
+                        "read": "stateMachine",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QScxmlStateMachine*",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "QScxmlScxmlService",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QScxmlInvokableService"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qscxmlinvokableservice_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QScxmlNullDataModel",
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "initialDataValues",
+                                "type": "QVariantMap"
+                            }
+                        ],
+                        "name": "setup",
+                        "returnType": "bool"
+                    }
+                ],
+                "object": true,
+                "qualifiedClassName": "QScxmlNullDataModel",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QScxmlDataModel"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qscxmlnulldatamodel.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QScxmlStateMachine",
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "compress",
+                                "type": "bool"
+                            }
+                        ],
+                        "name": "stateNames",
+                        "returnType": "QStringList"
+                    },
+                    {
+                        "access": "public",
+                        "isCloned": true,
+                        "name": "stateNames",
+                        "returnType": "QStringList"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "compress",
+                                "type": "bool"
+                            }
+                        ],
+                        "name": "activeStateNames",
+                        "returnType": "QStringList"
+                    },
+                    {
+                        "access": "public",
+                        "isCloned": true,
+                        "name": "activeStateNames",
+                        "returnType": "QStringList"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "scxmlStateName",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "isActive",
+                        "returnType": "bool"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "event",
+                                "type": "QScxmlEvent*"
+                            }
+                        ],
+                        "name": "submitEvent",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "eventName",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "submitEvent",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "eventName",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "data",
+                                "type": "QVariant"
+                            }
+                        ],
+                        "name": "submitEvent",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "sendId",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "cancelDelayedEvent",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "target",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "isDispatchableTarget",
+                        "returnType": "bool"
+                    }
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "running",
+                        "notify": "runningChanged",
+                        "read": "isRunning",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false,
+                        "write": "setRunning"
+                    },
+                    {
+                        "bindable": "bindableInitialized",
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "initialized",
+                        "notify": "initializedChanged",
+                        "read": "isInitialized",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false
+                    },
+                    {
+                        "bindable": "bindableDataModel",
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 2,
+                        "name": "dataModel",
+                        "notify": "dataModelChanged",
+                        "read": "dataModel",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QScxmlDataModel*",
+                        "user": false,
+                        "write": "setDataModel"
+                    },
+                    {
+                        "bindable": "bindableInitialValues",
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 3,
+                        "name": "initialValues",
+                        "notify": "initialValuesChanged",
+                        "read": "initialValues",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QVariantMap",
+                        "user": false,
+                        "write": "setInitialValues"
+                    },
+                    {
+                        "bindable": "bindableInvokedServices",
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 4,
+                        "name": "invokedServices",
+                        "notify": "invokedServicesChanged",
+                        "read": "invokedServices",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QList<QScxmlInvokableService*>",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 5,
+                        "name": "sessionId",
+                        "read": "sessionId",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 6,
+                        "name": "name",
+                        "read": "name",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 7,
+                        "name": "invoked",
+                        "read": "isInvoked",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 8,
+                        "name": "parseErrors",
+                        "read": "parseErrors",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QList<QScxmlError>",
+                        "user": false
+                    },
+                    {
+                        "bindable": "bindableLoader",
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 9,
+                        "name": "loader",
+                        "notify": "loaderChanged",
+                        "read": "loader",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QScxmlCompiler::Loader*",
+                        "user": false,
+                        "write": "setLoader"
+                    },
+                    {
+                        "bindable": "bindableTableData",
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 10,
+                        "name": "tableData",
+                        "notify": "tableDataChanged",
+                        "read": "tableData",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QScxmlTableData*",
+                        "user": false,
+                        "write": "setTableData"
+                    }
+                ],
+                "qualifiedClassName": "QScxmlStateMachine",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "running",
+                                "type": "bool"
+                            }
+                        ],
+                        "name": "runningChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "invokedServices",
+                                "type": "QList<QScxmlInvokableService*>"
+                            }
+                        ],
+                        "name": "invokedServicesChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "label",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "msg",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "log",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "reachedStableState",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "finished",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "model",
+                                "type": "QScxmlDataModel*"
+                            }
+                        ],
+                        "name": "dataModelChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "initialValues",
+                                "type": "QVariantMap"
+                            }
+                        ],
+                        "name": "initialValuesChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "initialized",
+                                "type": "bool"
+                            }
+                        ],
+                        "name": "initializedChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "loader",
+                                "type": "QScxmlCompiler::Loader*"
+                            }
+                        ],
+                        "name": "loaderChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "tableData",
+                                "type": "QScxmlTableData*"
+                            }
+                        ],
+                        "name": "tableDataChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "start",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "stop",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "init",
+                        "returnType": "bool"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qscxmlstatemachine.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "EventLoopHook",
+                "methods": [
+                    {
+                        "access": "public",
+                        "name": "doProcessEvents",
+                        "returnType": "void"
+                    }
+                ],
+                "object": true,
+                "qualifiedClassName": "QScxmlInternal::EventLoopHook",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            },
+            {
+                "className": "ScxmlEventRouter",
+                "object": true,
+                "qualifiedClassName": "QScxmlInternal::ScxmlEventRouter",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "event",
+                                "type": "QScxmlEvent"
+                            }
+                        ],
+                        "name": "eventOccurred",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            },
+            {
+                "className": "StateMachineInfoProxy",
+                "object": true,
+                "qualifiedClassName": "QScxmlInternal::StateMachineInfoProxy",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "states",
+                                "type": "QList<QScxmlStateMachineInfo::StateId>"
+                            }
+                        ],
+                        "name": "statesEntered",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "states",
+                                "type": "QList<QScxmlStateMachineInfo::StateId>"
+                            }
+                        ],
+                        "name": "statesExited",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "transitions",
+                                "type": "QList<QScxmlStateMachineInfo::TransitionId>"
+                            }
+                        ],
+                        "name": "transitionsTriggered",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qscxmlstatemachine_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QScxmlStateMachineInfo",
+                "object": true,
+                "qualifiedClassName": "QScxmlStateMachineInfo",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "states",
+                                "type": "QList<QScxmlStateMachineInfo::StateId>"
+                            }
+                        ],
+                        "name": "statesEntered",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "states",
+                                "type": "QList<QScxmlStateMachineInfo::StateId>"
+                            }
+                        ],
+                        "name": "statesExited",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "transitions",
+                                "type": "QList<QScxmlStateMachineInfo::TransitionId>"
+                            }
+                        ],
+                        "name": "transitionsTriggered",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qscxmlstatemachineinfo_p.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "InvokeDynamicScxmlFactory",
+                "object": true,
+                "qualifiedClassName": "InvokeDynamicScxmlFactory",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QScxmlInvokableServiceFactory"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qscxmlcompiler.cpp",
+        "outputRevision": 68
+    }
+]

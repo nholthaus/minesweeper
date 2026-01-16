@@ -1,0 +1,220 @@
+[
+    {
+        "classes": [
+            {
+                "className": "QSqlDriver",
+                "object": true,
+                "qualifiedClassName": "QSqlDriver",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "source",
+                                "type": "QSqlDriver::NotificationSource"
+                            },
+                            {
+                                "name": "payload",
+                                "type": "QVariant"
+                            }
+                        ],
+                        "name": "notification",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "cancelQuery",
+                        "returnType": "bool"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qsqldriver.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QSqlDriverPlugin",
+                "object": true,
+                "qualifiedClassName": "QSqlDriverPlugin",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qsqldriverplugin.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QSqlQueryModel",
+                "object": true,
+                "qualifiedClassName": "QSqlQueryModel",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QAbstractTableModel"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qsqlquerymodel.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QSqlRelationalTableModel",
+                "object": true,
+                "qualifiedClassName": "QSqlRelationalTableModel",
+                "slots": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "row",
+                                "type": "int"
+                            }
+                        ],
+                        "name": "revertRow",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QSqlTableModel"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qsqlrelationaltablemodel.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "QSqlTableModel",
+                "object": true,
+                "qualifiedClassName": "QSqlTableModel",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "row",
+                                "type": "int"
+                            },
+                            {
+                                "name": "record",
+                                "type": "QSqlRecord&"
+                            }
+                        ],
+                        "name": "primeInsert",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "record",
+                                "type": "QSqlRecord&"
+                            }
+                        ],
+                        "name": "beforeInsert",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "row",
+                                "type": "int"
+                            },
+                            {
+                                "name": "record",
+                                "type": "QSqlRecord&"
+                            }
+                        ],
+                        "name": "beforeUpdate",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "row",
+                                "type": "int"
+                            }
+                        ],
+                        "name": "beforeDelete",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "select",
+                        "returnType": "bool"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "row",
+                                "type": "int"
+                            }
+                        ],
+                        "name": "selectRow",
+                        "returnType": "bool"
+                    },
+                    {
+                        "access": "public",
+                        "name": "submit",
+                        "returnType": "bool"
+                    },
+                    {
+                        "access": "public",
+                        "name": "revert",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "submitAll",
+                        "returnType": "bool"
+                    },
+                    {
+                        "access": "public",
+                        "name": "revertAll",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QSqlQueryModel"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qsqltablemodel.h",
+        "outputRevision": 68
+    }
+]

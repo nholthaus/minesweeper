@@ -1,0 +1,13 @@
+{
+    "name": "QuickControls2UniversalStyleImpl",
+    "repository": "qtdeclarative",
+    "version": "6.7.2",
+    "built_with": {
+        "compiler_id": "GNU",
+        "compiler_target": "",
+        "compiler_version": "11.2.0",
+        "cross_compiled": false,
+        "target_system": "Windows",
+        "architecture": "x86_64"
+    }
+}

@@ -1,0 +1,13 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 Scxml
+Description: Qt Scxml module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6Scxml
+Cflags: -I${includedir}/QtScxml -I${includedir} -DQT_SCXML_LIB
+Requires: Qt6Core

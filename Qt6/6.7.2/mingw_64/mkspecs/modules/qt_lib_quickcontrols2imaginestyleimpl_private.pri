@@ -1,0 +1,11 @@
+QT.quickcontrols2imaginestyleimpl_private.VERSION = 6.7.2
+QT.quickcontrols2imaginestyleimpl_private.name = QtQuickControls2ImagineStyleImpl
+QT.quickcontrols2imaginestyleimpl_private.module =
+QT.quickcontrols2imaginestyleimpl_private.libs = $$QT_MODULE_LIB_BASE
+QT.quickcontrols2imaginestyleimpl_private.includes = $$QT_MODULE_INCLUDE_BASE/QtQuickControls2ImagineStyleImpl/6.7.2 $$QT_MODULE_INCLUDE_BASE/QtQuickControls2ImagineStyleImpl/6.7.2/QtQuickControls2ImagineStyleImpl
+QT.quickcontrols2imaginestyleimpl_private.frameworks = 
+QT.quickcontrols2imaginestyleimpl_private.depends = quickcontrols2imaginestyleimpl
+QT.quickcontrols2imaginestyleimpl_private.uses = 
+QT.quickcontrols2imaginestyleimpl_private.module_config = v2 internal_module
+QT.quickcontrols2imaginestyleimpl_private.enabled_features = 
+QT.quickcontrols2imaginestyleimpl_private.disabled_features = 

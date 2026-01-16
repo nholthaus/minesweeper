@@ -1,0 +1,13 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 Core
+Description: Qt Core module
+Version: 6.7.2
+Libs: -L${libdir} -lQt6Core
+Cflags: -I${includedir}/QtCore -I${includedir} -DQT_CORE_LIB
+Requires: Qt6Platform

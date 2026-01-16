@@ -1,0 +1,12 @@
+prefix=/Users/qt/work/install
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/./bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+mkspecsdir=${prefix}/mkspecs
+
+Name: Qt6 Platform
+Description: Qt Platform module
+Version: 6.7.2
+Cflags: -I${mkspecsdir}/win32-g++ -I${includedir} -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -D_WIN64 -DMINGW_HAS_SECURE_API=1

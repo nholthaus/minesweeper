@@ -1,0 +1,3 @@
+QMAKE_PRL_TARGET = libQt6QuickControls2Material.a
+QMAKE_PRL_CONFIG = shared
+QMAKE_PRL_VERSION = 6.7.2
