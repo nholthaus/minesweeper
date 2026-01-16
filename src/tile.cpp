@@ -1,14 +1,14 @@
 #include "tile.h"
 
-#include <thread>
 #include <chrono>
+#include <thread>
 
 #include <QDebug>
-#include <QState>
 #include <QFinalState>
+#include <QGuiApplication>
 #include <QMouseEvent>
 #include <QSizePolicy>
-#include <QGuiApplication>
+#include <QState>
 #include <QStyleHints>
 
 bool Tile::m_firstClick = false;
@@ -21,21 +21,20 @@ const QString Tile::unrevealedStyleSheetLight =
 	"	border-radius: 1px;"
 	"}";
 
-const QString Tile::revealedStyleSheetLight =
-	"Tile"
-	"{"
-	"	border: 1px solid lightgray;"
-	"	background: whitesmoke;"
-	"}";
+const QString Tile::revealedStyleSheetLight = "Tile"
+											  "{"
+											  "	border: 1px solid lightgray;"
+											  "	background: whitesmoke;"
+											  "}";
 
-const QString Tile::revealedWithNumberStylesheetLight =
-	"Tile"
-	"{"
-	"	color: %1;"
-	"	font-weight: bold;"
-	"	border: 1px solid lightgray;"
-	"	background: whitesmoke;"
-	"}";
+const QString Tile::revealedWithNumberStylesheetLight = "Tile"
+														"{"
+														"	color: %1;"
+														"	font-size: 20px;"
+														"	font-weight: bold;"
+														"	border: 1px solid lightgray;"
+														"	background: whitesmoke;"
+														"}";
 
 const QString Tile::unrevealedStyleSheetDark =
 	"Tile"
@@ -45,21 +44,20 @@ const QString Tile::unrevealedStyleSheetDark =
 	"	border-radius: 1px;"
 	"}";
 
-const QString Tile::revealedStyleSheetDark =
-	"Tile"
-	"{"
-	"	border: 1px solid #1b1d20;"
-	"	background: #2b2c2f;"
-	"}";
+const QString Tile::revealedStyleSheetDark = "Tile"
+											 "{"
+											 "	border: 1px solid #1b1d20;"
+											 "	background: #2b2c2f;"
+											 "}";
 
-const QString Tile::revealedWithNumberStylesheetDark =
-	"Tile"
-	"{"
-	"	color: %1;"
-	"	font-weight: bold;"
-	"	border: 1px solid #1b1d10;"
-	"	background: #2b2c2f;"
-	"}";
+const QString Tile::revealedWithNumberStylesheetDark = "Tile"
+													   "{"
+													   "	color: %1;"
+													   "	font-size: 20px;"
+													   "	font-weight: bold;"
+													   "	border: 1px solid #1b1d10;"
+													   "	background: #2b2c2f;"
+													   "}";
 
 QIcon Tile::blankIcon()
 {
@@ -81,19 +79,19 @@ QIcon Tile::mineIcon()
 
 QIcon Tile::explosionIcon()
 {
-	static QIcon icon = QIcon(QPixmap(":/explosion").scaled(QSize(20, 20)));
+	static QIcon icon = QIcon(QPixmap(":/explosion").scaled(QSize(24, 24)));
 	return icon;
 }
 
 QIcon Tile::tadaIcon()
 {
-	static QIcon icon = QIcon(QPixmap(":/tada").scaled(QSize(22, 22)));
+	static QIcon icon = QIcon(QPixmap(":/tada").scaled(QSize(26, 26)));
 	return icon;
 }
 
 QIcon Tile::wrongIcon()
 {
-	static QIcon icon = QIcon(QPixmap(":/wrong").scaled(QSize(22, 22)));
+	static QIcon icon = QIcon(QPixmap(":/wrong").scaled(QSize(26, 26)));
 	return icon;
 }
 
@@ -129,10 +127,7 @@ void Tile::addNeighbor(Tile* tile)
 	connect(this, &Tile::unPreviewNeighbors, tile, &Tile::unPreview, Qt::QueuedConnection);
 }
 
-TileLocation Tile::location() const
-{
-	return m_location;
-}
+TileLocation Tile::location() const { return m_location; }
 
 void Tile::placeMine(bool val)
 {
@@ -141,60 +136,27 @@ void Tile::placeMine(bool val)
 		neighbor->incrementAdjacentMineCount();
 }
 
-bool Tile::isMine() const
-{
-	return m_isMine;
-}
+bool Tile::isMine() const { return m_isMine; }
 
-bool Tile::hasAdjacentMines() const
-{
-	return m_adjacentMineCount;
-}
+bool Tile::hasAdjacentMines() const { return m_adjacentMineCount; }
 
-unsigned int Tile::adjacentMineCount() const
-{
-	return m_adjacentMineCount;
-}
+unsigned int Tile::adjacentMineCount() const { return m_adjacentMineCount; }
 
-void Tile::incrementAdjacentMineCount()
-{
-	++m_adjacentMineCount;
-}
+void Tile::incrementAdjacentMineCount() { ++m_adjacentMineCount; }
 
-bool Tile::isFlagged() const
-{
-	return m_machine.configuration().contains(flaggedState);
-}
+bool Tile::isFlagged() const { return m_machine.configuration().contains(flaggedState); }
 
-bool Tile::isRevealed() const
-{
-	return m_machine.configuration().contains(revealedState);
-}
+bool Tile::isRevealed() const { return m_machine.configuration().contains(revealedState); }
 
-bool Tile::isUnrevealed() const
-{
-	return m_machine.configuration().contains(unrevealedState);
-}
+bool Tile::isUnrevealed() const { return m_machine.configuration().contains(unrevealedState); }
 
-unsigned int Tile::adjacentFlaggedCount() const
-{
-	return m_adjacentFlaggedCount;
-}
+unsigned int Tile::adjacentFlaggedCount() const { return m_adjacentFlaggedCount; }
 
-void Tile::incrementAdjacentFlaggedCount()
-{
-	++m_adjacentFlaggedCount;
-}
+void Tile::incrementAdjacentFlaggedCount() { ++m_adjacentFlaggedCount; }
 
-void Tile::decrementAdjacentFlaggedCount()
-{
-	--m_adjacentFlaggedCount;
-}
+void Tile::decrementAdjacentFlaggedCount() { --m_adjacentFlaggedCount; }
 
-QList<Tile*>& Tile::neighbors()
-{
-	return m_neighbors;
-}
+QList<Tile*>& Tile::neighbors() { return m_neighbors; }
 
 void Tile::mousePressEvent(QMouseEvent* e)
 {
@@ -236,20 +198,17 @@ void Tile::mouseMoveEvent(QMouseEvent* e)
 	}
 }
 
-QSize Tile::sizeHint() const
-{
-	return QSize(20, 20);
-}
+QSize Tile::sizeHint() const { return QSize(30, 30); }
 
 void Tile::createStateMachine()
 {
-	unrevealedState       = new QState;
-	previewState          = new QState;
+	unrevealedState		  = new QState;
+	previewState		  = new QState;
 	previewNeighborsState = new QState;
-	flaggedState          = new QState;
-	revealedState         = new QState;
+	flaggedState		  = new QState;
+	revealedState		  = new QState;
 	revealNeighborsState  = new QState;
-	disabledState         = new QFinalState;
+	disabledState		  = new QFinalState;
 
 	unrevealedState->addTransition(this, &Tile::leftClicked, revealedState);
 	unrevealedState->addTransition(this, &Tile::rightClicked, flaggedState);
@@ -270,71 +229,72 @@ void Tile::createStateMachine()
 
 	revealNeighborsState->addTransition(this, &Tile::reveal, revealedState);
 
-	connect(unrevealedState, &QState::entered, [this]()
-	{
-		this->setIcon(blankIcon());
-		this->setStyleSheet(unrevealedStyleSheet);
-	});
+	connect(unrevealedState, &QState::entered,
+			[this]()
+			{
+				this->setIcon(blankIcon());
+				this->setStyleSheet(unrevealedStyleSheet);
+			});
 
-	connect(previewState, &QState::entered, [this]()
-	{
-		this->setStyleSheet(revealedStyleSheet);
-	});
+	connect(previewState, &QState::entered, [this]() { this->setStyleSheet(revealedStyleSheet); });
 
-	connect(previewNeighborsState, &QState::entered, [this]()
-	{
-		for (auto neighbor : m_neighbors)
-			neighbor->preview();
-	});
+	connect(previewNeighborsState, &QState::entered,
+			[this]()
+			{
+				for (auto neighbor : m_neighbors)
+					neighbor->preview();
+			});
 
-	connect(revealNeighborsState, &QState::entered, [this]()
-	{
-		if (m_adjacentFlaggedCount == m_adjacentMineCount && m_adjacentMineCount)
-			revealNeighbors();
-		else
-			unPreviewNeighbors();
-		emit reveal();
-	});
+	connect(revealNeighborsState, &QState::entered,
+			[this]()
+			{
+				if (m_adjacentFlaggedCount == m_adjacentMineCount && m_adjacentMineCount)
+					revealNeighbors();
+				else
+					unPreviewNeighbors();
+				emit reveal();
+			});
 
-	connect(revealedState, &QState::entered, [this]()
-	{
-		unPreviewNeighbors();
-		this->setIcon(blankIcon());
-		this->setChecked(true);
-		if (!isMine())
-		{
-			setText();
-			if (!hasAdjacentMines())
-				revealNeighbors();
-			emit revealed();
-		}
-		else
-		{
-			emit detonated();
-			this->setStyleSheet(revealedStyleSheet);
-			QPushButton::setText("");
-			setIcon(mineIcon());
-		}
-	});
+	connect(revealedState, &QState::entered,
+			[this]()
+			{
+				unPreviewNeighbors();
+				this->setIcon(blankIcon());
+				this->setChecked(true);
+				if (!isMine())
+				{
+					setText();
+					if (!hasAdjacentMines())
+						revealNeighbors();
+					emit revealed();
+				}
+				else
+				{
+					emit detonated();
+					this->setStyleSheet(revealedStyleSheet);
+					QPushButton::setText("");
+					setIcon(mineIcon());
+				}
+			});
 
-	connect(flaggedState, &QState::entered, [this]()
-	{
-		this->setIcon(flagIcon());
-		for (auto neighbor : m_neighbors)
-			neighbor->incrementAdjacentFlaggedCount();
-		emit flagged(m_isMine);
-	});
+	connect(flaggedState, &QState::entered,
+			[this]()
+			{
+				this->setIcon(flagIcon());
+				for (auto neighbor : m_neighbors)
+					neighbor->incrementAdjacentFlaggedCount();
+				emit flagged(m_isMine);
+			});
 
-	connect(flaggedState, &QState::exited, [this]()
-	{
-		for (auto neighbor : m_neighbors)
-			neighbor->decrementAdjacentFlaggedCount();
-		emit unFlagged(m_isMine);
-	});
+	connect(flaggedState, &QState::exited,
+			[this]()
+			{
+				for (auto neighbor : m_neighbors)
+					neighbor->decrementAdjacentFlaggedCount();
+				emit unFlagged(m_isMine);
+			});
 
-	connect(disabledState, &QState::entered, [this]()
-	{
-	});
+	connect(disabledState, &QState::entered, [this]() {});
 
 	m_machine.addState(unrevealedState);
 	m_machine.addState(previewState);
@@ -425,14 +385,14 @@ void Tile::setTheme(Qt::ColorScheme colorScheme)
 {
 	if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
 	{
-		unrevealedStyleSheet         = unrevealedStyleSheetDark;
-		revealedStyleSheet           = revealedStyleSheetDark;
+		unrevealedStyleSheet		 = unrevealedStyleSheetDark;
+		revealedStyleSheet			 = revealedStyleSheetDark;
 		revealedWithNumberStylesheet = revealedWithNumberStylesheetDark;
 	}
 	else
 	{
-		unrevealedStyleSheet         = unrevealedStyleSheetLight;
-		revealedStyleSheet           = revealedStyleSheetLight;
+		unrevealedStyleSheet		 = unrevealedStyleSheetLight;
+		revealedStyleSheet			 = revealedStyleSheetLight;
 		revealedWithNumberStylesheet = revealedWithNumberStylesheetLight;
 	}
 
@@ -440,7 +400,7 @@ void Tile::setTheme(Qt::ColorScheme colorScheme)
 	{
 		this->setStyleSheet(unrevealedStyleSheet);
 	}
-	if(isRevealed())
+	if (isRevealed())
 	{
 		this->setStyleSheet(revealedStyleSheet);
 		setText();

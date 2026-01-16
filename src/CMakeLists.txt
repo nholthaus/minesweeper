@@ -5,32 +5,62 @@ configure_file(appinfo.h.in ${CMAKE_CURRENT_BINARY_DIR}/appinfo.h @ONLY NEWLINE_
 qt_add_resources(RESOURCES ../resources/resources.qrc)
 
 qt6_add_executable(${PROJECT_NAME}
+                   # Core gameplay (BLACK BOX - unchanged)
                    gameboard.h
                    gameboard.cpp
-                   gameStats.cpp
-                   gameStats.h
-                   highScore.cpp
-                   highScore.h
-                   highScoreDialog.cpp
-                   highScoreDialog.h
-                   highScoreModel.cpp
-                   highScoreModel.h
-                   main.cpp
+                   tile.cpp
+                   tile.h
+                   
+                   # Original UI components
                    mainwindow.cpp
                    mainwindow.h
                    mineCounter.h
                    mineCounter.cpp
                    minetimer.cpp
                    minetimer.h
-                   tile.cpp
-                   tile.h
+                   
+                   # Original features
+                   gameStats.cpp
+                   gameStats.h
+                   gameStatsDialog.cpp
+                   gameStatsDialog.h
+                   highScore.cpp
+                   highScore.h
+                   highScoreDialog.cpp
+                   highScoreDialog.h
+                   highScoreModel.cpp
+                   highScoreModel.h
                    versionChecker.cpp
                    versionChecker.h
+                   
+                   # EXTENSIONS - New features
+                   gameEnums.h
+                   gameController.h
+                   gameController.cpp
+                   themeManager.h
+                   themeManager.cpp
+                   customGameDialog.h
+                   customGameDialog.cpp
+                   startMenuDialog.h
+                   startMenuDialog.cpp
+                   pauseOverlay.h
+                   pauseOverlay.cpp
+                   hintSystem.h
+                   hintSystem.cpp
+                   leaderboard.h
+                   leaderboard.cpp
+                   leaderboardDialog.h
+                   leaderboardDialog.cpp
+                   mainwindow_ext.h
+                   mainwindow_ext.cpp
+                   
+                   # Entry point
+                   main.cpp
+                   
+                   # Resources
                    ../resources/resources.rc
                    ${RESOURCES}
                    ${CMAKE_CURRENT_BINARY_DIR}/appinfo.h
-                   gameStatsDialog.cpp
-                   gameStatsDialog.h
                    )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE

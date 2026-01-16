@@ -1,6 +1,6 @@
 #pragma once
-#include <QList>
 #include <QFrame>
+#include <QList>
 #include <QSet>
 
 #include "tile.h"
@@ -16,6 +16,18 @@ public:
 	unsigned int numCols() const { return m_numCols; }
 	unsigned int numRows() const { return m_numRows; }
 	unsigned int numMines() const { return m_numMines; }
+
+	// Extension accessor - read-only access to tiles for hint system
+	// Does NOT modify core gameplay logic
+	Tile* tileAt(unsigned int row, unsigned int col) const
+	{
+		if (row < m_numRows && col < m_numCols && row < static_cast<unsigned int>(m_tiles.size()))
+		{
+			if (col < static_cast<unsigned int>(m_tiles[row].size()))
+				return m_tiles[row][col];
+		}
+		return nullptr;
+	}
 
 public slots:
 
@@ -49,7 +61,7 @@ private:
 	unsigned int m_numCols;
 	unsigned int m_numMines;
 
-	QList<QList<Tile*>>                      m_tiles;
+	QList<QList<Tile*>>						 m_tiles;
 	QList<QPair<unsigned int, unsigned int>> m_tileIndices;
 
 	QSet<Tile*> m_mines;
