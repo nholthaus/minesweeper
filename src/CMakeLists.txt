@@ -63,6 +63,10 @@ elseif (APPLE)
 	install(TARGETS ${PROJECT_NAME}
 	        BUNDLE DESTINATION ${CMAKE_BINARY_DIR}
 	        COMPONENT Runtime)
+else ()
+	install(TARGETS ${PROJECT_NAME}
+	        RUNTIME DESTINATION bin
+	        )
 endif (WIN32)
 
 #-------------------------------------------------------------------------------
