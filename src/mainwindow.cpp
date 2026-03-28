@@ -339,7 +339,6 @@ void MainWindow::saveSettings()
 		stream << gameStats;
 		settings.setValue("stats", data);
 	}
-	settings.endArray();
 }
 
 void MainWindow::loadSettings()
@@ -369,8 +368,6 @@ void MainWindow::loadSettings()
 		QDataStream stream(&data, QIODevice::ReadOnly);
 		stream >> gameStats;
 	}
-
-	settings.endArray();
 }
 
 void MainWindow::changeEvent(QEvent* event)
