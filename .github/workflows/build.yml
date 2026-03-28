@@ -189,7 +189,7 @@ jobs:
           GNUPGHOME: ${{ runner.temp }}/gnupg
           APT_GPG_KEY_ID: ${{ secrets.APT_GPG_KEY_ID }}
           APT_GPG_PASSPHRASE: ${{ secrets.APT_GPG_PASSPHRASE }}
-        run: .github/scripts/publish-apt-repo.sh "${{ github.workspace }}/site" "${{ github.workspace }}/debs"
+        run: bash .github/scripts/publish-apt-repo.sh "${{ github.workspace }}/site" "${{ github.workspace }}/debs"
 
       - name: Publish GitHub Pages branch
         env:
