@@ -46,3 +46,19 @@ Priority: optional
 Homepage: https://github.com/nholthaus/minesweeper
 Description: Free Qt/C++17 Minesweeper
 
+Package: minesweeper
+Version: 1.1.8
+Architecture: amd64
+Maintainer: Nic Holthaus
+Installed-Size: 1697
+Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libqt6concurrent6t64 (>= 6.1.2), libqt6core6t64 (>= 6.4.0), libqt6gui6t64 (>= 6.1.2), libqt6network6t64 (>= 6.1.2), libqt6statemachine6 (>= 6.2.1), libqt6widgets6t64 (>= 6.1.2), libstdc++6 (>= 11)
+Filename: pool/main/m/minesweeper/minesweeper_1.1.8_amd64.deb
+Size: 1212334
+MD5sum: 653529d297784155bd0b696a914679a5
+SHA1: 17bfc78cd8458290887819a650bff42150b4802c
+SHA256: 07ad3ab1ef0474682d453f3fd70d92609d9b498339ff842f87ceb1c328bde8ce
+Section: games
+Priority: optional
+Homepage: https://github.com/nholthaus/minesweeper
+Description: Free Qt/C++17 Minesweeper
+
