@@ -70,11 +70,11 @@ jobs:
 
       - name: Install Application (macOS)
         if: matrix.os == 'macos-latest'
-        run: cmake --install ${{github.workspace}}/build
+        run: cmake --install ${{github.workspace}}/build --prefix ${{github.workspace}}/bundle
 
       - name: zip app bundle
         if: matrix.os == 'macos-latest'
-        run: ditto -c -k --sequesterRsrc --keepParent ${{github.workspace}}/build/minesweeper.app ${{github.workspace}}/build/minesweeper.app.zip
+        run: ditto -c -k --sequesterRsrc --keepParent ${{github.workspace}}/bundle/minesweeper.app ${{github.workspace}}/build/minesweeper.app.zip
 
       - name: Upload .app Bundle
         if: matrix.os == 'macos-latest'

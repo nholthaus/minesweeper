@@ -57,12 +57,12 @@ elseif (APPLE)
 	set_target_properties(${PROJECT_NAME} PROPERTIES
 	                      MACOSX_BUNDLE_BUNDLE_NAME "Minesweeper"
 	                      MACOSX_BUNDLE_BUNDLE_VERSION "${GIT_TAG}"
-	                      MACOSX_BUNDLE_LONG_VERSION_STRING "${GIT_TAG}"
+	                      MACOSX_BUNDLE_SHORT_VERSION_STRING "${GIT_TAG}"
 	                      MACOSX_BUNDLE_GUI_IDENTIFIER "github.com/nholthaus/minesweeper"
 	                      )
 	# Install the .app bundle
 	install(TARGETS ${PROJECT_NAME}
-	        BUNDLE DESTINATION ${CMAKE_BINARY_DIR}
+	        BUNDLE DESTINATION .
 	        COMPONENT Runtime)
 else ()
 	set_target_properties(${PROJECT_NAME} PROPERTIES
@@ -89,6 +89,13 @@ include(InstallRequiredSystemLibraries)
 if (WIN32)
 	include(windeployqt)
 	windeployqt(${PROJECT_NAME})
+	qt_generate_deploy_app_script(
+			TARGET ${PROJECT_NAME}
+			OUTPUT_SCRIPT deploy_script
+			NO_UNSUPPORTED_PLATFORM_ERROR
+			)
+	install(SCRIPT ${deploy_script})
+elseif (APPLE)
 	qt_generate_deploy_app_script(
 			TARGET ${PROJECT_NAME}
 			OUTPUT_SCRIPT deploy_script
