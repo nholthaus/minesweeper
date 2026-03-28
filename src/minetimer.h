@@ -7,6 +7,7 @@ public:
 	MineTimer(QWidget* parent = nullptr);
 
 	void incrementTime();
+	void reset();
 	int time() const;
 	void setTheme(Qt::ColorScheme colorScheme);
 	virtual QSize sizeHint() const override;

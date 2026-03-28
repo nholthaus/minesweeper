@@ -18,6 +18,12 @@ void MineTimer::incrementTime()
 	display(++m_seconds);
 }
 
+void MineTimer::reset()
+{
+	m_seconds = 0;
+	display(0);
+}
+
 int MineTimer::time() const
 {
 	return m_seconds;
