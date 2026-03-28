@@ -94,8 +94,6 @@ private:
 	QState*        victoryState;
 	QState*        defeatState;
 
-	Tile* firstClicked;
-
 	quint32 numRows;
 	quint32 numCols;
 	quint32 numMines;

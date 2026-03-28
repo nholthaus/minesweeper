@@ -6,7 +6,6 @@
 #include "mineCounter.h"
 #include "minetimer.h"
 
-#include <QDebug>
 #include <QFrame>
 #include <QGuiApplication>
 #include <QInputDialog>
@@ -77,6 +76,8 @@ void MainWindow::setupGameUi()
 	if (mainFrame != nullptr)
 		return;
 
+	// Keep the main window shell stable across games. Replacing the central widget
+	// during New Game caused platform-specific hide/flash behavior.
 	mainFrame = new QFrame(this);
 	auto* mainFrameLayout = new QVBoxLayout(mainFrame);
 	auto* infoLayout      = new QHBoxLayout;
