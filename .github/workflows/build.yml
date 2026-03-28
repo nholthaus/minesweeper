@@ -7,6 +7,9 @@ on:
   pull_request:
     branches: [ "master" ]
 
+permissions:
+  contents: write
+
 env:
   BUILD_TYPE: Release
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -138,3 +141,65 @@ jobs:
             ${{ github.workspace }}/Minesweeper-*.exe
             ${{ github.workspace }}/minesweeper.app.zip
             ${{ github.workspace }}/*.deb
+
+  apt-repo:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: minesweeper-linux-deb
+          path: ${{ github.workspace }}/debs
+
+      - name: Install APT repository publishing dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y apt-utils dpkg-dev gnupg
+
+      - name: Import APT signing key
+        env:
+          APT_GPG_PRIVATE_KEY: ${{ secrets.APT_GPG_PRIVATE_KEY }}
+        run: |
+          export GNUPGHOME="${RUNNER_TEMP}/gnupg"
+          mkdir -p "${GNUPGHOME}"
+          chmod 700 "${GNUPGHOME}"
+          printf '%s' "${APT_GPG_PRIVATE_KEY}" | gpg --batch --import
+
+      - name: Checkout GitHub Pages branch
+        env:
+          GH_REPO_URL: https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads "${GH_REPO_URL}" gh-pages >/dev/null 2>&1; then
+            git clone --branch gh-pages --depth 1 "${GH_REPO_URL}" "${{ github.workspace }}/site"
+          else
+            mkdir -p "${{ github.workspace }}/site"
+            cd "${{ github.workspace }}/site"
+            git init
+            git checkout --orphan gh-pages
+          fi
+
+      - name: Update signed APT repository
+        env:
+          GNUPGHOME: ${{ runner.temp }}/gnupg
+          APT_GPG_KEY_ID: ${{ secrets.APT_GPG_KEY_ID }}
+          APT_GPG_PASSPHRASE: ${{ secrets.APT_GPG_PASSPHRASE }}
+        run: .github/scripts/publish-apt-repo.sh "${{ github.workspace }}/site" "${{ github.workspace }}/debs"
+
+      - name: Publish GitHub Pages branch
+        env:
+          GH_REPO_URL: https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+        run: |
+          cd "${{ github.workspace }}/site"
+          git add .
+          if git diff --cached --quiet; then
+            echo "No APT repo changes to publish"
+            exit 0
+          fi
+          git commit -m "Publish APT repo for ${{ github.ref_name }}"
+          git push "${GH_REPO_URL}" HEAD:gh-pages

@@ -4,7 +4,7 @@
 
 A free C++/Qt implementation of minesweeper, now with dark mode!
 
-Download the latest Windows installer [here](https://github.com/nholthaus/minesweeper/releases/tag/1.0.4). For MacOS or Linux, [build it from source](#build-instructions-macoslinux)
+Download the latest release assets [here](https://github.com/nholthaus/minesweeper/releases/latest). Linux users can either [install from the APT repository](#linux-apt-repository) or [build from source](#build-instructions-macoslinux).
 
 ![screenshot_dark](resources/images/screenshot_dark.png)
 
@@ -27,3 +27,34 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 cmake --build . --target minesweeper -- -j
 ./bin/minesweeper
 ```
+
+## Linux APT Repository
+
+Install the signing key:
+
+```bash
+curl -fsSL https://nholthaus.github.io/minesweeper/apt/minesweeper-archive-keyring.asc | gpg --dearmor | sudo tee /usr/share/keyrings/minesweeper-archive-keyring.gpg >/dev/null
+```
+
+Add the repository:
+
+```bash
+echo "deb [signed-by=/usr/share/keyrings/minesweeper-archive-keyring.gpg] https://nholthaus.github.io/minesweeper/apt stable main" | sudo tee /etc/apt/sources.list.d/minesweeper.list
+sudo apt update
+```
+
+Install or upgrade Minesweeper:
+
+```bash
+sudo apt install minesweeper
+```
+
+## Maintainer Notes
+
+The APT repository is published from tag builds to the `gh-pages` branch and is signed with the following GitHub Actions secrets:
+
+- `APT_GPG_PRIVATE_KEY`: ASCII-armored private key used to sign `Release`
+- `APT_GPG_KEY_ID`: key ID or fingerprint for the signing key
+- `APT_GPG_PASSPHRASE`: passphrase for the private key, if any
+
+GitHub Pages should be configured to serve the `gh-pages` branch from the repository root.
