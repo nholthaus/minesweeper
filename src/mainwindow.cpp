@@ -9,6 +9,9 @@
 #include <QFrame>
 #include <QGuiApplication>
 #include <QInputDialog>
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QLabel>
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QSettings>
@@ -16,6 +19,7 @@
 #include <QStatusBar>
 #include <QStyleHints>
 #include <QTimer>
+#include <QRegularExpression>
 #include <QVBoxLayout>
 #include <qfile.h>
 #include <qstyle.h>
@@ -328,8 +332,60 @@ void MainWindow::setupMenus()
 					licenseText = licenseFile.readAll();
 					licenseFile.close();
 				}
-				QMessageBox::about(this, "About Minesweeper",
-								   QString("Minesweeper").append("\nVersion: ").append(APPINFO::version).append("\n\n").append(licenseText));
+				QStringList licenseParagraphs = licenseText.split(QRegularExpression(R"(\r?\n\r?\n)"), Qt::SkipEmptyParts);
+				for (QString& paragraph : licenseParagraphs)
+				{
+					paragraph = paragraph.trimmed().toHtmlEscaped();
+					paragraph.replace('\n', ' ');
+				}
+
+				if (licenseParagraphs.size() > 1 && licenseParagraphs[1].startsWith("Copyright (c) "))
+					licenseParagraphs[1].replace("Copyright (c) ", "Copyright © ");
+
+				QString aboutText =
+					QString("<h3>Minesweeper</h3>"
+							"<p><b>Version:</b> %1</p>"
+							"<p><b>GitHub Repository:</b> <a href='https://github.com/nholthaus/minesweeper'>github.com/nholthaus/minesweeper</a></p>"
+							"<p><b>%2</b></p>"
+							"<p>%3</p>"
+							"<p>%4</p>"
+							"<p>%5</p>")
+						.arg(APPINFO::version,
+							 licenseParagraphs.value(1),
+							 licenseParagraphs.value(2),
+							 licenseParagraphs.value(3),
+							 licenseParagraphs.value(4));
+
+				QDialog aboutDialog(this);
+				aboutDialog.setWindowTitle("About Minesweeper");
+
+				auto* layout      = new QVBoxLayout(&aboutDialog);
+				auto* content     = new QHBoxLayout;
+				auto* iconLabel   = new QLabel(&aboutDialog);
+				auto* textLabel   = new QLabel(aboutText, &aboutDialog);
+				auto* buttons     = new QDialogButtonBox(QDialogButtonBox::Ok, &aboutDialog);
+
+				layout->setSizeConstraint(QLayout::SetFixedSize);
+
+				iconLabel->setPixmap(QIcon(":/mine").pixmap(QSize(64, 64)));
+				iconLabel->setFixedSize(64, 64);
+				iconLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+
+				textLabel->setTextFormat(Qt::RichText);
+				textLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+				textLabel->setOpenExternalLinks(true);
+				textLabel->setWordWrap(true);
+
+				connect(buttons, &QDialogButtonBox::accepted, &aboutDialog, &QDialog::accept);
+
+				content->addWidget(iconLabel, 0, Qt::AlignTop | Qt::AlignLeft);
+				content->addWidget(textLabel, 1);
+
+				layout->addLayout(content);
+				layout->addWidget(buttons);
+
+				aboutDialog.adjustSize();
+				aboutDialog.exec();
 			});
 
 	connect(aboutQtAction, &QAction::triggered, this, [this] { QMessageBox::aboutQt(this); });
