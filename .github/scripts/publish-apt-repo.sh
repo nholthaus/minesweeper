@@ -28,7 +28,9 @@ mkdir -p "${POOL_DIR}" "${BINARY_DIR}"
 
 find "${DEB_DIR}" -maxdepth 1 -type f -name '*.deb' -exec cp -f {} "${POOL_DIR}/" \;
 
-dpkg-scanpackages --multiversion "${APT_ROOT}/pool" > "${BINARY_DIR}/Packages"
+pushd "${APT_ROOT}" >/dev/null
+dpkg-scanpackages --multiversion "pool" > "${BINARY_DIR}/Packages"
+popd >/dev/null
 gzip -9 -c "${BINARY_DIR}/Packages" > "${BINARY_DIR}/Packages.gz"
 
 cat > "${APT_CONF}" <<EOF
