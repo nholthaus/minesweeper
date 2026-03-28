@@ -32,6 +32,13 @@ jobs:
           arch: 'win64_msvc2019_64'
           modules: 'qtscxml'
 
+      - name: Install NSIS on Windows
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          choco install nsis -y
+          "$env:ProgramFiles(x86)\NSIS" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
       - name: Install Qt on macOS
         if: matrix.os == 'macos-latest'
         uses: jurplel/install-qt-action@v4
@@ -78,3 +85,29 @@ jobs:
         with:
           name: Minesweeper-win64-installer.exe
           path: ${{github.workspace}}/build/Minesweeper-*-win64.exe
+
+  release:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: minesweeper.app.zip
+          path: ${{ github.workspace }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: Minesweeper-win64-installer.exe
+          path: ${{ github.workspace }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          body: Release of Minesweeper version ${{ github.ref_name }}
+          files: |
+            ${{ github.workspace }}/Minesweeper-*.exe
+            ${{ github.workspace }}/minesweeper.app.zip

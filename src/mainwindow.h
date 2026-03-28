@@ -16,6 +16,8 @@
 #include <QStateMachine>
 #include <QState>
 
+class QVBoxLayout;
+
 #include "versionChecker.h"
 
 class MainWindow : public QMainWindow
@@ -45,6 +47,7 @@ protected:
 
 private:
 
+	void setupGameUi();
 	void setDifficulty(HighScore::Difficulty difficulty);
 	void initialize();
 	void setupStateMachine();
@@ -59,6 +62,8 @@ protected:
 private:
 
 	QFrame*      mainFrame;
+	QFrame*      boardFrame;
+	QVBoxLayout* boardLayout;
 	GameBoard*   gameBoard;
 	MineCounter* mineCounter;
 	MineTimer*   mineTimer;
@@ -88,8 +93,6 @@ private:
 	QState*        inProgressState;
 	QState*        victoryState;
 	QState*        defeatState;
-
-	Tile* firstClicked;
 
 	quint32 numRows;
 	quint32 numCols;

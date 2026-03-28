@@ -6,7 +6,6 @@
 #include "mineCounter.h"
 #include "minetimer.h"
 
-#include <QDebug>
 #include <QFrame>
 #include <QGuiApplication>
 #include <QInputDialog>
@@ -26,13 +25,24 @@
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 	, mainFrame(nullptr)
+	, boardFrame(nullptr)
+	, boardLayout(nullptr)
+	, gameBoard(nullptr)
+	, mineCounter(nullptr)
+	, mineTimer(nullptr)
+	, newGame(nullptr)
+	, gameClock(nullptr)
+	, numRows(9)
+	, numCols(9)
+	, numMines(10)
+	, difficulty(HighScore::beginner)
 	, m_versionChecker{"nholthaus", "minesweeper", APPINFO::version}
 {
 	this->setWindowIcon(QIcon(":/mine"));
 	setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
-	setupStateMachine();
 	setupMenus();
 	loadSettings();
+	setupStateMachine();
 
 	connect(this, &MainWindow::defeat, this,
 			[this]()
@@ -59,6 +69,48 @@ MainWindow::MainWindow(QWidget* parent)
 	this->layout()->setSizeConstraint(QLayout::SetFixedSize);
 
 	m_versionChecker.checkForNewerVersion();
+}
+
+void MainWindow::setupGameUi()
+{
+	if (mainFrame != nullptr)
+		return;
+
+	// Keep the main window shell stable across games. Replacing the central widget
+	// during New Game caused platform-specific hide/flash behavior.
+	mainFrame = new QFrame(this);
+	auto* mainFrameLayout = new QVBoxLayout(mainFrame);
+	auto* infoLayout      = new QHBoxLayout;
+
+	boardFrame   = new QFrame(mainFrame);
+	boardLayout  = new QVBoxLayout(boardFrame);
+	mineCounter  = new MineCounter(mainFrame);
+	mineTimer    = new MineTimer(mainFrame);
+	newGame      = new QPushButton(mainFrame);
+	gameClock    = new QTimer(this);
+
+	boardLayout->setContentsMargins(0, 0, 0, 0);
+	boardLayout->setSizeConstraint(QLayout::SetFixedSize);
+
+	newGame->setMinimumSize(35, 35);
+	newGame->setIconSize(QSize(30, 30));
+	newGame->setIcon(QIcon(":/emoji/smile"));
+
+	gameClock->setInterval(1000);
+	connect(gameClock, &QTimer::timeout, mineTimer, &MineTimer::incrementTime, Qt::UniqueConnection);
+	connect(newGame, &QPushButton::clicked, this, &MainWindow::startNewGame, Qt::UniqueConnection);
+
+	infoLayout->addWidget(mineCounter);
+	infoLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::MinimumExpanding));
+	infoLayout->addWidget(newGame);
+	infoLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::MinimumExpanding));
+	infoLayout->addWidget(mineTimer);
+
+	mainFrameLayout->addLayout(infoLayout);
+	mainFrameLayout->addWidget(boardFrame);
+
+	this->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+	this->setCentralWidget(mainFrame);
 }
 
 void MainWindow::setDifficulty(HighScore::Difficulty difficulty)
@@ -97,46 +149,26 @@ void MainWindow::setDifficulty(HighScore::Difficulty difficulty)
 
 void MainWindow::initialize()
 {
-	QFrame* newMainFrame	= new QFrame(this);
-	auto	mainFrameLayout = new QVBoxLayout;
-	auto	infoLayout		= new QHBoxLayout;
-	gameBoard				= new GameBoard(numRows, numCols, numMines, newMainFrame);
-	mineCounter				= new MineCounter(newMainFrame);
-	mineTimer				= new MineTimer(newMainFrame);
-	newGame					= new QPushButton(newMainFrame);
-	gameClock				= new QTimer(this);
+	setupGameUi();
 
+	gameClock->stop();
+	mineTimer->reset();
 	mineCounter->setNumMines(numMines);
+	newGame->setIcon(QIcon(":/emoji/smile"));
+
+	if (gameBoard != nullptr)
+	{
+		boardLayout->removeWidget(gameBoard);
+		gameBoard->deleteLater();
+	}
+
+	gameBoard = new GameBoard(numRows, numCols, numMines, boardFrame);
 
 	connect(gameBoard, &GameBoard::initialized, this, &MainWindow::startGame, Qt::UniqueConnection);
 	connect(gameBoard, &GameBoard::flagCountChanged, mineCounter, &MineCounter::setFlagCount, Qt::UniqueConnection);
 	connect(gameBoard, &GameBoard::victory, this, &MainWindow::victory, Qt::UniqueConnection);
 	connect(gameBoard, &GameBoard::defeat, this, &MainWindow::defeat, Qt::UniqueConnection);
-
-	newGame->setMinimumSize(35, 35);
-	newGame->setIconSize(QSize(30, 30));
-	newGame->setIcon(QIcon(":/emoji/smile"));
-	connect(newGame, &QPushButton::clicked, this, &MainWindow::startNewGame, Qt::UniqueConnection);
-
-	gameClock->setInterval(1000);
-	connect(gameClock, &QTimer::timeout, mineTimer, &MineTimer::incrementTime, Qt::UniqueConnection);
-
-	infoLayout->addWidget(mineCounter);
-	infoLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::MinimumExpanding));
-	infoLayout->addWidget(newGame);
-	infoLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::MinimumExpanding));
-	infoLayout->addWidget(mineTimer);
-
-	mainFrameLayout->addLayout(infoLayout);
-	mainFrameLayout->addWidget(gameBoard);
-
-	newMainFrame->setLayout(mainFrameLayout);
-
-	this->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-	this->setCentralWidget(newMainFrame);
-
-	std::swap(mainFrame, newMainFrame);
-	delete newMainFrame;
+	boardLayout->addWidget(gameBoard);
 }
 
 void MainWindow::setupStateMachine()
@@ -339,7 +371,6 @@ void MainWindow::saveSettings()
 		stream << gameStats;
 		settings.setValue("stats", data);
 	}
-	settings.endArray();
 }
 
 void MainWindow::loadSettings()
@@ -369,8 +400,6 @@ void MainWindow::loadSettings()
 		QDataStream stream(&data, QIODevice::ReadOnly);
 		stream >> gameStats;
 	}
-
-	settings.endArray();
 }
 
 void MainWindow::changeEvent(QEvent* event)

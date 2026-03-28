@@ -2,7 +2,7 @@
 #	CMAKE SETTINGS
 #-------------------------------------------------------------------------------
 
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
 project(minesweeper LANGUAGES CXX)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
@@ -35,9 +35,10 @@ if (WIN32)
 	message(STATUS "Qt6 DIR: ${Qt6_DIR}")
 endif (WIN32)
 
-find_package(Qt6 6.7.2 REQUIRED
+find_package(Qt6 REQUIRED
              COMPONENTS Core Gui Widgets StateMachine Concurrent Network
-             HINTS /opt/Qt/6.7.2/gcc_64)
+			 PATHS $ENV{Qt6_DIR}
+             HINTS /opt/Qt/6.11.0/gcc_64)
 qt_standard_project_setup()
 
 #-------------------------------------------------------------------------------
