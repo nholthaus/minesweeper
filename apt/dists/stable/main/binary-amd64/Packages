@@ -4,11 +4,27 @@ Architecture: amd64
 Maintainer: Nic Holthaus
 Installed-Size: 1687
 Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libqt6concurrent6t64 (>= 6.1.2), libqt6core6t64 (>= 6.4.0), libqt6gui6t64 (>= 6.1.2), libqt6network6t64 (>= 6.1.2), libqt6statemachine6 (>= 6.2.1), libqt6widgets6t64 (>= 6.1.2), libstdc++6 (>= 11)
-Filename: /home/runner/work/minesweeper/minesweeper/site/apt/pool/main/m/minesweeper/minesweeper_1.1.4_amd64.deb
+Filename: pool/main/m/minesweeper/minesweeper_1.1.4_amd64.deb
 Size: 1208416
 MD5sum: e51dd30b2f175d0e3dcd04468dd69f25
 SHA1: 4e9d1bebac8e2a5756f0a1588d72cd67d661baa0
 SHA256: 36bfbf2af895776a58d81dc261a901e7107d4ab89511c4f90bcbf84a3bd283a9
+Section: games
+Priority: optional
+Homepage: https://github.com/nholthaus/minesweeper
+Description: Free Qt/C++17 Minesweeper
+
+Package: minesweeper
+Version: 1.1.5
+Architecture: amd64
+Maintainer: Nic Holthaus
+Installed-Size: 1687
+Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libqt6concurrent6t64 (>= 6.1.2), libqt6core6t64 (>= 6.4.0), libqt6gui6t64 (>= 6.1.2), libqt6network6t64 (>= 6.1.2), libqt6statemachine6 (>= 6.2.1), libqt6widgets6t64 (>= 6.1.2), libstdc++6 (>= 11)
+Filename: pool/main/m/minesweeper/minesweeper_1.1.5_amd64.deb
+Size: 1208410
+MD5sum: d0609f41815f7ba86c3afbdd12818c8e
+SHA1: 1566f7a085ab8248d723515acf581bd1ac1f987e
+SHA256: 6bed9879e94bcbb9226e8d2e5c687ab317f2e31ac058482567cc8185a569f4a9
 Section: games
 Priority: optional
 Homepage: https://github.com/nholthaus/minesweeper

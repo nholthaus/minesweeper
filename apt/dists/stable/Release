@@ -1,24 +1,24 @@
 Architectures: amd64
 Codename: stable
 Components: main
-Date: Sat, 28 Mar 2026 04:16:14 +0000
+Date: Sat, 28 Mar 2026 04:22:10 +0000
 Description: Minesweeper APT repository
 Label: Minesweeper
 Origin: Minesweeper
 Suite: stable
 MD5Sum:
- a55c23183293787acf17955f1f50e225              186 Release
- 177bd6ace81516c1a7844cdc7e3cff81              758 main/binary-amd64/Packages
- 2c373bf4e906c38154a2305dd08a8a20              474 main/binary-amd64/Packages.gz
+ 771781764cf37a01b15736c029ec7be6              186 Release
+ 75be0a07f0ce8c5548d555f75ee5e8a0             1414 main/binary-amd64/Packages
+ 4eef16965d1d35da909edde5a3711678              565 main/binary-amd64/Packages.gz
 SHA1:
- 5172541df5bb18d90ae1dc0d65eb5c0f832615c0              186 Release
- 8ddedf561dbfd64a69def728939662e45c7d4e0c              758 main/binary-amd64/Packages
- cf71da4b901cb9ef9376d370ec3c75eef2a61d0e              474 main/binary-amd64/Packages.gz
+ fe73863e0ff804221c7ce88165c6c5e2602ebde4              186 Release
+ 99b3eec5b9903437a2468f8b8326b21df04c60d1             1414 main/binary-amd64/Packages
+ 3cd25831c502c37e904bb623bd4fcaf7e9cbbda0              565 main/binary-amd64/Packages.gz
 SHA256:
- 8351dee38337f6907cb2aa1d6de3093f3c89bc30e629315d20f3af20e0139a9a              186 Release
- 550f2ed21d42aeb0c52559aebf443dff98d131e238accccce5f7696ed9d775fd              758 main/binary-amd64/Packages
- 5fa8ff4f7f9ba13c4a5cb703db96f057efb50ad3183ea3d546f4b0670a0b7ae3              474 main/binary-amd64/Packages.gz
+ 79ad36a23ee0de7ce5d28cf3948401d41bef1aab8da1403dfc3338e5bf2798e4              186 Release
+ 02fa713a17cbb2fc62d8449c96b13dfa457769a5890d2ffbef03a3452d9dd81c             1414 main/binary-amd64/Packages
+ c2c882b754de9580883d6eb05b4439a0c6bf5795522bcb409763a11fb5ae8669              565 main/binary-amd64/Packages.gz
 SHA512:
- 50f858ca3b3783477fd1cf53fafc0a13775555a318848514e318cfd51e541b45e5159fe2cba816fc3fe32c15224c5682cb7ce455a7fa0b887911946c880997f1              186 Release
- ae2f771674d306e6956440faa4fb5c32550e09cc0afb31f0b6c86550574266fcc8d1026dc6997d778cdeed3dbdccd68614a471f9ed957c1733e96a5c1c0188e8              758 main/binary-amd64/Packages
- d3f8e015a03d574a4bf3ac5d7de0a2ca63b2aa7c046ff31065f2d4ed62ce0588ae49fbb2b51a5e77e50321addfe13707f3d64f243b4b2e2291717077bbf4bd8a              474 main/binary-amd64/Packages.gz
+ 4e028b66cc2b84ddf0175986ffb057420d1da785d472167d65b54910700cf67f066d06ef4f216c81e088c00f15a65066a72e20bc220af582678c140f7cfe7e11              186 Release
+ 61a6876c043893204fba23520fd74da1d34a13fde6a7430d52540e620bdb8b519089da008288ec7ec3e58e5c4ef12672dd3cbc0a2f30c9027c9c5487ad9115ec             1414 main/binary-amd64/Packages
+ 1b24057754fdc1a46b4ff6be203a12ff5e93f1bee828d90a85d2c38c407c05ae1677924f4709ffb3e5e21bd740888b523f9eb4b3c6e7e544fe4f373d19d4bf08              565 main/binary-amd64/Packages.gz
