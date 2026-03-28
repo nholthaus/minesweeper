@@ -1,6 +1,8 @@
 #pragma once
 #include <QLCDNumber>
 
+#include "theme.h"
+
 class MineCounter : public QLCDNumber
 {
 public:
@@ -8,7 +10,7 @@ public:
 
 	void setNumMines(int numMines);
 	void setFlagCount(unsigned int flagCount);
-	void setTheme(Qt::ColorScheme colorScheme);
+	void setTheme(Theme::ColorScheme colorScheme);
 	virtual QSize sizeHint() const override;
 
 private:

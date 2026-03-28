@@ -1,7 +1,4 @@
 #include "mineCounter.h"
-#include <QGuiApplication>
-#include <QStyleHints>
-
 MineCounter::MineCounter(QWidget* parent)
 	: QLCDNumber(parent)
 {
@@ -9,7 +6,7 @@ MineCounter::MineCounter(QWidget* parent)
 	this->display(0);
 	this->setSegmentStyle(QLCDNumber::Flat);
 	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-	this->setTheme(QGuiApplication::styleHints()->colorScheme());
+	this->setTheme(Theme::currentColorScheme());
 }
 
 void MineCounter::setNumMines(int numMines)
@@ -24,9 +21,9 @@ void MineCounter::setFlagCount(unsigned int flagCount)
 	display((int)m_totalMines - (int)flagCount);
 }
 
-void MineCounter::setTheme(Qt::ColorScheme colorScheme)
+void MineCounter::setTheme(Theme::ColorScheme colorScheme)
 {
-	if (colorScheme == Qt::ColorScheme::Dark)
+	if (Theme::isDark(colorScheme))
 		this->setStyleSheet(".QLCDNumber { border: 2px inset #303030; background-color: black; color: red; }");
 	else
 		this->setStyleSheet(".QLCDNumber { border: 2px inset gray; background-color: black; color: red; }");

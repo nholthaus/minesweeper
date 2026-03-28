@@ -406,12 +406,12 @@ void MainWindow::changeEvent(QEvent* event)
 {
 	if (event->type() == QEvent::ThemeChange || event->type() == QEvent::StyleChange)
 	{
-		this->setTheme(QGuiApplication::styleHints()->colorScheme());
+		this->setTheme(Theme::currentColorScheme());
 	}
 	QMainWindow::changeEvent(event);
 }
 
-void MainWindow::setTheme(Qt::ColorScheme colorScheme)
+void MainWindow::setTheme(Theme::ColorScheme colorScheme)
 {
 	gameBoard->setTheme(colorScheme);
 	mineCounter->setTheme(colorScheme);

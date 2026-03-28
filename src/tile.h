@@ -6,6 +6,8 @@
 #include <QFinalState>
 #include <QSignalMapper>
 
+#include "theme.h"
+
 struct TileLocation
 {
 	unsigned int row; 
@@ -55,7 +57,7 @@ public slots:
 	void incrementAdjacentFlaggedCount();
 	void decrementAdjacentFlaggedCount();
 	void incrementAdjacentMineCount();
-	void setTheme(Qt::ColorScheme colorScheme);
+	void setTheme(Theme::ColorScheme colorScheme);
 
 signals:
 

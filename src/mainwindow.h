@@ -6,6 +6,7 @@
 #include "minetimer.h"
 #include "highScoreModel.h"
 #include "gameStats.h"
+#include "theme.h"
 
 #include <QAction>
 #include <QActionGroup>
@@ -57,7 +58,7 @@ private:
 protected:
 
 	void changeEvent(QEvent*) override;
-	void setTheme(Qt::ColorScheme colorScheme);
+	void setTheme(Theme::ColorScheme colorScheme);
 
 private:
 
