@@ -4,6 +4,7 @@ Name=Minesweeper
 Comment=Free Qt/C++20 Minesweeper
 Exec=minesweeper
 Icon=minesweeper
+StartupWMClass=minesweeper
 Terminal=false
 Categories=Game;LogicGame;Qt;
 Keywords=minesweeper;game;logic;
