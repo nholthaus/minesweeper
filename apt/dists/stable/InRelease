@@ -1,0 +1,43 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Architectures: amd64
+Codename: stable
+Components: main
+Date: Sat, 28 Mar 2026 04:16:14 +0000
+Description: Minesweeper APT repository
+Label: Minesweeper
+Origin: Minesweeper
+Suite: stable
+MD5Sum:
+ a55c23183293787acf17955f1f50e225              186 Release
+ 177bd6ace81516c1a7844cdc7e3cff81              758 main/binary-amd64/Packages
+ 2c373bf4e906c38154a2305dd08a8a20              474 main/binary-amd64/Packages.gz
+SHA1:
+ 5172541df5bb18d90ae1dc0d65eb5c0f832615c0              186 Release
+ 8ddedf561dbfd64a69def728939662e45c7d4e0c              758 main/binary-amd64/Packages
+ cf71da4b901cb9ef9376d370ec3c75eef2a61d0e              474 main/binary-amd64/Packages.gz
+SHA256:
+ 8351dee38337f6907cb2aa1d6de3093f3c89bc30e629315d20f3af20e0139a9a              186 Release
+ 550f2ed21d42aeb0c52559aebf443dff98d131e238accccce5f7696ed9d775fd              758 main/binary-amd64/Packages
+ 5fa8ff4f7f9ba13c4a5cb703db96f057efb50ad3183ea3d546f4b0670a0b7ae3              474 main/binary-amd64/Packages.gz
+SHA512:
+ 50f858ca3b3783477fd1cf53fafc0a13775555a318848514e318cfd51e541b45e5159fe2cba816fc3fe32c15224c5682cb7ce455a7fa0b887911946c880997f1              186 Release
+ ae2f771674d306e6956440faa4fb5c32550e09cc0afb31f0b6c86550574266fcc8d1026dc6997d778cdeed3dbdccd68614a471f9ed957c1733e96a5c1c0188e8              758 main/binary-amd64/Packages
+ d3f8e015a03d574a4bf3ac5d7de0a2ca63b2aa7c046ff31065f2d4ed62ce0588ae49fbb2b51a5e77e50321addfe13707f3d64f243b4b2e2291717077bbf4bd8a              474 main/binary-amd64/Packages.gz
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEKwnLLj1VGS1CNAz4HF4xP5rOK2cFAmnHVg4ACgkQHF4xP5rO
+K2fuNBAArDRdmGtzH2nk9Rly8OlOg/rriETgC3cQ51aTCgyDzMp/1XxpMW065Op6
+Bu9yb2Vegio2JoQc8t0II7zDg3AgJWdHN5DhKYmK5F53dG2jrGxa5/Q3CYsggaKR
+8YZDfV1Emwi0C+RF65CKYAw35YAtDS+iSv3C7+OsfEYwEWtwjf6ViiXKulWG9ufx
+eYBvnUJgw3CH2FqqM9B6ancgKvOgf8WEPVI/bGaCAeZG1VopURkiZu2cYb0Udk8I
+jysw/pFptz2zN13NIYuCjQ8MGMX0TIvrrBxcsat7sN8j315sBvK+4Elz8wOGxv29
+VYnExMAHSAPBUXfkoDGGBvSPhGA3KraUxLBZJpwsNV3suha+Za4RchgSJccF+HOJ
+C0tPQCLmcIBm7sJSl//meChiTs6jtRRVXt6hYvoo8pFxFwdTdwguF+VSG2MS3KRH
+NfDGloDV55KqBRmHnlUIJQ1fK77nt8FyAcbkKErHephJ61dh6CcdpHUJv9dJLRia
+Ix0Ujd4dMJw5QPTkhNZ0u5tPu45dEY4V9RTOZxJDmp4GiGpVi8M/vNQLjHRpmdpl
+vJ7aZJEhUYPRoWWMHTXmu6tFyqaPezWJvHHSzcP281/eNjDktLiD6aktiuzEVOf/
+AuKuHjAlTx4qVehnAkic7mfBVZiaqB36GqRWeLkQFDGjS/mj2Is=
+=ySxH
+-----END PGP SIGNATURE-----
