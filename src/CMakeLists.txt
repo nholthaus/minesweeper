@@ -1,6 +1,7 @@
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 cmake_policy(SET CMP0087 NEW)
 configure_file(appinfo.h.in ${CMAKE_CURRENT_BINARY_DIR}/appinfo.h @ONLY NEWLINE_STYLE UNIX)
+configure_file(${CMAKE_SOURCE_DIR}/resources/linux/minesweeper.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/minesweeper.desktop @ONLY NEWLINE_STYLE UNIX)
 
 qt_add_resources(RESOURCES ../resources/resources.qrc)
 
@@ -64,8 +65,19 @@ elseif (APPLE)
 	        BUNDLE DESTINATION ${CMAKE_BINARY_DIR}
 	        COMPONENT Runtime)
 else ()
+	set_target_properties(${PROJECT_NAME} PROPERTIES
+	                      INSTALL_RPATH ""
+	                      INSTALL_RPATH_USE_LINK_PATH FALSE
+	                      )
 	install(TARGETS ${PROJECT_NAME}
 	        RUNTIME DESTINATION bin
+	        )
+	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/minesweeper.desktop
+	        DESTINATION share/applications
+	        )
+	install(FILES ${CMAKE_SOURCE_DIR}/resources/images/mine.png
+	        DESTINATION share/icons/hicolor/256x256/apps
+	        RENAME minesweeper.png
 	        )
 endif (WIN32)
 
@@ -89,19 +101,29 @@ endif (WIN32)
 #	INSTALLER
 #-------------------------------------------------------------------------------
 
-set(CPACK_GENERATOR NSIS)
 set(CPACK_PACKAGE_NAME "Minesweeper")
 set(CPACK_PACKAGE_VENDOR "Menari Softworks")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Free Qt/C++17 Minesweeper")
 set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/LICENSE)
 set(CPACK_RESOURCE_FILE_README ${CMAKE_SOURCE_DIR}/README.md)
-set(CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/resources/icons/logo.ico")
-set(CPACK_NSIS_MUI_UNIICON "${CMAKE_SOURCE_DIR}/resources/icons/logo.ico")
-set(CPACK_NSIS_INSTALLED_ICON_NAME "bin/minesweeper.exe")
 set(CPACK_PACKAGE_HOMEPAGE_URL "https://github.com/nholthaus/minesweeper")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "${CPACK_PACKAGE_NAME}")
 set(CPACK_PACKAGE_EXECUTABLES "minesweeper" "minesweeper")
 set(CPACK_CREATE_DESKTOP_LINKS minesweeper)
 set(CPACK_PACKAGE_VERSION ${GIT_TAG})
+
+if (WIN32)
+	set(CPACK_GENERATOR NSIS)
+	set(CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/resources/icons/logo.ico")
+	set(CPACK_NSIS_MUI_UNIICON "${CMAKE_SOURCE_DIR}/resources/icons/logo.ico")
+	set(CPACK_NSIS_INSTALLED_ICON_NAME "bin/minesweeper.exe")
+elseif(UNIX AND NOT APPLE)
+	set(CPACK_GENERATOR DEB)
+	set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
+	set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Nic Holthaus")
+	set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+	set(CPACK_DEBIAN_PACKAGE_SECTION "games")
+	set(CPACK_DEBIAN_PACKAGE_DEPENDS "")
+endif()
 
 include(CPack)

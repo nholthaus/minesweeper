@@ -17,7 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [windows-latest, macos-latest]
+        os: [windows-latest, macos-latest, ubuntu-latest]
 
     steps:
       - uses: actions/checkout@v4
@@ -48,6 +48,12 @@ jobs:
           target: 'desktop'
           arch: 'clang_64'
           modules: 'qtscxml'
+
+      - name: Install Linux build dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake ninja-build qt6-base-dev qt6-base-dev-tools
 
       - name: Configure CMake
         run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
@@ -86,6 +92,18 @@ jobs:
           name: Minesweeper-win64-installer.exe
           path: ${{github.workspace}}/build/Minesweeper-*-win64.exe
 
+      - name: Package Debian Installer
+        if: matrix.os == 'ubuntu-latest'
+        working-directory: ${{github.workspace}}/build
+        run: cpack -G DEB -C ${{env.BUILD_TYPE}}
+
+      - name: Upload Debian Installer
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: minesweeper-linux-deb
+          path: ${{github.workspace}}/build/*.deb
+
   release:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
     needs: build
@@ -102,6 +120,11 @@ jobs:
           name: Minesweeper-win64-installer.exe
           path: ${{ github.workspace }}
 
+      - uses: actions/download-artifact@v4
+        with:
+          name: minesweeper-linux-deb
+          path: ${{ github.workspace }}
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -111,3 +134,4 @@ jobs:
           files: |
             ${{ github.workspace }}/Minesweeper-*.exe
             ${{ github.workspace }}/minesweeper.app.zip
+            ${{ github.workspace }}/*.deb
