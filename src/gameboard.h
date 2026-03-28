@@ -4,6 +4,7 @@
 #include <QSet>
 
 #include "tile.h"
+#include "theme.h"
 
 class GameBoard : public QFrame
 {
@@ -20,7 +21,7 @@ public:
 public slots:
 
 	void placeMines(Tile* firstClicked);
-	void setTheme(Qt::ColorScheme colorScheme);
+	void setTheme(Theme::ColorScheme colorScheme);
 
 signals:
 

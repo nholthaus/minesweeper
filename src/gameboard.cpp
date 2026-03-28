@@ -261,7 +261,7 @@ void GameBoard::placeMines(Tile* firstClicked)
 	emit initialized();
 }
 
-void GameBoard::setTheme(Qt::ColorScheme colorScheme)
+void GameBoard::setTheme(Theme::ColorScheme colorScheme)
 {
 	for(auto& index : m_tileIndices)
 	{

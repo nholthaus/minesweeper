@@ -8,9 +8,6 @@
 #include <QFinalState>
 #include <QMouseEvent>
 #include <QSizePolicy>
-#include <QGuiApplication>
-#include <QStyleHints>
-
 bool Tile::m_firstClick = false;
 
 const QString Tile::unrevealedStyleSheetLight =
@@ -109,7 +106,7 @@ Tile::Tile(TileLocation location, QWidget* parent /*= nullptr*/)
 	setCheckable(true);
 	setMouseTracking(true);
 
-	this->setTheme(QGuiApplication::styleHints()->colorScheme());
+	this->setTheme(Theme::currentColorScheme());
 }
 
 Tile::~Tile()
@@ -351,7 +348,7 @@ void Tile::createStateMachine()
 void Tile::setText()
 {
 	QString color;
-	if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
+	if (Theme::isDark(Theme::currentColorScheme()))
 	{
 		switch (m_adjacentMineCount)
 		{
@@ -421,9 +418,9 @@ void Tile::setText()
 		QPushButton::setText(QString::number(m_adjacentMineCount));
 }
 
-void Tile::setTheme(Qt::ColorScheme colorScheme)
+void Tile::setTheme(Theme::ColorScheme colorScheme)
 {
-	if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
+	if (Theme::isDark(colorScheme))
 	{
 		unrevealedStyleSheet         = unrevealedStyleSheetDark;
 		revealedStyleSheet           = revealedStyleSheetDark;
