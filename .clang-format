@@ -12,7 +12,6 @@ AllowAllConstructorInitializersOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: false
 AllowShortBlocksOnASingleLine: Empty
 AllowShortIfStatementsOnASingleLine: false
-AlwaysBreakAfterDefinitionReturnType: false
 AlwaysBreakTemplateDeclarations: Yes
 BraceWrapping: 
   AfterCaseLabel: true

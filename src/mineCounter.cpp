@@ -7,6 +7,7 @@ MineCounter::MineCounter(QWidget* parent)
 	this->setSegmentStyle(QLCDNumber::Flat);
 	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	this->setTheme(Theme::currentColorScheme());
+	this->setToolTip("Mines Remaining");
 }
 
 void MineCounter::setNumMines(int numMines)

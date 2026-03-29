@@ -8,6 +8,7 @@ MineTimer::MineTimer(QWidget* parent /*= nullptr*/)
 	this->setSegmentStyle(QLCDNumber::Flat);
 	this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	this->setTheme(Theme::currentColorScheme());
+	this->setToolTip("Elapsed Time");
 }
 
 void MineTimer::incrementTime()
